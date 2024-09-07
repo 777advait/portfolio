@@ -55,7 +55,7 @@ export default function SpotifyNowListening() {
   }, []);
 
   if (!spotifyData || !spotifyData?.isPlaying) {
-    return <MarqueeText text="Not listening to anything..." />;
+    return <MarqueeText text="Not listening to music rn..." />;
   }
 
   const { title, artist } = spotifyData;
