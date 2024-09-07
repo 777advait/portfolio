@@ -3,4 +3,5 @@ export interface Writings {
   tldr: string;
   content: any;
   slug: { current: string };
+  _createdAt: string;
 }

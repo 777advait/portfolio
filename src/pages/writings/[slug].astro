@@ -26,16 +26,46 @@ const { data: writing } = await loadQuery<Writings>({
   query: `*[_type == "writings" && slug.current == $slug][0]`,
   params,
 });
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+  weekday: "short",
+  year: "numeric",
+  month: "short",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hourCycle: "h24",
+  timeZoneName: "shortOffset",
+});
+
+const createdAt = formatter.format(new Date(writing._createdAt));
 ---
 
 <Layout>
   <Container>
-    <div class="max-w-[75%] mx-auto space-y-12">
-      <h1 class="text-3xl text-center font-semibold">{writing.title}</h1>
-      <p class="text-center">
-        {writing.tldr}
-      </p>
-      <PortableText portableText={writing.content} />
-    </div>
+    <article class="space-y-8">
+      <header class="space-y-2">
+        <h1 class="text-2xl font-semibold">{writing.title}</h1>
+        <div class="flex items-center gap-2 text-sm md:text-base">
+          <p class="text-muted-foreground font-medium">advait</p>
+          <span>•</span>
+          <p class="">{createdAt}</p>
+        </div>
+      </header>
+      <section class="text-sm md:text-base">
+        {
+          writing.tldr && (
+            <blockquote class="space-y-2 border-l-[3px] pl-4">
+              <p class="font-medium">tl;dr</p>
+              <p class="font-light italic">"{writing.tldr}"</p>
+            </blockquote>
+          )
+        }
+        <div class="">
+          <PortableText portableText={writing.content} />
+        </div>
+      </section>
+    </article>
   </Container>
 </Layout>

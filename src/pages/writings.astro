@@ -26,6 +26,8 @@ const { data: writings } = await loadQuery<Writings[]>({
   query: `*[_type == "writings"]`,
   params,
 });
+
+console.log(writings);
 ---
 
 <Layout title="writings | astro">
@@ -45,7 +47,7 @@ const { data: writings } = await loadQuery<Writings[]>({
             return (
               <li>
                 <Link
-                  className="lg:text-base"
+                  className="md:text-base"
                   href={`/writings/${writing.slug.current}`}
                 >
                   {writing.title}

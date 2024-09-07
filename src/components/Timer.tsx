@@ -22,7 +22,7 @@ export function Timer() {
   }, []);
 
   return (
-    <div className="flex items-center gap-2 text-sm lg:text-base">
+    <div className="flex items-center gap-2 text-sm md:text-base">
       <p className="text-muted-foreground font-medium">{time}</p>
       <span>•</span>
       <p>mumbai, india</p>

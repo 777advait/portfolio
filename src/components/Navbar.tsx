@@ -20,7 +20,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 className={clsx([
-                  "text-sm underline-offset-2 decoration-dashed lg:text-base",
+                  "text-sm underline-offset-2 decoration-dashed md:text-base",
                   {
                     underline: "/" + pathname === link.href,
                     "text-muted-foreground": "/" + pathname === link.href,
@@ -36,7 +36,7 @@ export default function Navbar() {
           <li>
             <a
               className={clsx([
-                "text-sm underline-offset-2 decoration-dashed lg:text-base",
+                "text-sm underline-offset-2 decoration-dashed md:text-base",
                 {
                   underline: "/" + pathname === "/chat",
                   "text-muted-foreground": "/" + pathname === "/chat",

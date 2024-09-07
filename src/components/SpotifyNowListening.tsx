@@ -15,7 +15,7 @@ function MarqueeText(props: { text: string }) {
   const animationDuration = `${textLength / 3}s`; // Adjust the divisor for desired speed
 
   return (
-    <div className="text-sm flex items-center text-muted-foreground font-medium lg:text-base overflow-hidden">
+    <div className="text-sm flex items-center text-muted-foreground font-medium md:text-base overflow-hidden">
       <span>
         <MusicIcon className="w-3.5 h-3.5 mr-1" />
       </span>
