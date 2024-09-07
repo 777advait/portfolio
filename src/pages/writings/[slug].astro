@@ -27,7 +27,7 @@ const { data: writing } = await loadQuery<Writings>({
   params,
 });
 
-const formatter = new Intl.DateTimeFormat("en-US", {
+const createdAt = new Date(writing._createdAt).toLocaleString("en-US", {
   weekday: "short",
   year: "numeric",
   month: "short",
@@ -36,10 +36,8 @@ const formatter = new Intl.DateTimeFormat("en-US", {
   minute: "2-digit",
   second: "2-digit",
   hourCycle: "h24",
-  timeZoneName: "shortOffset",
+  timeZoneName: "short",
 });
-
-const createdAt = formatter.format(new Date(writing._createdAt));
 ---
 
 <Layout>
