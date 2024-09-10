@@ -1,4 +1,4 @@
-import type { APIRoute, APIContext } from "astro";
+import type { APIRoute } from "astro";
 import { z } from "zod";
 import { Resend } from "resend";
 import { generateContactEmailHtml } from "@/emails/generateContactEmail";
