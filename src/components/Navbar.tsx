@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <header className="border-b py-2 md:py-4">
       <nav className="flex items-center justify-between px-2.5">
-        <ul className="flex items-center gap-4">
+        <ul className="flex items-center gap-4 md:gap-6">
           {links.map((link) => {
             const isActive = link.href === pathname;
 
