@@ -1,11 +1,23 @@
-import type { APIRoute } from "astro";
+import type { APIRoute, APIContext } from "astro";
 import { z } from "zod";
 import { Resend } from "resend";
 import { generateContactEmailHtml } from "@/emails/generateContactEmail";
+import { rateLimit } from "@/lib/rate-limit";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, clientAddress }) => {
+  const { isAllowed } = rateLimit(clientAddress);
+
+  if (!isAllowed) {
+    return new Response(
+      JSON.stringify({
+        message: "Rate limit exceeded",
+      }),
+      { status: 429 }
+    );
+  }
+
   const data = await request.json();
   const schema = z.object({
     name: z.string(),
