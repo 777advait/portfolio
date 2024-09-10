@@ -19,7 +19,7 @@ function MarqueeText(props: { text: string }) {
       <span>
         <MusicIcon className="w-3.5 h-3.5 mr-1" />
       </span>
-      <div className="marquee-container w-40 md:w-60">
+      <div className="marquee-container">
         <div
           className="marquee-content"
           style={{ animationDuration: animationDuration }}
