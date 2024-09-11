@@ -1,12 +1,62 @@
 ---
-import Container from "@/components/Container.astro"
-import Layout from "../layouts/Layout.astro"
+import Container from "@/components/Container.astro";
+import Layout from "../layouts/Layout.astro";
+import ProjectList from "@/components/projects/ProjectList";
+
+const projects = [
+  {
+    title: "WNE3 Live",
+    role: "Lead Full Stack Engineer",
+    href: "https://wne3.com",
+    description:
+      "A live streaming platform focused on delivering high-quality content.",
+  },
+  {
+    title: "Rift",
+    role: "Freelance Developer",
+    href: "https://onrift.xyz",
+    description:
+      "Rift is a social network designed to connect like-minded creators.",
+  },
+  {
+    title: "IndieLettr",
+    role: "Founder, Creator",
+    href: "https://indielettr.com",
+    description: "A newsletter platform for independent creators.",
+  },
+  {
+    title: "Limitix",
+    role: "Maintainer, Creator",
+    href: "https://gitbook.io",
+    description: "An open-source toolkit for maintaining software projects.",
+  },
+  {
+    title: "Lettr0",
+    role: "Founder, Creator",
+    href: "https://lettr0.me",
+    description:
+      "Lettr0 is a lightweight platform for sending encrypted letters.",
+  },
+];
 ---
 
 <Layout title="projects | astro">
   <Container>
-    <div class="flex flex-col items-center justify-between text-center">
-      <p>Projects</p>
+    <div class="flex flex-col space-y-12">
+      <div class="space-y-4">
+        <h1 class="text-2xl font-semibold">projects</h1>
+        <p
+          class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-base"
+        >
+          A collection of random tidbits, ranging from thoughts and experiences
+          from my journey through life and code.
+        </p>
+
+        <!-- Use ProjectList here -->
+        <div class="">
+          <ProjectList projects={projects} client:load />
+        </div>
+      </div>
     </div>
   </Container>
 </Layout>

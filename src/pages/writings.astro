@@ -37,7 +37,7 @@ const { data: writings } = await loadQuery<Writings[]>({
         <p
           class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-base"
         >
-          A collection of random tidbits, ranging from thoughts and experiences
+          A journal of random tidbits, ranging from thoughts and experiences
           from my journey through life and code.
         </p>
       </div>
@@ -50,11 +50,10 @@ const { data: writings } = await loadQuery<Writings[]>({
                 { "border-b": index != writings.length - 1 },
               ])}
             >
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
                 <a
-                  class="md:text-lg truncate md:max-w-[calc(100%-5rem)] max-w-[70%]"
+                  class="font-medium truncate md:max-w-[calc(100%-5rem)] max-w-[70%]"
                   href={`/writings/${writing.slug.current}`}
-                  title={writing.title}
                 >
                   {writing.title}
                 </a>
