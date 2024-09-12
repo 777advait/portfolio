@@ -51,19 +51,18 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove} // Track mouse movement
         >
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
-            <a
-              className="font-medium truncate md:max-w-[calc(100%-5rem)] max-w-[70%]"
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <a
+            href={project.href}
+            target="_blank"
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 hover:text-foreground/65"
+          >
+            <p className="flex items-center font-medium truncate md:max-w-[calc(100%-5rem)] max-w-[70%]">
               {project.title}
-            </a>
+            </p>
             <p className="text-xs md:text-sm text-muted-foreground whitespace-nowrap">
               {project.role}
             </p>
-          </div>
+          </a>
 
           {hoveredIndex === index && (
             <motion.div
@@ -72,9 +71,8 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
               exit={{ opacity: 0 }}
               className="fixed bg-white shadow-lg border rounded p-4 w-64 z-10 pointer-events-none"
               style={{
-                top: cursorPosition.y + 10, // Adjust positioning relative to cursor
+                top: cursorPosition.y + 10,
                 left: cursorPosition.x + 10,
-                transform: "translate(-50%, -50%)", // Center the modal around cursor
               }}
             >
               <h4 className="text-sm font-semibold mb-2">{project.title}</h4>

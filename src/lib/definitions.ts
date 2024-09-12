@@ -5,3 +5,10 @@ export interface Writings {
   slug: { current: string };
   _createdAt: string;
 }
+
+export interface Projects {
+  title: string;
+  href: string;
+  description: string;
+  role: string;
+}

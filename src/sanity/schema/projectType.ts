@@ -12,12 +12,10 @@ export const projectType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "title",
-      },
+      name: "href",
+      title: "URL",
+      type: "url",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "role",
@@ -28,8 +26,7 @@ export const projectType = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "array",
-      of: [{ type: "block" }],
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
   ],
