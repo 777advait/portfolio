@@ -36,7 +36,7 @@ export default function Navbar() {
                 <motion.a
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ when: "beforeChildren", staggerChildren: 0.15 }}
+                  transition={{ duration: 0.5, staggerChildren: 0.15 }}
                   href={link.href}
                   className={cn([
                     "text-sm md:text-base relative transition duration-300",
@@ -88,6 +88,9 @@ export default function Navbar() {
                     },
                   ])}
                   href="/chat"
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, staggerChildren: 0.15 }}
                   style={{
                     filter:
                       hoveredIndex !== null && hoveredIndex !== "chat"
