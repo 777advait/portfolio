@@ -1,12 +1,41 @@
 ---
 import Container from "@/components/Container.astro";
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import { loadQuery } from "@/sanity/lib/load-query";
+import { urlForImage } from "@/sanity/lib/urlForImage";
+import type { ArchiveImages } from "@/lib/definitions";
+
+const { data: images } = await loadQuery<ArchiveImages[]>({
+  query: `*[_type == "archiveImages"]`,
+});
+
+const imageData = images.map((image) => {
+  return { title: image.title, url: urlForImage(image.image).url() };
+});
 ---
 
 <Layout>
   <Container>
-    <div class="flex flex-col items-center justify-between text-center">
-      <p>Archiving my memories, please visit later</p>
+    <!-- <Image src={image.url} alt={image.title} width={500} height={500} /> -->
+    <div class="flex flex-col space-y-4">
+      <div class="space-y-4">
+        <h1 class="text-2xl font-semibold">archive</h1>
+        <p
+          class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-base"
+        >
+          just a random scrapbook of my creative works in past
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-2 place-items-center md:grid-cols-3">
+        {
+          imageData.map((image) => (
+            <div class="">
+              <img src={image.url} alt={image.title} width={300} height={300} />
+            </div>
+          ))
+        }
+      </div>
     </div>
   </Container>
 </Layout>

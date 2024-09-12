@@ -12,3 +12,8 @@ export interface Projects {
   description: string;
   role: string;
 }
+
+export interface ArchiveImages {
+  title: string;
+  image: any;
+}
