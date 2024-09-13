@@ -56,32 +56,32 @@
   :root {
     --background: 40 30% 96%;
     --foreground: 210 40% 25%;
-    
+
     --card: 40 30% 94%;
     --card-foreground: 210 40% 25%;
- 
+
     --popover: 40 30% 96%;
     --popover-foreground: 210 40% 25%;
- 
+
     --primary: 210 60% 60%;
     --primary-foreground: 40 30% 96%;
- 
+
     --secondary: 40 20% 85%;
     --secondary-foreground: 210 40% 25%;
- 
+
     --muted: 40 20% 90%;
     --muted-foreground: 210 30% 45%;
- 
+
     --accent: 40 20% 85%;
     --accent-foreground: 210 40% 25%;
- 
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 40 30% 96%;
 
     --border: 210 30% 80%;
     --input: 210 30% 80%;
     --ring: 210 60% 60%;
- 
+
     --radius: 0.5rem;
   }
 }
@@ -115,6 +115,33 @@
   max-width: 100%;
 }
 
+.slider-container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 2%,
+    black 98%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 2%,
+    black 98%,
+    transparent 100%
+  );
+  width: 100%;
+  max-width: 100%;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.slider-container::-webkit-scrollbar {
+  display: none;
+}
+
 .marquee-content {
   display: inline-flex;
   white-space: nowrap;
@@ -138,11 +165,27 @@
   animation-play-state: paused;
 }
 
-
 @media (min-width: 768px) {
   .marquee-container {
     overflow: hidden;
     width: 100%;
     max-width: 15rem;
+  }
+
+  .slider-container {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 1%,
+      black 99%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 1%,
+      black 99%,
+      transparent 100%
+    );
   }
 }

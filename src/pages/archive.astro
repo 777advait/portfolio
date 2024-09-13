@@ -11,30 +11,77 @@ const { data: images } = await loadQuery<ArchiveImages[]>({
 });
 
 const imageData = images.map((image) => {
-  return { title: image.title, url: urlForImage(image.image).url() };
+  return {
+    title: image.title,
+    url: urlForImage(image.image).url(),
+    webpUrl: urlForImage(image.image).format("webp").url(),
+  };
 });
+
+const getItemClassName = (index: number) => {
+  if (index % 7 === 0 || (index - 4) % 7 === 0) {
+    return "md:col-span-2 md:row-span-2";
+  }
+  return "";
+};
 ---
 
 <Layout>
   <Container>
-    <!-- <Image src={image.url} alt={image.title} width={500} height={500} /> -->
-    <div class="flex flex-col space-y-4">
-      <div class="space-y-4">
-        <h1 class="text-2xl font-semibold">archive</h1>
+    <div class="space-y-10">
+      <div class="space-y-2">
+        <h1 class="text-2xl font-bold mb-4">archive</h1>
         <p
           class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-base"
         >
-          just a random scrapbook of my creative works in past
+          just a random scrapbook of my creativity, mostly in the form of
+          digital arts and photographs.
         </p>
       </div>
-      <div class="grid grid-cols-1 gap-2 place-items-center md:grid-cols-3">
-        {
-          imageData.map((image) => (
-            <div class="">
-              <img src={image.url} alt={image.title} width={300} height={300} />
-            </div>
-          ))
-        }
+
+      <div class="space-y-4">
+        <h2 class="text-lg font-medium text-muted-foreground">gfx</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+          {
+            imageData.map((image, index) => (
+              <div class={getItemClassName(index)}>
+                <picture>
+                  <source srcset={image.webpUrl} type="image/webp" />
+                  <Image
+                    src={image.url}
+                    alt={image.title}
+                    width={300}
+                    height={400}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="space-y-4">
+        <h2 class="text-lg font-medium text-muted-foreground">amv</h2>
+        <div class="">
+          <!-- {
+            imageData.map((image, index) => (
+              <div class={getItemClassName(index)}>
+                <picture>
+                  <source srcset={image.webpUrl} type="image/webp" />
+                  <Image
+                    src={image.url}
+                    alt={image.title}
+                    width={300}
+                    height={400}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            ))
+          } -->
+        </div>
       </div>
     </div>
   </Container>
