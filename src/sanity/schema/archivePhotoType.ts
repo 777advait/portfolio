@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const archiveImageType = defineType({
-  name: "archiveImages",
-  title: "Archive Images",
+export const archivePhotoType = defineType({
+  name: "archivePhoto",
+  title: "Archive Photo",
   type: "document",
   fields: [
     defineField({
@@ -15,6 +15,9 @@ export const archiveImageType = defineType({
       name: "image",
       title: "Image",
       type: "image",
+      options: {
+        hotspot: true,
+      },
       validation: (Rule) => Rule.required(),
     }),
   ],

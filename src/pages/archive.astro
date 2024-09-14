@@ -6,8 +6,19 @@ import { loadQuery } from "@/sanity/lib/load-query";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 import type { ArchiveImages } from "@/lib/definitions";
 
+const { data: gfx } = await loadQuery<ArchiveImages[]>({
+  query: `*[_type == "archiveGFX"] `,
+});
 const { data: images } = await loadQuery<ArchiveImages[]>({
-  query: `*[_type == "archiveImages"]`,
+  query: `*[_type == "archivePhoto"]`,
+});
+
+const gfxData = gfx.map((image) => {
+  return {
+    title: image.title,
+    url: urlForImage(image.image).url(),
+    webpUrl: urlForImage(image.image).format("webp").url(),
+  };
 });
 
 const imageData = images.map((image) => {
@@ -43,7 +54,7 @@ const getItemClassName = (index: number) => {
         <h2 class="text-lg font-medium text-muted-foreground">gfx</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
           {
-            imageData.map((image, index) => (
+            gfxData.map((image, index) => (
               <div class={getItemClassName(index)}>
                 <picture>
                   <source srcset={image.webpUrl} type="image/webp" />
@@ -62,9 +73,9 @@ const getItemClassName = (index: number) => {
         </div>
       </div>
       <div class="space-y-4">
-        <h2 class="text-lg font-medium text-muted-foreground">amv</h2>
+        <h2 class="text-lg font-medium text-muted-foreground">photos</h2>
         <div class="">
-          <!-- {
+          {
             imageData.map((image, index) => (
               <div class={getItemClassName(index)}>
                 <picture>
@@ -80,7 +91,7 @@ const getItemClassName = (index: number) => {
                 </picture>
               </div>
             ))
-          } -->
+          }
         </div>
       </div>
     </div>
