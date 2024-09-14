@@ -10,7 +10,7 @@ interface SpotifyData {
   songUrl: string;
 }
 
-function MarqueeText(props: { text: string }) {
+export function MarqueeText(props: { text: string }) {
   const textLength = props.text.length;
   const animationDuration = `${textLength / 3}s`; // Adjust the divisor for desired speed
 
