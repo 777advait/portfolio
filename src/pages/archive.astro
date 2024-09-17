@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import { loadQuery } from "@/sanity/lib/load-query";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 import type { ArchiveImages } from "@/lib/definitions";
+import Slider from "@/components/archive/Slider";
 
 const { data: gfx } = await loadQuery<ArchiveImages[]>({
   query: `*[_type == "archiveGFX"] `,
@@ -74,29 +75,7 @@ const getItemClassName = (index: number) => {
       </div>
       <div class="space-y-4">
         <h2 class="text-lg font-medium text-muted-foreground mb-4">photos</h2>
-        <div class="slider-container px-1.5">
-          <div class="flex space-x-6 w-max">
-            {
-              imageData.map((image) => (
-                <div class="flex-shrink-0 w-72">
-                  <div class="relative aspect-square overflow-hidden rounded-lg shadow-lg">
-                    <picture>
-                      <source src={image.webpUrl} type="image/webp" />
-                      <Image
-                        src={image.url}
-                        alt={image.title}
-                        width={300}
-                        height={300}
-                        class="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </picture>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
+        <Slider imageData={imageData} client:load />
         <div class="text-center text-sm text-muted-foreground">
           Scroll horizontally to explore more →
         </div>

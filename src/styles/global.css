@@ -116,8 +116,7 @@
 }
 
 .slider-container {
-  overflow-x: auto;
-  scroll-behavior: smooth;
+  overflow: hidden;
   mask-image: linear-gradient(
     to right,
     transparent,
@@ -134,12 +133,6 @@
   );
   width: 100%;
   max-width: 100%;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.slider-container::-webkit-scrollbar {
-  display: none;
 }
 
 .marquee-content {
