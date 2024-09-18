@@ -38,7 +38,7 @@ const createdAt = new Date(writing._createdAt).toLocaleString("en-US", {
 });
 ---
 
-<Layout>
+<Layout title={`${writing.title} | astro`} description={writing.title}>
   <Container>
     <article class="space-y-8">
       <header class="space-y-2">

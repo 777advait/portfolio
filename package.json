@@ -25,6 +25,7 @@
     "@sanity/image-url": "^1.0.2",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "@vercel/og": "^0.6.3",
     "astro": "^4.15.1",
     "astro-portabletext": "^0.10.0",
     "class-variance-authority": "^0.7.0",

@@ -7,8 +7,12 @@ import { Toaster } from "@/components/ui/toaster";
 
 const {
   title,
-  description = "i'm a full-stack engineer interested in building scalable and performant web applications.",
+  description = "full-stack engineer interested in building scalable and performant web applications.",
 } = Astro.props;
+
+const ogImage = new URL("/api/og", Astro.url);
+ogImage.searchParams.set("description", description);
+ogImage.searchParams.set("path", Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -17,6 +21,10 @@ const {
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title ?? "astro - developer, explorer."}</title>
@@ -27,6 +35,7 @@ const {
       type="font/otf"
       crossorigin
     />
+
     <ViewTransitions />
   </head>
   <body class={`max-w-[90%] mx-auto py-12 antialiased lg:max-w-[55%]`}>

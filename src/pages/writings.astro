@@ -28,7 +28,10 @@ const { data: writings } = await loadQuery<Writings[]>({
 });
 ---
 
-<Layout title="writings | astro">
+<Layout
+  title="writings | astro"
+  description="A journal of random tidbits, ranging from thoughts and experiences from my journey through life and code."
+>
   <Container>
     <div class="flex flex-col space-y-4">
       <div class="space-y-4">

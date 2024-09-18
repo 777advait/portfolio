@@ -25,5 +25,8 @@ export default defineConfig({
     webAnalytics: {
       enabled: true
     }
-  })
+  }),
+  build: {
+    assets: 'assets'
+  }
 });

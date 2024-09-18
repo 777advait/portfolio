@@ -10,7 +10,10 @@ const { data: projects } = await loadQuery<Projects[]>({
 });
 ---
 
-<Layout title="projects | astro">
+<Layout
+  title="projects | astro"
+  description="an assortment of my works, ranging from my involvements in professional paradigms and indie adventures in code."
+> 
   <Container>
     <div class="flex flex-col space-y-12">
       <div class="space-y-4">
