@@ -26,8 +26,6 @@ const { data: writings } = await loadQuery<Writings[]>({
   query: `*[_type == "writings"]`,
   params,
 });
-
-export const prerender = true;
 ---
 
 <Layout
