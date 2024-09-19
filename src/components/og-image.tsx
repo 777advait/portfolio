@@ -79,7 +79,7 @@ export default async function OGImage() {
             color: "hsl(210 30% 45%)",
           }}
         >
-          <div style={{ color: "#4d648d" }}>19.0760° N, 72.8777° E</div>
+          <div style={{ color: "#4d648d", fontStyle: "italic" }}>"Crafting digital experiences..."</div> 
         </div>
       </div>
     ),
