@@ -3,9 +3,11 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/serverless';
 import sanity from '@sanity/astro';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://astro-dev.tech",
   output: 'server',
   prefetch: {
     prefetchAll: true,
@@ -18,7 +20,8 @@ export default defineConfig({
       dataset: "production",
       useCdn: false,
       studioBasePath: "/admin",
-    })
+    }),
+    sitemap()
   ],
   adapter: vercel({
     maxDuration: 30,
@@ -26,7 +29,4 @@ export default defineConfig({
       enabled: true
     }
   }),
-  build: {
-    assets: 'assets'
-  }
 });

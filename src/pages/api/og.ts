@@ -1,13 +1,7 @@
 import OGImage from "@/components/og-image";
 import type { APIRoute } from "astro";
 
-export const GET: APIRoute = async ({ request }) => {
-  const url = new URL(request.url);
-  const description =
-    url.searchParams.get("description") ||
-    "full-stack engineer interested in building scalable and performant web applications.";
-  const path = url.searchParams.get("path") || "";
-
+export const GET: APIRoute = async () => {
   const imageResponse = await OGImage();
 
   // Convert ImageResponse to a Uint8Array

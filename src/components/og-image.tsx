@@ -11,13 +11,6 @@ const geistFont = fs.readFile(
   path.resolve("./public/fonts/Geist-Regular.woff")
 );
 const naoriFont = fs.readFile(path.resolve("./public/fonts/naori.otf"));
-const formatter = new Intl.DateTimeFormat("en-US", {
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-  hourCycle: "h23",
-  timeZone: "Asia/Kolkata",
-});
 
 export default async function OGImage() {
   const geistFontData = await geistFont;
