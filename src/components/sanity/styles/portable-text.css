@@ -68,7 +68,16 @@
 .rich-text ul,
 .rich-text ol {
   margin-bottom: 1em;
-  padding-left: 1.5em;
+}
+
+.rich-text ul {
+  list-style-type: disc;
+  @apply list-inside;
+}
+
+.rich-text ol {
+  list-style-type: decimal;
+  @apply list-inside;
 }
 
 .rich-text li {
@@ -135,10 +144,6 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .rich-text {
-    padding: 0 1em;
-  }
-
   .rich-text h1 {
     font-size: 2em;
   }

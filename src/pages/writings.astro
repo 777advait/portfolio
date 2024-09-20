@@ -60,7 +60,7 @@ const { data: writings } = await loadQuery<Writings[]>({
                   {writing.title}
                 </p>
                 <p class="text-xs md:text-sm text-muted-foreground whitespace-nowrap">
-                  {new Date(writing._createdAt).toLocaleDateString()}
+                  {new Date(writing._createdAt).toLocaleDateString("en-GB")}
                 </p>
               </a>
             </li>
