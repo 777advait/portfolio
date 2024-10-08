@@ -16,8 +16,9 @@ export default function Navbar() {
   >(null);
 
   return (
-    <header className="border-b py-2 md:py-4">
-      <nav className="flex items-center justify-between px-2.5">
+    <header className="border-b py-2 px-2.5 space-y-2 md:space-y-4 md:py-4">
+      <h1 className="font-naori text-5xl ">astro</h1>
+      <nav className="flex items-center justify-between ">
         <ul className="flex items-center gap-4 md:gap-6">
           {links.map((link, index) => {
             const isActive =
@@ -30,7 +31,7 @@ export default function Navbar() {
                 onMouseLeave={() => setHoveredIndex(null)}
                 className="flex items-center"
               >
-                <span className="text-muted-foreground w-4 inline-block text-center">
+                <span className="text-muted-foreground">
                   {isActive ? "*" : "+"}
                 </span>
                 <motion.a
@@ -82,7 +83,7 @@ export default function Navbar() {
                 onMouseLeave={() => setHoveredIndex(null)}
                 className="flex items-center"
               >
-                <span className="text-muted-foreground w-4 inline-block text-center">
+                <span className="text-muted-foreground">
                   {isActive ? "*" : "+"}
                 </span>
                 <motion.a
