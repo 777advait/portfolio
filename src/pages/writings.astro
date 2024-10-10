@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 const { params } = Astro;
 
 const { data: writings } = await loadQuery<Writings[]>({
-  query: `*[_type == "writings"]`,
+  query: `*[_type == "writings"] | order(_createdAt desc)`,
   params,
 });
 ---

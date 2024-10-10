@@ -8,7 +8,7 @@ import PortableText from "@/components/sanity/PortableText.astro";
 
 export async function getStaticPaths() {
   const { data: writings } = await loadQuery<SanityDocument[]>({
-    query: `*[_type == "writings"] | order(_createdAt desc)`,
+    query: `*[_type == "writings"]`,
   });
 
   return writings.map(({ slug }) => {
