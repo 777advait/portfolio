@@ -17,7 +17,9 @@ export default function Navbar() {
 
   return (
     <header className="border-b py-2 px-2.5 space-y-2 md:space-y-4 md:py-4">
-      <h1 className="font-naori text-5xl ">astro</h1>
+      <a href="/" className="font-naori text-5xl">
+        astro
+      </a>
       <nav className="flex items-center justify-between ">
         <ul className="flex items-center gap-4 md:gap-6">
           {links.map((link, index) => {
