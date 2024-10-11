@@ -20,7 +20,7 @@ const socials = [
               <Link className="md:text-base" blank={true} href={social.href}>
                 {social.label}
               </Link>
-              {index != 3 && (
+              {index != socials.length - 1 && (
                 <span aria-hidden="true" class="select-none px-2">
                   •
                 </span>
