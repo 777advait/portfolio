@@ -112,8 +112,9 @@
 /* Images */
 .rich-text img {
   max-width: 90%;
+  max-height: 75vh;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   @apply my-4 mx-auto rounded-md;
 }
 
