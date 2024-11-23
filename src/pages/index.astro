@@ -7,17 +7,15 @@ import Waiting from "/public/Waiting.svg";
 ---
 
 <Layout>
-  <Container className="pt-6">
+  <Container className="!pt-2">
     <div class="space-y-4 text-sm md:text-base">
-      <div
-        class="[&>svg]:fill-[hsl(210,40%,25%)] [&>svg>path:first-child]:fill-white"
-      >
+      <div class="w-[200px] h-[200px] md:w-[280px] md:h-[280px]">
         <Image
           src={Waiting}
           alt="Bueno"
-          width={250}
-          height={250}
-          class="transform scale-x-[-1] sm:w-[200px] sm:h-[200px]"
+          width={280}
+          height={280}
+          class="transform scale-x-[-1] w-[200px] h-[200px] md:w-full md:h-full"
         />
       </div>
       <p class="leading-[150%] tracking-wide">
@@ -70,10 +68,3 @@ import Waiting from "/public/Waiting.svg";
     </div>
   </Container>
 </Layout>
-
-<style>
-  .svg-icon {
-    fill: currentColor;
-    color: var(--foreground-color, currentColor);
-  }
-</style>
