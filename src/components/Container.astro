@@ -8,6 +8,6 @@ interface Props {
 const { className }: Props = Astro.props;
 ---
 
-<div class={cn("px-2.5 py-6 lg:py-12", className ? className : "")}>
+<div class={cn("px-2.5 py-6 lg:py-8", className ? className : "")}>
   <slot />
 </div>

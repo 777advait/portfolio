@@ -2,15 +2,28 @@
 import Container from "@/components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import Link from "@/components/Link.astro";
+import { Image } from "astro:assets";
+import Waiting from "/public/Waiting.svg";
 ---
 
 <Layout>
-  <Container>
-    <div class="space-y-4 text-sm md:text-base relative z-10">
+  <Container className="pt-6">
+    <div class="space-y-4 text-sm md:text-base">
+      <div
+        class="[&>svg]:fill-[hsl(210,40%,25%)] [&>svg>path:first-child]:fill-white"
+      >
+        <Image
+          src={Waiting}
+          alt="Bueno"
+          width={250}
+          height={250}
+          class="transform scale-x-[-1] sm:w-[200px] sm:h-[200px]"
+        />
+      </div>
       <p class="leading-[150%] tracking-wide">
-        i'm a multidisciplinary full-stack engineer focused on building
-        scalable and performant applications. i enjoy crafting minimal
-        user-interfaces using <Link
+        i'm a multidisciplinary full-stack engineer focused on building scalable
+        and performant applications. i enjoy crafting minimal user-interfaces
+        using <Link
           className="md:text-base"
           blank={true}
           href="https://nextjs.org">Next.js</Link
@@ -57,3 +70,10 @@ import Link from "@/components/Link.astro";
     </div>
   </Container>
 </Layout>
+
+<style>
+  .svg-icon {
+    fill: currentColor;
+    color: var(--foreground-color, currentColor);
+  }
+</style>
