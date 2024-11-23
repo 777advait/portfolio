@@ -3,7 +3,6 @@ import Container from "@/components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import Link from "@/components/Link.astro";
 import { Image } from "astro:assets";
-import Waiting from "/public/Waiting.svg";
 ---
 
 <Layout>
@@ -11,7 +10,7 @@ import Waiting from "/public/Waiting.svg";
     <div class="space-y-4 text-sm md:text-base">
       <div class="w-[200px] h-[200px] md:w-[280px] md:h-[280px]">
         <Image
-          src={Waiting}
+          src="/Waiting.svg"
           alt="Waiting"
           width={280}
           height={280}
