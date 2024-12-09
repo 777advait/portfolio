@@ -1,9 +1,9 @@
 ---
-import Footer from "@/components/Footer.astro";
-import Navbar from "../components/Navbar.tsx";
+import Container from "@/components/Container.astro";
 import "@/styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import { Toaster } from "@/components/ui/toaster";
+import Sidebar from "@/components/Sidebar";
 
 const {
   title = "astro - generalist, explorer.",
@@ -51,10 +51,15 @@ const ogImage = new URL("/og-image.png", Astro.url);
 
     <ViewTransitions />
   </head>
-  <body class={`max-w-[90%] mx-auto py-10 antialiased lg:max-w-[55%]`}>
-    <Navbar client:only="react" />
-    <slot />
-    <Footer />
+  <body>
+    <div class="flex">
+      <Sidebar client:only="react" />
+      <main class="flex-1 ml-0 lg:ml-64 p-4">
+        <Container>
+          <slot />
+        </Container>
+      </main>
+    </div>
     <Toaster client:load />
   </body>
 </html>
