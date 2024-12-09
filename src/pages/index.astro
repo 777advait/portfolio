@@ -7,7 +7,7 @@ import { Image } from "astro:assets";
 
 <Layout>
   <Container>
-    <div class="space-y-6">
+    <div class="space-y-6 lg:flex lg:justify-between lg:items-end">
       <div class="space-y-6 text-sm">
         <p class="leading-[150%] tracking-wide">
           i'm a multidisciplinary engineer focused on building scalable and
@@ -79,6 +79,15 @@ import { Image } from "astro:assets";
             <li>currently exploring web3 and ml</li>
           </ul>
         </div>
+      </div>
+      <div class="w-[450px] md:w-[250px] lg:w-[450px] md:ml-auto">
+        <Image
+          src="/Runner.svg"
+          alt="Runner"
+          width={450}
+          height={450}
+          class="w-[180px] h-[180px] md:w-full md:h-full ml-auto"
+        />
       </div>
     </div>
   </Container>
