@@ -7,73 +7,78 @@ import { Image } from "astro:assets";
 
 <Layout>
   <Container>
-    <div class="space-y-6 text-sm md:text-base">
-      <div class="space-y-4">
-        <!-- <h1 class="font-thunder font-extrabold text-9xl uppercase">about me</h1> -->
+    <div class="space-y-6">
+      <div class="space-y-6 text-sm">
         <p class="leading-[150%] tracking-wide">
           i'm a multidisciplinary engineer focused on building scalable and
-          performant applications. i enjoy crafting minimal user-interfaces
-          using <Link
-            className="md:text-base"
-            blank={true}
-            href="https://nextjs.org">Next.js</Link
-          > and <Link
-            className="md:text-base"
-            blank={true}
-            href="https://typescriptlang.org/">TypeScript</Link
-          > and robust backends using libraries/tools like <Link
-            className="md:text-base"
-            blank={true}
-            href="https://trpc.io">trpc</Link
-          >,{" "}
-          <Link
-            className="md:text-base"
-            blank={true}
-            href="https://orm.drizzle.team">DrizzleORM</Link
-          > and <Link
-            className="md:text-base"
-            blank={true}
-            href="https://supabase.com">Supabase</Link
-          >
-        </p>
-        <p class="leading-[150%] tracking-wide">
-          im also keen about music, gfx and vfx. in the past i used to make AMVs
-          to post on instagram (back in 2022), u may find some of my work <Link
-            className="md:text-base"
-            href="/archive"
-            >here
-          </Link>
-        </p>
-        <p class="leading-[150%] tracking-wide">
-          My goal is to build products that are easy to use and have a good UX -
-          whether through building an app or writing code for other people (<Link
-            className="md:text-base"
-            href="/chat">hmu</Link
-          > for freelance work)
+          performant applications. i enjoy crafting minimal user-interfaces and
+          robust backends while exploring emerging technologies
         </p>
 
-        <ul class="space-y-2.5 list-disc list-inside">
-          <li>
-            Built <Link
-              className="md:text-base"
-              blank={true}
-              href="https://indielettr.com">IndieLettr</Link
-            > - empowering indie creators and small businesses to reach their audience.
-          </li>
-          <li>currently exploring web3 and ml</li>
-        </ul>
-      </div>
+        <div class="border-t pt-2 space-y-2.5">
+          <h2 class="font-medium">information</h2>
+          <div class="pl-2 space-y-2">
+            <p class="leading-[150%] tracking-wide">
+              i'm keen about music, vfx and photography. in the past i used to
+              post amvs on instagram (back in 2022). feel free to check out my
+              work in the <Link href="/archive">archive</Link>
+            </p>
+            <p class="leading-[150%] tracking-wide">
+              moreover my goal is to build products that have immaculate UX -
+              whether through building my own thing or helping other people with
+              theirs (<Link href="/chat">hmu</Link>
+              for collaborations)
+            </p>
+          </div>
+        </div>
 
-      <div
-        class="w-[180px] h-[180px] md:w-[220px] md:h-[220px] lg:w-[250px] lg:h-[250px]"
-      >
-        <Image
-          src="/Runner.svg"
-          alt="Runner"
-          width={250}
-          height={250}
-          class="transform scale-x-[-1] w-[180px] h-[180px] md:w-full md:h-full"
-        />
+        <div class="border-t pt-2 space-y-2.5">
+          <h2 class="font-medium">affiliations</h2>
+          <div class="grid grid-cols-1 gap-4 pl-2 md:grid-cols-2">
+            <div class="space-y-1">
+              <h3>WNE3 (Lead Eng.)</h3>
+              <p class="text-xs text-muted-foreground pl-2">
+                05/2022 - Present
+              </p>
+            </div>
+            <div class="space-y-1">
+              <h3>Sanity Gaming (SWE Intern)</h3>
+              <p class="text-xs text-muted-foreground pl-2">
+                05/2022 - Present
+              </p>
+            </div>
+            <div class="space-y-1">
+              <h3>Grass Labs (Freelance SWE)</h3>
+              <p class="text-xs text-muted-foreground pl-2">
+                05/2022 - Present
+              </p>
+            </div>
+            <div class="space-y-1">
+              <h3>DreamSkrin (Full stack eng.)</h3>
+              <p class="text-xs text-muted-foreground pl-2">
+                05/2022 - Present
+              </p>
+            </div>
+            <div class="space-y-1">
+              <h3>Salad & Tartine (Tech Intern)</h3>
+              <p class="text-xs text-muted-foreground pl-2">
+                05/2022 - Present
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t pt-2 space-y-2.5">
+          <h2 class="font-medium">endeavours</h2>
+          <ul class="space-y-2.5 list-disc list-inside pl-2">
+            <li>
+              Built <Link blank={true} href="https://indielettr.com"
+                >IndieLettr</Link
+              > - empowering indie creators and small businesses to reach their audience.
+            </li>
+            <li>currently exploring web3 and ml</li>
+          </ul>
+        </div>
       </div>
     </div>
   </Container>
