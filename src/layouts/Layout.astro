@@ -4,6 +4,7 @@ import "@/styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import { Toaster } from "@/components/ui/toaster";
 import Sidebar from "@/components/Sidebar";
+import { Hammer } from "lucide-react";
 
 const {
   title = "astro - generalist, explorer.",
@@ -59,6 +60,11 @@ const ogImage = new URL("/og-image.png", Astro.url);
           <slot />
         </Container>
       </main>
+      <div
+        class="fixed flex items-center gap-2.5 bottom-6 right-6 bg-background rounded-lg p-2 border shadow-md"
+      >
+        <Hammer /> Revamp in Progress
+      </div>
     </div>
     <Toaster client:load />
   </body>
