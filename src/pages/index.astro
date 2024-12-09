@@ -3,6 +3,19 @@ import Container from "@/components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import Link from "@/components/Link.astro";
 import { Image } from "astro:assets";
+import { loadQuery } from "@/sanity/lib/load-query";
+import type { Affiliations } from "@/lib/definitions";
+import AffiliationItem from "@/components/AffiliationItem.astro";
+
+const { data: affiliations } = await loadQuery<Affiliations[]>({
+  query: `*[_type == "affiliations"] | order(startDate desc)`,
+});
+
+const sortedAffiliations = affiliations.sort((a, b) => {
+  if (a.currentlyWorking && !b.currentlyWorking) return -1;
+  if (!a.currentlyWorking && b.currentlyWorking) return 1;
+  return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+});
 ---
 
 <Layout>
@@ -33,38 +46,23 @@ import { Image } from "astro:assets";
         </div>
 
         <div class="border-t pt-2 space-y-2.5">
-          <h2 class="font-medium">affiliations</h2>
+          <h2 class="font-medium">Affiliations</h2>
           <div class="grid grid-cols-1 gap-4 pl-2 md:grid-cols-2">
-            <div class="space-y-1">
-              <h3>WNE3 (Lead Eng.)</h3>
-              <p class="text-xs text-muted-foreground pl-2">
-                05/2022 - Present
-              </p>
-            </div>
-            <div class="space-y-1">
-              <h3>Sanity Gaming (SWE Intern)</h3>
-              <p class="text-xs text-muted-foreground pl-2">
-                05/2022 - Present
-              </p>
-            </div>
-            <div class="space-y-1">
-              <h3>Grass Labs (Freelance SWE)</h3>
-              <p class="text-xs text-muted-foreground pl-2">
-                05/2022 - Present
-              </p>
-            </div>
-            <div class="space-y-1">
-              <h3>DreamSkrin (Full stack eng.)</h3>
-              <p class="text-xs text-muted-foreground pl-2">
-                05/2022 - Present
-              </p>
-            </div>
-            <div class="space-y-1">
-              <h3>Salad & Tartine (Tech Intern)</h3>
-              <p class="text-xs text-muted-foreground pl-2">
-                05/2022 - Present
-              </p>
-            </div>
+            {
+              sortedAffiliations.map((affiliation) =>
+                affiliation.link ? (
+                  <a
+                    href={affiliation.link}
+                    target="_blank"
+                    class="hover:text-muted-foreground transition-colors duration-200"
+                  >
+                    <AffiliationItem affiliation={affiliation} />
+                  </a>
+                ) : (
+                  <AffiliationItem affiliation={affiliation} />
+                )
+              )
+            }
           </div>
         </div>
 

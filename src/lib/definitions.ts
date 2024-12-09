@@ -17,3 +17,12 @@ export interface ArchiveImages {
   title: string;
   image: any;
 }
+
+export interface Affiliations {
+  company: string;
+  position: string;
+  startDate: Date;
+  endDate?: string;
+  currentlyWorking?: boolean;
+  link?: string;
+}
