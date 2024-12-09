@@ -71,7 +71,7 @@ function SidebarContent() {
                 ? 1
                 : hoveredIndex === null
                   ? 0.65
-                  : 0.20,
+                  : 0.2,
         }}
         transition={{ duration: 0.2 }}
         onMouseEnter={() => setHoveredIndex("connect")}
@@ -97,12 +97,13 @@ export default function Sidebar() {
   return (
     <>
       {!isDesktop && (
-        <motion.button
+        <button
           onClick={() => setIsOpen(true)}
-          className="fixed top-4 left-4 z-50"
+          className="fixed top-6 left-6 z-50 "
         >
-          <Circle />
-        </motion.button>
+          <div className="w-6 h-0.5 bg-black mb-1"></div>
+          <div className="w-6 h-0.5 bg-black mb-1"></div>
+        </button>
       )}
       <AnimatePresence>
         {(isDesktop || isOpen) && (
