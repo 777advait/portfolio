@@ -36,7 +36,7 @@ const imageData = images.map((image) => {
   description="just a random scrapbook of my creativity, mostly in the form of digital arts and photographs."
 >
   <Container>
-    <div class="space-y-10 w-3/4">
+    <div class="space-y-10">
       <div class="space-y-2">
         <h1 class="text-2xl font-bold mb-4">archive</h1>
         <p
@@ -51,7 +51,7 @@ const imageData = images.map((image) => {
         <h2 class="text-lg font-medium text-muted-foreground">gfx</h2>
         <div class="grid grid-cols-1 gap-2.5 lg:grid-cols-3">
           {
-            gfxData.map((image, index) => (
+            gfxData.map((image) => (
               <div class="">
                 <Image
                   src={image.url}

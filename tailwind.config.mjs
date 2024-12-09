@@ -5,7 +5,6 @@ export default {
 	theme: {
 		fontFamily: {
 			sans: ['Geist', 'sans-serif'],
-			naori: ['Naori', 'sans-serif']
 		},
 		extend: {
 			borderRadius: {
