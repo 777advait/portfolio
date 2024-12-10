@@ -38,11 +38,9 @@ const imageData = images.map((image) => {
   <Container className="lg:max-w-[80%]">
     <div class="space-y-10">
       <div class="space-y-2">
-        <h1 class="font-redaction text-4xl mb-4 lg:text-6xl italic">
-          archive
-        </h1>
+        <h1 class="font-redaction text-4xl mb-4 lg:text-6xl italic">archive</h1>
         <p
-          class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-base"
+          class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-lg"
         >
           just a random scrapbook of my creativity, mostly in the form of
           digital arts and photographs.
@@ -50,7 +48,7 @@ const imageData = images.map((image) => {
       </div>
 
       <div class="space-y-4">
-        <h2 class="text-lg font-medium text-muted-foreground">gfx</h2>
+        <h2 class="text-xl font-medium text-muted-foreground">gfx</h2>
         <div class="grid grid-cols-1 gap-2.5 lg:grid-cols-3">
           {
             gfxData.map((image) => (
@@ -69,7 +67,7 @@ const imageData = images.map((image) => {
         </div>
       </div>
       <!-- <div class="space-y-4">
-        <h2 class="text-lg font-medium text-muted-foreground mb-4">photos</h2>
+        <h2 class="text-xl font-medium text-muted-foreground mb-4">photos</h2>
         <Slider imageData={imageData} client:load />
         <div class="text-center text-sm text-muted-foreground">
           Scroll horizontally to explore more →

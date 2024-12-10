@@ -5,6 +5,19 @@ import { ViewTransitions } from "astro:transitions";
 import { Toaster } from "@/components/ui/toaster";
 import Sidebar from "@/components/Sidebar";
 import { Hammer } from "lucide-react";
+import fs from "fs";
+import path from "path";
+
+fs.readdir("./public/fonts", (err, files) => {
+  if (err) {
+    return console.error("Unable to scan directory: " + err);
+  }
+  files.forEach((file) => {
+    console.log(
+      `<link rel="preload" href="/${file}" as="font" type="font/woff2" crossorigin="anonymous">`
+    );
+  });
+});
 
 const {
   title = "astro - generalist, explorer.",
@@ -42,6 +55,83 @@ const ogImage = new URL("/og-image.png", Astro.url);
     <link rel="sitemap" href="/sitemap-0.xml" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link
+      rel="preload"
+      href="/fonts/Geist-Black.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Geist-Bold.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Geist-Light.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Geist-Medium.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Geist-Regular.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Geist-SemiBold.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Geist-Thin.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Geist-UltraBlack.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Geist-UltraLight.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Redaction-Bold.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Redaction-Regular.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
 
     <ViewTransitions />
   </head>

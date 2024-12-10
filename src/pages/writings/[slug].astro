@@ -43,13 +43,13 @@ const createdAt = new Date(writing._createdAt).toLocaleString("en-US", {
     <div class="space-y-8">
       <header class="space-y-2">
         <h1 class="text-2xl font-semibold">{writing.title}</h1>
-        <div class="flex items-center gap-2 text-sm md:text-base">
+        <div class="flex items-center gap-2 text-sm md:text-lg">
           <p class="text-muted-foreground font-medium">777advait</p>
           <span>•</span>
           <p class="">{createdAt}</p>
         </div>
       </header>
-      <section class="space-y-8 text-sm md:text-base">
+      <section class="space-y-8 text-sm md:text-lg">
         {
           writing.tldr && (
             <blockquote class="space-y-2 border-l-[3px] pl-4">

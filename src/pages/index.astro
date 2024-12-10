@@ -22,19 +22,23 @@ const sortedAffiliations = affiliations.sort((a, b) => {
   <Container>
     <div class="space-y-6 lg:flex lg:justify-between lg:items-end">
       <div class="space-y-6">
-        <h1 class="font-redaction text-4xl font-bold lg:text-6xl">about <span class="text-muted-foreground font-light italic">me</span></h1>
+        <h1 class="font-redaction text-4xl font-bold lg:text-6xl">
+          about <span class="text-muted-foreground font-light italic">me</span>
+        </h1>
         <p class="leading-[150%] tracking-wide">
           i'm a multidisciplinary engineer focused on building scalable and
           performant applications. i enjoy crafting minimal user-interfaces
           using <Link blank href="https://nextjs.org">nextjs</Link> and <Link
             blank
             href="">typescript</Link
-          > and robust backends with <Link blank href="https://trpc.io">trpc</Link> and
+          > and robust backends with <Link blank href="https://trpc.io"
+            >trpc</Link
+          > and
           <Link blank href="https://orm.drizzle.team">drizzleORM</Link>
         </p>
 
         <div class="border-t pt-2 space-y-2.5">
-          <h2 class="font-medium text-base">information</h2>
+          <h2 class="font-medium text-lg">information</h2>
           <div class="pl-2 space-y-2">
             <p class="leading-[150%] tracking-wide">
               i'm keen about music, vfx and photography. in the past i used to
@@ -51,7 +55,7 @@ const sortedAffiliations = affiliations.sort((a, b) => {
         </div>
 
         <div class="border-t pt-2 space-y-2.5">
-          <h2 class="font-medium text-base">Affiliations</h2>
+          <h2 class="font-medium text-lg">Affiliations</h2>
           <div class="grid grid-cols-1 gap-4 pl-2 md:grid-cols-2">
             {
               sortedAffiliations.map((affiliation) =>
@@ -72,7 +76,7 @@ const sortedAffiliations = affiliations.sort((a, b) => {
         </div>
 
         <div class="border-t pt-2 space-y-2.5">
-          <h2 class="font-medium text-base">endeavours</h2>
+          <h2 class="font-medium text-lg">endeavours</h2>
           <ul class="space-y-2.5 list-disc list-inside pl-2">
             <li>
               Built <Link blank={true} href="https://indielettr.com"
