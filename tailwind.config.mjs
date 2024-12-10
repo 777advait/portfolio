@@ -5,6 +5,7 @@ export default {
 	theme: {
 		fontFamily: {
 			sans: ['Geist', 'sans-serif'],
+			redaction: ['Redaction', 'sans-serif'],
 		},
 		extend: {
 			borderRadius: {

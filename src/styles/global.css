@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Geist";
-  src: url("/fonts/Geist-Thin.woff");
+  src: url("/fonts/Geist-Thin.woff2");
   font-weight: 100;
 }
 @font-face {
@@ -19,7 +19,7 @@
 }
 @font-face {
   font-family: "Geist";
-  src: url("/fonts/Geist-Regular.woff");
+  src: url("/fonts/Geist-Regular.woff2");
   font-weight: 400;
 }
 @font-face {
@@ -34,7 +34,7 @@
 }
 @font-face {
   font-family: "Geist";
-  src: url("/fonts/Geist-Bold.woff");
+  src: url("/fonts/Geist-Bold.woff2");
   font-weight: 700;
 }
 @font-face {
@@ -47,9 +47,16 @@
   src: url("/fonts/Geist-UltraBlack.woff");
   font-weight: 900;
 }
+
 @font-face {
-  font-family: "Naori";
-  src: url("/fonts/naori.otf");
+  font-family: "Redaction";
+  src: url("/fonts/Redaction-Regular.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Redaction";
+  src: url("/fonts/Redaction-Bold.otf");
+  font-weight: 700;
 }
 
 @layer base {
@@ -91,7 +98,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans lowercase overflow-x-hidden;
+    @apply bg-background text-foreground font-sans lowercase overflow-x-hidden text-sm;
   }
 }
 

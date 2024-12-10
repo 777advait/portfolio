@@ -63,7 +63,7 @@ function SidebarContent() {
           );
         })}
       </ul>
-      <div className="mt-auto space-y-4 p-1.5">
+      <div className="mt-auto space-y-1.5 px-1.5">
         <Timer />
         <SpotifyNowListening />
       </div>
@@ -85,7 +85,7 @@ export default function Sidebar() {
       {!isDesktop && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed top-6 left-6 z-50 "
+          className="fixed top-7 left-7 z-50 "
         >
           <div className="w-6 h-0.5 bg-foreground mb-1"></div>
           <div className="w-6 h-0.5 bg-foreground mb-1"></div>
