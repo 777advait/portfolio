@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 
-// Define the type for a project object
 interface Project {
   title: string;
   role: string;
@@ -10,75 +9,65 @@ interface Project {
   href: string;
 }
 
-// Define the props for the ProjectList component
 interface ProjectListProps {
   projects: Project[];
 }
 
 const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [cursorPosition, setCursorPosition] = useState<{
-    x: number;
-    y: number;
-  }>({ x: 0, y: 0 });
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  // Capture mouse movement and update position
-  const handleMouseMove = (e: React.MouseEvent<HTMLLIElement>) => {
-    setCursorPosition({
-      x: e.clientX,
-      y: e.clientY,
-    });
-  };
-
-  const handleMouseEnter = (index: number) => {
-    setHoveredIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   return (
-    <ul className="flex flex-col justify-start relative">
+    <ul className="space-y-2">
       {projects.map((project, index) => (
-        <li
-          key={index}
-          className={cn([
-            "relative py-2.5 px-2.5 group",
-            { "border-b": index !== projects.length - 1 },
-          ])}
-          onMouseEnter={() => handleMouseEnter(index)}
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove} // Track mouse movement
-        >
-          <a
-            href={project.href}
-            target="_blank"
-            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 hover:text-foreground/65"
+        <li className={"border-t hover:cursor-pointer p-1.5"} key={index}>
+          <div
+            className="flex justify-between items-center "
+            onClick={() => toggleExpand(index)}
           >
-            <p className="flex items-center font-medium truncate md:max-w-[calc(100%-5rem)] max-w-[70%]">
-              {project.title}
-            </p>
-            <p className="text-xs md:text-sm text-muted-foreground whitespace-nowrap">
-              {project.role}
-            </p>
-          </a>
-
-          {hoveredIndex === index && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed bg-white shadow-lg border rounded p-4 w-64 z-10 pointer-events-none"
-              style={{
-                top: cursorPosition.y + 10,
-                left: cursorPosition.x + 10,
-              }}
-            >
-              <h4 className="text-sm font-semibold mb-2">{project.title}</h4>
-              <p className="text-xs text-gray-600">{project.description}</p>
-            </motion.div>
-          )}
+            <div className="">
+              <h2 className="font-medium text-base">{project.title}</h2>
+              <p className="text-muted-foreground">{project.role}</p>
+            </div>
+            <div>{expandedIndex === index ? "-" : "+"}</div>
+          </div>
+          <AnimatePresence>
+            {expandedIndex === index && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden hover:cursor-auto"
+              >
+                <div className="space-y-4 py-4 pl-2 lg:w-3/4 ">
+                  <div className="space-y-1.5">
+                    <img
+                      src="/wne3.png"
+                      alt={project.title}
+                      className="object-cover w-full h-auto rounded-md"
+                    />
+                    <a
+                      className="flex justify-end items-center gap-0.5 underline underline-offset-2 decoration-dashed text-muted-foreground"
+                      target="_blank"
+                      href={project.href}
+                    >
+                      live{" "}
+                      <span>
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    </a>
+                  </div>
+                  <p className="text-muted-foreground font-medium pl-2">
+                    {project.description}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </li>
       ))}
     </ul>
