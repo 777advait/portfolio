@@ -53,9 +53,9 @@ const ogImage = new URL("/og-image.png", Astro.url);
     <ViewTransitions />
   </head>
   <body>
-    <div class="flex">
+    <div class="flex min-h-screen">
       <Sidebar client:only="react" />
-      <main class="flex-1 ml-0 lg:ml-64 p-4">
+      <main class="flex-1 lg:ml-64">
         <Container>
           <slot />
         </Container>

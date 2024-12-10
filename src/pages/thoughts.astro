@@ -32,7 +32,7 @@ const { data: writings } = await loadQuery<Writings[]>({
   title="writings | astro"
   description="A journal of random tidbits, ranging from thoughts and experiences from my journey through life and code."
 >
-  <Container>
+  <Container className="lg:max-w-[80%]">
     <div class="flex flex-col space-y-4">
       <div class="space-y-4">
         <h1 class="text-2xl font-semibold">writings</h1>

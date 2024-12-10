@@ -91,7 +91,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans lowercase;
+    @apply bg-background text-foreground font-sans lowercase overflow-x-hidden;
   }
 }
 

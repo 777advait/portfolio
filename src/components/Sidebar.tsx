@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
 import { Cross2Icon } from "@radix-ui/react-icons";
-import { Circle } from "lucide-react";
 import React from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { AnimatePresence, motion } from "framer-motion";
+import Timer from "./Timer";
+import SpotifyNowListening from "./SpotifyNowListening";
 
 const links = [
   {
@@ -22,16 +23,18 @@ const links = [
     href: "/archive",
     label: "archive",
   },
+  {
+    href: "/connect",
+    label: "connect",
+  },
 ];
 
 function SidebarContent() {
-  const [hoveredIndex, setHoveredIndex] = React.useState<
-    number | null | string
-  >(null);
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
   const currentPath = `/${window.location.pathname.split("/")[1]}`;
 
   return (
-    <nav className="min-h-full flex flex-col">
+    <nav className="flex flex-col h-full">
       <ul className="space-y-6 text-sm flex-grow">
         {links.map((link, index) => {
           const isActive = link.href === currentPath;
@@ -60,27 +63,10 @@ function SidebarContent() {
           );
         })}
       </ul>
-      <motion.li
-        className="flex border-t text-sm px-1.5 py-2"
-        initial={{ opacity: currentPath === "connect" ? 1 : 0.65 }}
-        animate={{
-          opacity:
-            currentPath === "connect"
-              ? 1
-              : hoveredIndex === "connect"
-                ? 1
-                : hoveredIndex === null
-                  ? 0.65
-                  : 0.2,
-        }}
-        transition={{ duration: 0.2 }}
-        onMouseEnter={() => setHoveredIndex("connect")}
-        onMouseLeave={() => setHoveredIndex(null)}
-      >
-        <a href="/connect" className="block">
-          connect {currentPath === "connect" ? "-" : "+"}
-        </a>
-      </motion.li>
+      <div className="mt-auto space-y-4 p-1.5">
+        <Timer />
+        <SpotifyNowListening />
+      </div>
     </nav>
   );
 }
@@ -101,8 +87,8 @@ export default function Sidebar() {
           onClick={() => setIsOpen(true)}
           className="fixed top-6 left-6 z-50 "
         >
-          <div className="w-6 h-0.5 bg-black mb-1"></div>
-          <div className="w-6 h-0.5 bg-black mb-1"></div>
+          <div className="w-6 h-0.5 bg-foreground mb-1"></div>
+          <div className="w-6 h-0.5 bg-foreground mb-1"></div>
         </button>
       )}
       <AnimatePresence>
@@ -113,7 +99,7 @@ export default function Sidebar() {
             exit="closed"
             variants={sidebarVariants}
             transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 left-0 h-screen w-64 px-4 py-16 border-r border-border/65 bg-background z-[999]"
+            className="fixed top-0 left-0 h-full w-64 px-4 py-12 border-r border-border/65 bg-background z-[999] overflow-y-hidden"
           >
             {!isDesktop && (
               <motion.button
