@@ -15,7 +15,6 @@ export const projectType = defineType({
       name: "href",
       title: "URL",
       type: "url",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "role",
@@ -28,6 +27,14 @@ export const projectType = defineType({
       title: "Description",
       type: "string",
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
     }),
   ],
 });

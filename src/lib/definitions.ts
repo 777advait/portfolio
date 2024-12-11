@@ -8,9 +8,10 @@ export interface Writings {
 
 export interface Projects {
   title: string;
-  href: string;
+  href?: string;
   description: string;
   role: string;
+  image?: any;
 }
 
 export interface ArchiveImages {

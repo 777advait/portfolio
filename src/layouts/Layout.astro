@@ -5,19 +5,6 @@ import { ViewTransitions } from "astro:transitions";
 import { Toaster } from "@/components/ui/toaster";
 import Sidebar from "@/components/Sidebar";
 import { Hammer } from "lucide-react";
-import fs from "fs";
-import path from "path";
-
-fs.readdir("./public/fonts", (err, files) => {
-  if (err) {
-    return console.error("Unable to scan directory: " + err);
-  }
-  files.forEach((file) => {
-    console.log(
-      `<link rel="preload" href="/${file}" as="font" type="font/woff2" crossorigin="anonymous">`
-    );
-  });
-});
 
 const {
   title = "astro - generalist, explorer.",

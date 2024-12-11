@@ -88,7 +88,7 @@
 .rich-text blockquote {
   margin: 1em 0;
   padding-left: 1em;
-  border-left: 4px solid hsl(var(--border));
+  border-left: 2px solid hsl(var(--border));
   font-style: italic;
   color: hsl(var(--muted-foreground));
 }
@@ -112,7 +112,7 @@
 /* Images */
 .rich-text img {
   max-width: 90%;
-  max-height: 75vh;
+  max-height: 512px;
   height: auto;
   object-fit: contain;
   @apply my-4 mx-auto rounded-md;

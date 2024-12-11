@@ -40,7 +40,7 @@ function SidebarContent() {
           const isActive = link.href === currentPath;
           return (
             <motion.li
-              className={cn("border-t px-1.5 py-2")}
+              className={cn("border-t px-1.5 py-2", {"font-medium": isActive})}
               key={link.href}
               initial={{ opacity: isActive ? 1 : 0.65 }}
               animate={{

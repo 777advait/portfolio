@@ -5,6 +5,7 @@ import type { SanityDocument } from "@sanity/client";
 import { loadQuery } from "../sanity/lib/load-query";
 import type { Writings } from "@/lib/definitions";
 import { cn } from "@/lib/utils";
+import ThoughtsList from "@/components/thoughts/ThoughtsList";
 
 export async function getStaticPaths() {
   const { data: writings } = await loadQuery<SanityDocument[]>({
@@ -35,9 +36,7 @@ const { data: writings } = await loadQuery<Writings[]>({
   <Container className="lg:max-w-[80%]">
     <div class="flex flex-col space-y-4">
       <div class="space-y-4">
-        <h1 class="font-redaction text-4xl mb-4 lg:text-6xl italic">
-          thoughts
-        </h1>
+        <h1 class="font-redaction text-4xl font-light lg:text-6xl">thoughts</h1>
         <p
           class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-lg"
         >
@@ -45,30 +44,9 @@ const { data: writings } = await loadQuery<Writings[]>({
           from my journey through life and code.
         </p>
       </div>
-      <ul class="flex flex-col justify-start">
-        {
-          writings.map((writing, index) => (
-            <li
-              class={cn([
-                "py-2.5 px-2.5",
-                { "border-b": index != writings.length - 1 },
-              ])}
-            >
-              <a
-                href={`/writings/${writing.slug.current}`}
-                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 hover:text-foreground/65"
-              >
-                <p class="font-medium truncate md:max-w-[calc(100%-5rem)] max-w-[70%]">
-                  {writing.title}
-                </p>
-                <p class="text-xs md:text-sm text-muted-foreground whitespace-nowrap">
-                  {new Date(writing._createdAt).toLocaleDateString("en-GB")}
-                </p>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="">
+        <ThoughtsList writings={writings} client:load />
+      </div>
     </div>
   </Container>
 </Layout>
