@@ -3,13 +3,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 import type { Projects } from "@/lib/definitions";
-
+import { useMediaQuery } from "usehooks-ts";
 
 interface ProjectListProps {
   projects: Projects[];
 }
 
 const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -27,7 +28,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
             opacity:
               hoveredIndex === index || expandedIndex === index
                 ? 1
-                : hoveredIndex !== null || expandedIndex !== null
+                : (isDesktop && hoveredIndex !== null) || expandedIndex !== null
                   ? 0.25
                   : 1,
           }}
