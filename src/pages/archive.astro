@@ -5,7 +5,11 @@ import Layout from "../layouts/Layout.astro";
 import { loadQuery } from "@/sanity/lib/load-query";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 import type { ArchiveImages } from "@/lib/definitions";
-import Slider from "@/components/archive/Slider";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 const { data: gfx } = await loadQuery<ArchiveImages[]>({
   query: `*[_type == "archiveGFX"] `,
@@ -38,7 +42,7 @@ const imageData = images.map((image) => {
   <Container className="lg:max-w-[80%]">
     <div class="space-y-10">
       <div class="space-y-2">
-        <h1 class="font-redaction text-4xl mb-4 lg:text-6xl italic">archive</h1>
+        <h1 class="font-redaction text-4xl font-light lg:text-6xl">archive</h1>
         <p
           class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-lg"
         >
@@ -66,13 +70,29 @@ const imageData = images.map((image) => {
           }
         </div>
       </div>
-      <!-- <div class="space-y-4">
+
+      <div class="space-y-4">
         <h2 class="text-xl font-medium text-muted-foreground mb-4">photos</h2>
-        <Slider imageData={imageData} client:load />
-        <div class="text-center text-sm text-muted-foreground">
-          Scroll horizontally to explore more →
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 auto-rows-[200px]"
+        >
+          {
+            imageData.map((image, index) => (
+              <div
+                class={`overflow-hidden rounded-sm ${index % 5 === 0 ? "col-span-2 row-span-2" : ""}`}
+              >
+                <Image
+                  src={image.webpUrl}
+                  alt={image.title}
+                  width={500}
+                  height={500}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            ))
+          }
         </div>
-      </div> -->
+      </div>
     </div>
   </Container>
 </Layout>

@@ -35,12 +35,14 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
           transition={{ duration: 0.2 }}
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
-          onClick={() =>
-            setExpandedIndex(expandedIndex === index ? null : index)
-          }
           key={index}
         >
-          <div className={"flex justify-between items-center "}>
+          <div
+            className={"flex justify-between items-center "}
+            onClick={() =>
+              setExpandedIndex(expandedIndex === index ? null : index)
+            }
+          >
             <div className="">
               <h2 className="font-medium">{project.title}</h2>
               <p className="text-muted-foreground">{project.role}</p>
