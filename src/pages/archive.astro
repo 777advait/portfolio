@@ -5,11 +5,6 @@ import Layout from "../layouts/Layout.astro";
 import { loadQuery } from "@/sanity/lib/load-query";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 import type { ArchiveImages } from "@/lib/definitions";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 
 const { data: gfx } = await loadQuery<ArchiveImages[]>({
   query: `*[_type == "archiveGFX"] `,
@@ -44,7 +39,7 @@ const imageData = images.map((image) => {
       <div class="space-y-2">
         <h1 class="font-redaction text-4xl font-light lg:text-6xl">archive</h1>
         <p
-          class="leading-[150%] tracking-wide text-muted-foreground text-sm md:text-lg"
+          class="leading-[150%] tracking-wide text-muted-foreground"
         >
           just a random scrapbook of my creativity, mostly in the form of
           digital arts and photographs.
@@ -52,7 +47,7 @@ const imageData = images.map((image) => {
       </div>
 
       <div class="space-y-4">
-        <h2 class="text-xl font-medium text-muted-foreground">gfx</h2>
+        <h2 class="font-medium text-muted-foreground">gfx</h2>
         <div class="grid grid-cols-1 gap-2.5 lg:grid-cols-3">
           {
             gfxData.map((image) => (
@@ -72,7 +67,7 @@ const imageData = images.map((image) => {
       </div>
 
       <div class="space-y-4">
-        <h2 class="text-xl font-medium text-muted-foreground mb-4">photos</h2>
+        <h2 class="font-medium text-muted-foreground mb-4">photos</h2>
         <div
           class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 auto-rows-[200px]"
         >

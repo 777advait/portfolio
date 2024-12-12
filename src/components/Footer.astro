@@ -1,7 +1,6 @@
 ---
+import Container from "./Container.astro";
 import Link from "./Link.astro";
-import SpotifyNowListening from "./SpotifyNowListening";
-import Timer from "./Timer";
 
 const socials = [
   { href: "https://twitter.com/777advait", label: "twitter" },
@@ -10,14 +9,15 @@ const socials = [
 ];
 ---
 
-<footer class="py-2.5 border-t">
-  <div class="px-2.5 py-6">
-    <div class="space-y-8">
+<Container className="lg:max-w-[80%]">
+  <footer class="py-2.5 border-t">
+  <div class="px-1.5 py-2">
+    <div class="">
       <div class="flex flex-wrap items-center">
         {
           socials.map((social, index) => (
             <li class="flex items-center">
-              <Link className="md:text-lg" blank={true} href={social.href}>
+              <Link className="" blank={true} href={social.href}>
                 {social.label}
               </Link>
               {index != socials.length - 1 && (
@@ -29,12 +29,8 @@ const socials = [
           ))
         }
       </div>
-      <div
-        class="flex flex-col gap-2 md:flex-row md:justify-between md:items-center"
-      >
-        <Timer client:only="react" />
-        <SpotifyNowListening client:only="react" />
-      </div>
     </div>
   </div>
 </footer>
+
+</Container>
