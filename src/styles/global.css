@@ -3,91 +3,72 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Thin.woff");
-  font-weight: 100;
+  font-family: "Pangaia";
+  src: url("/fonts/PPPangaia-Regular.otf");
 }
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-UltraLight.woff");
-  font-weight: 200;
+  font-family: "Pangaia";
+  src: url("/fonts/PPPangaia-Bold.otf");
+  font-weight: bold;
 }
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Light.woff");
-  font-weight: 300;
+  font-family: "Pangaia";
+  src: url("/fonts/PPPangaia-BoldItalic.otf");
+  font-weight: bold;
+  font-style: italic;
 }
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Regular.woff");
-  font-weight: 400;
-}
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Medium.woff");
+  font-family: "Pangaia";
+  src: url("/fonts/PPPangaia-Medium.otf");
   font-weight: 500;
 }
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-SemiBold.woff");
-  font-weight: 600;
+  font-family: "Pangaia";
+  src: url("/fonts/PPPangaia-MediumItalic.otf");
+  font-weight: 500;
+  font-style: italic;
 }
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Bold.woff2");
-  font-weight: 700;
+  font-family: "Pangaia";
+  src: url("/fonts/PPPangaia-Ultralight.otf");
+  font-weight: 200;
 }
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Black.woff");
-  font-weight: 800;
-}
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-UltraBlack.woff");
-  font-weight: 900;
-}
-
-@font-face {
-  font-family: "Redaction";
-  src: url("/fonts/Redaction-Regular.otf");
-  font-weight: 400;
-}
-@font-face {
-  font-family: "Redaction";
-  src: url("/fonts/Redaction-Bold.otf");
-  font-weight: 700;
+  font-family: "Pangaia";
+  src: url("/fonts/PPPangaia-UltralightItalic.otf");
+  font-weight: 200;
+  font-style: italic;
 }
 
 @layer base {
   :root {
-    --background: 54 100% 98%;
-    --foreground: 0 0% 25%;
+    --background: 0 0% 9%;
+    --foreground: 0, 0%, 90%;
 
-    --card: 0 0% 94%;
-    --card-foreground: 0 0% 25%;
+    --card: 0 0% 10%;
+    --card-foreground: 0, 0%, 90%;
 
-    --popover: 54 100% 98%;
-    --popover-foreground: 0 0% 25%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0, 0%, 90%;
 
-    --primary: 0 0% 60%;
-    --primary-foreground: 54 100% 98%;
+    --primary: 252 100% 70%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 0 0% 85%;
-    --secondary-foreground: 0 0% 25%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 0 0% 90%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 0 0% 85%;
-    --accent-foreground: 0 0% 25%;
+    --accent: 300 100% 60%;
+    --accent-foreground: 0 0% 9%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 54 100% 98%;
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0, 0%, 90%;
 
-    --border: 0 0% 80%;
-    --input: 0 0% 80%;
-    --ring: 0 0% 60%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 252 100% 70%;
 
     --radius: 0.5rem;
   }
@@ -98,7 +79,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans lowercase overflow-x-hidden ;
+    @apply bg-background text-foreground font-sans lowercase overflow-x-hidden;
   }
 }
 

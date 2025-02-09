@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Sidebar from "@/components/Sidebar";
 import { Hammer } from "lucide-react";
 import Footer from "@/components/Footer.astro";
+import "@fontsource/dm-sans";
 
 const {
   title = "astro - generalist, explorer.",
@@ -43,83 +44,6 @@ const ogImage = new URL("/og-image.png", Astro.url);
     <link rel="sitemap" href="/sitemap-0.xml" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link
-      rel="preload"
-      href="/fonts/Geist-Black.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Geist-Bold.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Geist-Light.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Geist-Medium.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Geist-Regular.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Geist-SemiBold.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Geist-Thin.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Geist-UltraBlack.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Geist-UltraLight.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Redaction-Bold.otf"
-      as="font"
-      type="font/otf"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Redaction-Regular.otf"
-      as="font"
-      type="font/otf"
-      crossorigin
-    />
 
     <ViewTransitions />
   </head>
@@ -129,7 +53,7 @@ const ogImage = new URL("/og-image.png", Astro.url);
       <main class="flex-1 lg:ml-64">
         <Container>
           <slot />
-          <Footer /> 
+          <Footer />
         </Container>
       </main>
     </div>
