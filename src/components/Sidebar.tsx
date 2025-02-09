@@ -1,80 +1,122 @@
 import { cn } from "@/lib/utils";
-import { Cross2Icon } from "@radix-ui/react-icons";
 import React from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import Timer from "./Timer";
 import SpotifyNowListening from "./SpotifyNowListening";
 
 const links = [
   {
-    href: "/",
-    label: "about",
+    href: "/wne3",
+    label: "wne3",
   },
   {
-    href: "/works",
-    label: "works",
+    href: "/grass-labs",
+    label: "grass labs",
   },
   {
-    href: "/thoughts",
-    label: "thoughts",
+    href: "/dream-skrin",
+    label: "dream skrin",
   },
   {
-    href: "/archive",
-    label: "archive",
+    href: "/sanity-gaming",
+    label: "sanity gaming",
   },
   {
-    href: "/connect",
-    label: "connect",
+    href: "/indielettr",
+    label: "indielettr",
+  },
+  {
+    href: "/salad-and-tartine",
+    label: "salad & tartine",
+  },
+];
+
+const socials = [
+  {
+    href: "https://github.com/777advait",
+    label: "github",
+  },
+  {
+    href: "https://x.com/777advait",
+    label: "twitter",
+  },
+  {
+    href: "mailto:advait.nsj@proton.me",
+    label: "email",
   },
 ];
 
 function SidebarContent() {
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
-  const currentPath = `/${window.location.pathname.split("/")[1]}`;
+  const allLinks = [
+    ...links,
+    {
+      href: "/works",
+      label: "other works",
+    },
+    {
+      href: "/music",
+      label: "music",
+    },
+    {
+      href: "/thoughts",
+      label: "thoughts",
+    },
+    {
+      href: "/archive",
+      label: "archive",
+    },
+  ];
 
   return (
-    <nav className="flex flex-col h-full">
-      <ul className="space-y-6 text-sm flex-grow">
-        {links.map((link, index) => {
-          const isActive = link.href === currentPath;
-          return (
-            <motion.li
-              className={cn("border-t px-1.5 py-2", {"font-medium": isActive})}
-              key={link.href}
-              initial={{ opacity: isActive ? 1 : 0.65 }}
-              animate={{
-                opacity: isActive
-                  ? 1
-                  : hoveredIndex === null
-                    ? 0.65
-                    : hoveredIndex === index
-                      ? 1
-                      : 0.25,
-              }}
-              transition={{ duration: 0.2 }}
+    <div className="p-4 w-fit">
+      <nav className="pl-4 space-y-6">
+        <a href="/">
+          <h1 className="font-pangaia text-6xl ">astro</h1>
+        </a>
+
+        <ol className="pl-12 list-decimal font-pangaia font-extralight text-2xl">
+          {allLinks.map((link, index) => (
+            <li
+              className={cn("transition-opacity duration-150 ease-linear", {
+                "opacity-45": hoveredIndex !== index && hoveredIndex !== null,
+              })}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              key={link.href}
             >
-              <a href={link.href} className="block">
-                {link.label} {isActive ? "-" : "+"}
-              </a>
-            </motion.li>
-          );
-        })}
-      </ul>
-      <div className="mt-auto space-y-1.5 px-1.5">
-        <Timer />
-        <SpotifyNowListening />
-      </div>
-    </nav>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ol>
+
+        <div className="space-y-2">
+          <ul className="text-4xl font-pangaia space-y-0.5">
+            {socials.map((social) => (
+              <li
+                className="hover:translate-x-2 transition-all duration-150 ease-linear"
+                key={social.href}
+              >
+                <a className="flex items-baseline gap-1" href={social.href}>
+                  {social.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="space-y-1.5 px-1.5 ">
+          <Timer />
+        </div>
+      </nav>
+    </div>
   );
 }
 
 export default function Sidebar() {
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
   const sidebarVariants = {
     open: { x: 0 },
     closed: { x: "-100%" },
@@ -99,21 +141,15 @@ export default function Sidebar() {
             exit="closed"
             variants={sidebarVariants}
             transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 left-0 h-full w-64 px-4 py-12 border-r border-border/65 bg-background z-[999] overflow-y-hidden"
+            className="fixed top-0 left-0 h-full w-3/4 border-r border-border/65 bg-background z-[999] overflow-y-hidden lg:w-72"
           >
             {!isDesktop && (
-              <motion.button
+              <button
                 onClick={() => setIsOpen(false)}
                 className="absolute top-4 right-4"
-                initial="closed"
-                animate="open"
-                exit="closed"
-                transition={{ duration: 0.2 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
               >
                 <Cross2Icon />
-              </motion.button>
+              </button>
             )}
             <SidebarContent />
           </motion.aside>

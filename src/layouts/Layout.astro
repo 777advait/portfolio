@@ -5,7 +5,6 @@ import { ViewTransitions } from "astro:transitions";
 import { Toaster } from "@/components/ui/toaster";
 import Sidebar from "@/components/Sidebar";
 import { Hammer } from "lucide-react";
-import Footer from "@/components/Footer.astro";
 import "@fontsource/dm-sans";
 
 const {
@@ -53,10 +52,8 @@ const ogImage = new URL("/og-image.png", Astro.url);
       <main class="flex-1 lg:ml-64">
         <Container>
           <slot />
-          <Footer />
         </Container>
       </main>
     </div>
-    <Toaster client:load />
   </body>
 </html>

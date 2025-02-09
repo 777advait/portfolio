@@ -1,0 +1,19 @@
+---
+import Container from "@/components/Container.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const { title, description } = Astro.props;
+---
+
+<Layout>
+  <Container>
+    <div class="space-y-4">
+      <h1 class="font-pangaia text-4xl font-light lg:text-6xl">
+        {title}
+      </h1>
+      <p class="leading-[150%] tracking-wide text-muted-foreground">
+        {description}
+      </p>
+    </div>
+  </Container>
+</Layout>

@@ -4,10 +4,6 @@
 
 @font-face {
   font-family: "Pangaia";
-  src: url("/fonts/PPPangaia-Regular.otf");
-}
-@font-face {
-  font-family: "Pangaia";
   src: url("/fonts/PPPangaia-Bold.otf");
   font-weight: bold;
 }

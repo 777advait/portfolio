@@ -3,102 +3,45 @@ import Container from "@/components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import Link from "@/components/Link.astro";
 import { Image } from "astro:assets";
-import { loadQuery } from "@/sanity/lib/load-query";
-import type { Affiliations } from "@/lib/definitions";
-import AffiliationItem from "@/components/AffiliationItem.astro";
 
-const { data: affiliations } = await loadQuery<Affiliations[]>({
-  query: `*[_type == "affiliations"] | order(startDate desc)`,
-});
+type ImageType = {
+  src: string;
+  alt: string;
+};
 
-const sortedAffiliations = affiliations.sort((a, b) => {
-  if (a.currentlyWorking && !b.currentlyWorking) return -1;
-  if (!a.currentlyWorking && b.currentlyWorking) return 1;
-  return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
-});
+const images: ImageType[] = [
+  { src: "/assets/gallery-image-1.png", alt: "Image 1" },
+  { src: "/assets/gallery-image-5.png", alt: "Image 5" },
+  { src: "/assets/gallery-image-3.png", alt: "Image 3" },
+  { src: "/assets/gallery-image-4.png", alt: "Image 4" },
+  { src: "/assets/gallery-image-2.png", alt: "Image 2" },
+];
 ---
 
 <Layout>
-  <Container>
-    <div class="space-y-6 lg:flex lg:justify-between lg:items-end">
-      <div class="space-y-6">
-        <h1 class="font-pangaia text-4xl font-bold lg:text-6xl">
-          about <span class="text-muted-foreground font-light italic">me</span>
-        </h1>
-        <p class="leading-[150%] tracking-wide">
-          i'm a multidisciplinary engineer focused on building scalable and
-          performant applications. i enjoy crafting minimal user-interfaces
-          using <Link blank href="https://nextjs.org">nextjs</Link> and <Link
-            blank
-            href="">typescript</Link
-          > and robust backends with <Link blank href="https://trpc.io"
-            >trpc</Link
-          > and
-          <Link blank href="https://orm.drizzle.team">drizzleORM</Link>
+  <Container className="lg:max-w-[90%]">
+    <div class="space-y-4">
+      
+
+      <h1 class="text-4xl font-pangaia">
+        jack of all trades, master of all too
+      </h1>
+      <div class="space-y-4 text-muted-foreground">
+        <p>
+          heyy!! im advait, a multidisciplinary engineer obsessed with building
+          scalable, high-perf apps with a focus on scalable code and clean
+          design.
         </p>
-
-        <div class="border-t pt-2 space-y-2.5">
-          <h2 class="font-medium">information</h2>
-          <div class="pl-2 space-y-2">
-            <p class="leading-[150%] tracking-wide">
-              i'm keen about music, vfx and photography. in the past i used to
-              post amvs on instagram (back in 2022). feel free to check out my
-              work in the <Link href="/archive">archive</Link>
-            </p>
-            <p class="leading-[150%] tracking-wide">
-              moreover my goal is to build products that have immaculate UX -
-              whether through building my own thing or helping other people with
-              theirs (<Link href="/chat">hmu</Link>
-              for collaborations)
-            </p>
-          </div>
-        </div>
-
-        <div class="border-t pt-2 space-y-2.5">
-          <h2 class="font-medium">Affiliations</h2>
-          <div class="grid grid-cols-1 gap-4 pl-2 md:grid-cols-2">
-            {
-              sortedAffiliations.map((affiliation) =>
-                affiliation.link ? (
-                  <a
-                    href={affiliation.link}
-                    target="_blank"
-                    class="hover:text-muted-foreground transition-colors duration-200"
-                  >
-                    <AffiliationItem affiliation={affiliation} />
-                  </a>
-                ) : (
-                  <AffiliationItem affiliation={affiliation} />
-                )
-              )
-            }
-          </div>
-        </div>
-
-        <div class="border-t pt-2 space-y-2.5">
-          <h2 class="font-medium">endeavours</h2>
-          <ul class="space-y-2.5 list-disc list-inside pl-2">
-            <li>
-              Built <Link blank={true} href="https://indielettr.com"
-                >IndieLettr</Link
-              > - empowering indie creators and small businesses to reach their audience.
-            </li>
-            <li>
-              exploring <span class="font-medium">web3</span> and <span
-                class="font-medium">ml</span
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="w-[450px] md:w-[250px] lg:w-[450px]">
-        <Image
-          src="/Runner.svg"
-          alt="Runner"
-          width={450}
-          height={450}
-          class="w-[180px] h-[180px] md:w-full md:h-full ml-auto"
-        />
+        <p>
+          my fav. tech stack is nextjs, trpc and drizzleorm, also falling in
+          love with rust. im rlly interested in web3, ml, systems design, vfx,
+          designing and music.
+        </p>
+        <p>
+          outside of tech, i'm all about exploring creative works. back in 2022,
+          i was dropping AMVs on insta and also did some graphic designing
+          (check out <Link href="/archive">archive</Link>).
+        </p>
       </div>
     </div>
   </Container>
