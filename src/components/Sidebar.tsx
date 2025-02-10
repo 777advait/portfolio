@@ -87,7 +87,7 @@ function SidebarContent() {
               onMouseLeave={() => setHoveredIndex(null)}
               key={link.href}
             >
-              <a href={link.href}>{link.label}</a>
+              <a target="_blank" href={link.href}>{link.label}</a>
             </li>
           ))}
         </ol>

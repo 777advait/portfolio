@@ -2,27 +2,33 @@
 import Container from "@/components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import Link from "@/components/Link.astro";
-import { Image } from "astro:assets";
 
 type ImageType = {
   src: string;
-  alt: string;
 };
 
 const images: ImageType[] = [
-  { src: "/assets/gallery-image-1.png", alt: "Image 1" },
-  { src: "/assets/gallery-image-5.png", alt: "Image 5" },
-  { src: "/assets/gallery-image-3.png", alt: "Image 3" },
-  { src: "/assets/gallery-image-4.png", alt: "Image 4" },
-  { src: "/assets/gallery-image-2.png", alt: "Image 2" },
+  { src: "/assets/gallery-image-1.png" },
+  { src: "/assets/gallery-image-2.png" },
+  { src: "/assets/gallery-image-3.png" },
+  { src: "/assets/gallery-image-4.png" },
+  { src: "/assets/gallery-image-5.png" },
+  { src: "/assets/gallery-image-6.png" },
 ];
 ---
 
 <Layout>
   <Container className="lg:max-w-[90%]">
-    <div class="space-y-4">
-      
-
+    <div class="space-y-4 pb-16">
+      <div id="masonry">
+        {
+          images.map((el, index) => (
+            <div class="rounded-sm">
+              <img src={el.src} alt={el.src} height={300} width={200} class="rounded-sm" />
+            </div>
+          ))
+        }
+      </div>
       <h1 class="text-4xl font-pangaia">
         jack of all trades, master of all too
       </h1>

@@ -5,8 +5,6 @@ const SPOTIFY_NOW_PLAYING_ENDPOINT =
   "https://api.spotify.com/v1/me/player/currently-playing";
 const SPOTIFY_TOP_TRACKS_ENDPOINT =
   "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5";
-const SPOTIFY_RECENTLY_PLAYED_ENDPOINT =
-  "https://api.spotify.com/v1/me/player/recently-played?limit=50";
 
 const getAccessToken = async () => {
   const refresh_token = import.meta.env.SPOTIFY_REFRESH_TOKEN;
@@ -61,9 +59,6 @@ export const GET: APIRoute = async () => {
           artist: currentlyPlaying.item.artists
             .map((artist: any) => artist.name)
             .join(", "),
-          album: currentlyPlaying.item.album.name,
-          albumImageUrl: currentlyPlaying.item.album.images[0].url,
-          songUrl: currentlyPlaying.item.external_urls.spotify,
         }
       : null;
 
@@ -75,40 +70,13 @@ export const GET: APIRoute = async () => {
     const topTracks = topTracksData.items.map((track: any) => ({
       title: track.name,
       artist: track.artists.map((artist: any) => artist.name).join(", "),
-      album: track.album.name,
-      albumImageUrl: track.album.images[0].url,
       songUrl: track.external_urls.spotify,
     }));
-
-    // Fetch Recently Played Songs (last 50 tracks)
-    const recentlyPlayedData = await fetchSpotifyData(
-      SPOTIFY_RECENTLY_PLAYED_ENDPOINT,
-      access_token
-    );
-    const recentTracksMap = new Map();
-
-    // Deduplicate based on song ID and limit to 5 unique songs
-    for (const play of recentlyPlayedData.items) {
-      const track = play.track;
-      if (!recentTracksMap.has(track.id)) {
-        recentTracksMap.set(track.id, {
-          title: track.name,
-          artist: track.artists.map((artist: any) => artist.name).join(", "),
-          album: track.album.name,
-          albumImageUrl: track.album.images[0].url,
-          songUrl: track.external_urls.spotify,
-        });
-      }
-      if (recentTracksMap.size >= 5) break;
-    }
-
-    const recentTracks = Array.from(recentTracksMap.values());
 
     return new Response(
       JSON.stringify({
         currentlyPlaying: currentSong,
         topTracksThisMonth: topTracks,
-        topTracksLast7Days: recentTracks,
       }),
       {
         status: 200,

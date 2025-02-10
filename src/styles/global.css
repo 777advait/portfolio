@@ -99,24 +99,6 @@
   max-width: 100%;
 }
 
-.slider-container {
-  overflow: hidden;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 2%,
-    black 98%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 2%,
-    black 98%,
-    transparent 100%
-  );
-}
-
 .marquee-content {
   display: inline-flex;
   white-space: nowrap;
@@ -129,10 +111,10 @@
 
 @keyframes marquee {
   0% {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateX(-50%);  /* Only move half the width if duplicated */
   }
 }
 
@@ -140,27 +122,59 @@
   animation-play-state: paused;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .marquee-container {
-    overflow: hidden;
-    width: 100%;
-    max-width: 15rem;
-  }
-
-  .slider-container {
+    max-width: 90vw;
     mask-image: linear-gradient(
       to right,
       transparent,
-      black 1%,
-      black 99%,
+      black 20%,
+      black 80%,
       transparent 100%
     );
     -webkit-mask-image: linear-gradient(
       to right,
       transparent,
-      black 1%,
-      black 99%,
+      black 20%,
+      black 80%,
       transparent 100%
     );
   }
+}
+
+@media (min-width: 768px) {
+  .marquee-container {
+    max-width: 15rem;
+  }
+}
+
+
+#masonry {
+  line-height: 0;
+
+  -webkit-column-count: 3;
+  -webkit-column-gap: 1rem; /* Horizontal gap between columns */
+  -moz-column-count: 3;
+  -moz-column-gap: 1rem;
+  column-count: 3;
+  column-gap: 0.5rem; /* Horizontal gap between columns */
+
+  /* Center the masonry grid */
+  margin: 0 auto;
+}
+
+/* Adjust for desktop screens */
+@media (min-width: 1024px) {
+  #masonry {
+    max-width: 750px; /* Reduce the overall width to make images smaller */
+  }
+}
+
+#masonry img {
+  width: 100% !important;
+  height: auto !important;
+
+  /* Add horizontal and vertical spacing */
+  margin-bottom: 0.5rem;
+  border-radius: calc(var(--radius) - 4px);
 }

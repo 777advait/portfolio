@@ -2,12 +2,8 @@ import { useState, useEffect } from "react";
 import { MusicIcon } from "lucide-react";
 
 interface SpotifyData {
-  isPlaying: boolean;
   title: string;
   artist: string;
-  album: string;
-  albumImageUrl: string;
-  songUrl: string;
 }
 
 export function MarqueeText(props: { text: string }) {
@@ -19,9 +15,9 @@ export function MarqueeText(props: { text: string }) {
       <span>
         <MusicIcon className="w-3.5 h-3.5 mr-1" />
       </span>
-      <div className="marquee-container">
+      <div className="marquee-container max-w-full overflow-hidden whitespace-nowrap">
         <div
-          className="marquee-content"
+          className="marquee-content inline-block"
           style={{ animationDuration: animationDuration }}
         >
           <span>{props.text}</span>
@@ -40,21 +36,21 @@ export default function SpotifyNowListening() {
   useEffect(() => {
     const fetchSpotifyData = async () => {
       try {
-        const response = await fetch("/api/spotify-now-playing");
+        const response = await fetch("/api/spotify");
         const data = await response.json();
-        setSpotifyData(data);
+        setSpotifyData(data.currentlyPlaying);
       } catch (error) {
-        return <MarqueeText text="Error fetching data..." />;
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchSpotifyData();
-    const interval = setInterval(fetchSpotifyData, 30000); // Refresh every 30 seconds
+    const interval = setInterval(fetchSpotifyData, 30000);
 
     return () => clearInterval(interval);
   }, []);
 
-  if (!spotifyData || !spotifyData?.isPlaying) {
+  if (!spotifyData) {
     return <MarqueeText text="Not listening to music rn..." />;
   }
 
