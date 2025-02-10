@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import { loadQuery } from "@/sanity/lib/load-query";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 import type { ArchiveImages } from "@/lib/definitions";
+import ImageDialog from "@/components/ImageDialog";
 
 const { data: gfx } = await loadQuery<ArchiveImages[]>({
   query: `*[_type == "archiveGFX"] `,
@@ -37,7 +38,7 @@ const imageData = images.map((image) => {
   <Container className="lg:max-w-[80%]">
     <div class="space-y-10">
       <div class="space-y-2">
-        <h1 class="font-pangaia text-4xl font-light lg:text-6xl">archive</h1>
+        <h1 class="font-pangaia text-4xl  lg:text-6xl">archive</h1>
         <p class="leading-[150%] tracking-wide text-muted-foreground">
           just a random scrapbook of my creativity, mostly in the form of
           digital arts and photographs.
@@ -45,18 +46,18 @@ const imageData = images.map((image) => {
       </div>
 
       <div class="space-y-4">
-        <h2 class="font-medium text-muted-foreground">gfx</h2>
+        <h2 class="font-pangaia text-2xl lg:text-4xl text-muted-foreground">gfx</h2>
         <div class="grid grid-cols-1 gap-2.5 lg:grid-cols-3">
           {
             gfxData.map((image) => (
               <div class="">
-                <Image
+                <ImageDialog
                   src={image.url}
                   alt={image.title}
-                  width={100}
-                  height={100}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto"
+                  client:load
                 />
               </div>
             ))
@@ -65,21 +66,17 @@ const imageData = images.map((image) => {
       </div>
 
       <div class="space-y-4">
-        <h2 class="font-medium text-muted-foreground mb-4">photos</h2>
-        <div
-          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 auto-rows-[200px]"
-        >
+        <h2 class="font-pangaia text-2xl lg:text-4xl text-muted-foreground mb-4">photos</h2>
+        <div id="masonryArchive">
           {
             imageData.map((image, index) => (
-              <div
-                class={`overflow-hidden rounded-sm ${index % 5 === 0 ? "col-span-2 row-span-2" : ""}`}
-              >
-                <Image
+              <div>
+                <ImageDialog
                   src={image.webpUrl}
                   alt={image.title}
                   width={500}
                   height={500}
-                  class="w-full h-full object-cover"
+                  client:load
                 />
               </div>
             ))
