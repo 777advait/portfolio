@@ -13,6 +13,15 @@ export const affiliationsType = defineType({
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "company",
+      },
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "position",
       title: "Position",
       type: "string",
@@ -57,9 +66,19 @@ export const affiliationsType = defineType({
         }),
     },
     {
-      name: "link",
-      title: "Link",
-      type: "url",
-    }
+      name: "content",
+      title: "Content",
+      type: "array",
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    },
   ],
 });

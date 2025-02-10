@@ -8,27 +8,27 @@ import SpotifyNowListening from "./SpotifyNowListening";
 
 const links = [
   {
-    href: "/wne3",
+    href: "/affiliation/wne3",
     label: "wne3",
   },
   {
-    href: "/grass-labs",
+    href: "/affiliation/grass-labs",
     label: "grass labs",
   },
   {
-    href: "/dream-skrin",
+    href: "/affiliation/dream-skrin",
     label: "dream skrin",
   },
   {
-    href: "/sanity-gaming",
+    href: "/affiliation/sanity-gaming",
     label: "sanity gaming",
   },
   {
-    href: "/indielettr",
+    href: "/affiliation/indielettr",
     label: "indielettr",
   },
   {
-    href: "/salad-and-tartine",
+    href: "/affiliation/salad-and-tartine",
     label: "salad & tartine",
   },
 ];

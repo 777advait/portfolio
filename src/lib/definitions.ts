@@ -22,8 +22,9 @@ export interface ArchiveImages {
 export interface Affiliations {
   company: string;
   position: string;
-  startDate: Date;
+  startDate: string;
   endDate?: string;
   currentlyWorking?: boolean;
-  link?: string;
+  content: any;
+  slug: { current: string };
 }
