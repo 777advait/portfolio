@@ -87,7 +87,7 @@ function SidebarContent() {
               onMouseLeave={() => setHoveredIndex(null)}
               key={link.href}
             >
-              <a target="_blank" href={link.href}>{link.label}</a>
+              <a href={link.href}>{link.label}</a>
             </li>
           ))}
         </ol>
@@ -99,7 +99,11 @@ function SidebarContent() {
                 className="hover:translate-x-2 transition-all duration-150 ease-linear"
                 key={social.href}
               >
-                <a className="flex items-baseline gap-1" href={social.href}>
+                <a
+                  target="_blank"
+                  className="flex items-baseline gap-1"
+                  href={social.href}
+                >
                   {social.label}
                 </a>
               </li>
