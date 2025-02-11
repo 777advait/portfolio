@@ -6,8 +6,6 @@ import { loadQuery } from "@/sanity/lib/load-query";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 import type { ArchiveImages } from "@/lib/definitions";
 
-export const prerender = false;
-
 const { data: gfx } = await loadQuery<ArchiveImages[]>({
   query: `*[_type == "archiveGFX"] `,
 });

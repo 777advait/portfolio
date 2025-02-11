@@ -5,10 +5,8 @@ import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import SpotifyNowListening from "@/components/SpotifyNowListening";
 
-export const prerender = false
-
 const url = Astro.url.origin;
- 
+
 const res = await fetch(`${url}/api/spotify`);
 const data = await res.json();
 ---
@@ -31,7 +29,7 @@ const data = await res.json();
           <MusicList songs={data.topTracksThisMonth} client:load />
           <div class="w-[400px] rounded-sm">
             <Image
-              src="/assets/theweeknd.png"
+              src="/images/theweeknd.png"
               alt="the weeknd"
               width={400}
               height={600}
