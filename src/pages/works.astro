@@ -16,6 +16,8 @@ projects = projects.map((project) => {
     image: project.image ? urlForImage(project.image).url() : undefined,
   };
 });
+
+export const prerender = false;
 ---
 
 <Layout
