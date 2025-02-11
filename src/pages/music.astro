@@ -5,6 +5,8 @@ import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import SpotifyNowListening from "@/components/SpotifyNowListening";
 
+export const prerender = false
+
 const url = Astro.url.origin;
  
 const res = await fetch(`${url}/api/spotify`);

@@ -6,6 +6,8 @@ import { loadQuery } from "../../sanity/lib/load-query";
 import type { Affiliations } from "@/lib/definitions";
 import PortableText from "@/components/sanity/PortableText.astro";
 
+export const prerender = false;
+
 export async function getStaticPaths() {
   const { data: affiliations } = await loadQuery<SanityDocument[]>({
     query: `*[_type == "affiliations"]`,
@@ -58,7 +60,7 @@ const endDate = !affiliation.currentlyWorking
         <div class="">
           <PortableText portableText={affiliation.content} />
           <p class="text-muted-foreground font-medium">
-            gonna write down soon!&lt;3 
+            gonna write down soon!&lt;3
           </p>
         </div>
       </section>

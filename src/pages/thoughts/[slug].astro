@@ -8,6 +8,8 @@ import PortableText from "@/components/sanity/PortableText.astro";
 import { LucideArrowLeft } from "lucide-react";
 import Link from "@/components/Link.astro";
 
+export const prerender = false;
+
 export async function getStaticPaths() {
   const { data: writings } = await loadQuery<SanityDocument[]>({
     query: `*[_type == "writings"]`,
@@ -38,8 +40,6 @@ const createdAt = new Date(writing._createdAt).toLocaleString("en-US", {
   hourCycle: "h23",
   timeZoneName: "shortOffset",
 });
-
-export const prerender = false;
 ---
 
 <Layout title={`${writing.title} | astro`} description={writing.title}>

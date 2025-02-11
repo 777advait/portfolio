@@ -7,6 +7,8 @@ import type { Writings } from "@/lib/definitions";
 import { cn } from "@/lib/utils";
 import ThoughtsList from "@/components/thoughts/ThoughtsList";
 
+export const prerender = false;
+
 export async function getStaticPaths() {
   const { data: writings } = await loadQuery<SanityDocument[]>({
     query: `*[_type == "writings"]`,

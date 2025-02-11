@@ -6,6 +6,8 @@ import { loadQuery } from "@/sanity/lib/load-query";
 import type { Projects } from "@/lib/definitions";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 
+export const prerender = false;
+
 let { data: projects } = await loadQuery<Projects[]>({
   query: `*[_type == "projects"] | order(_createdAt asc)`,
 });
@@ -16,8 +18,6 @@ projects = projects.map((project) => {
     image: project.image ? urlForImage(project.image).url() : undefined,
   };
 });
-
-export const prerender = false;
 ---
 
 <Layout
