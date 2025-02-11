@@ -6,8 +6,6 @@ import { loadQuery } from "../../sanity/lib/load-query";
 import type { Affiliations } from "@/lib/definitions";
 import PortableText from "@/components/sanity/PortableText.astro";
 
-export const prerender = false;
-
 export async function getStaticPaths() {
   const { data: affiliations } = await loadQuery<SanityDocument[]>({
     query: `*[_type == "affiliations"]`,

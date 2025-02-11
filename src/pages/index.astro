@@ -3,20 +3,16 @@ import Container from "@/components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import Link from "@/components/Link.astro";
 import { Image } from "astro:assets";
-import galleryImage1 from "../assets/gallery-image-1.png";
-import galleryImage2 from "../assets/gallery-image-2.png";
-import galleryImage3 from "../assets/gallery-image-3.png";
-import galleryImage4 from "../assets/gallery-image-4.png";
-import galleryImage5 from "../assets/gallery-image-5.png";
-import galleryImage6 from "../assets/gallery-image-6.png";
+
+export const prerender = true;
 
 const images = [
-  galleryImage1,
-  galleryImage2,
-  galleryImage3,
-  galleryImage4,
-  galleryImage5,
-  galleryImage6,
+  "/assets/gallery-image-1.png",
+  "/assets/gallery-image-2.png",
+  "/assets/gallery-image-3.png",
+  "/assets/gallery-image-4.png",
+  "/assets/gallery-image-5.png",
+  "/assets/gallery-image-6.png",
 ];
 ---
 

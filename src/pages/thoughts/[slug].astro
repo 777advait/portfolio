@@ -8,8 +8,6 @@ import PortableText from "@/components/sanity/PortableText.astro";
 import { LucideArrowLeft } from "lucide-react";
 import Link from "@/components/Link.astro";
 
-export const prerender = false;
-
 export async function getStaticPaths() {
   const { data: writings } = await loadQuery<SanityDocument[]>({
     query: `*[_type == "writings"]`,
