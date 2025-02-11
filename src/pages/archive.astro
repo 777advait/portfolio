@@ -26,6 +26,8 @@ const imageData = images.map((image) => {
     url: urlForImage(image.image).format("webp").quality(75).url(),
   };
 });
+
+export const prerender = false;
 ---
 
 <Layout

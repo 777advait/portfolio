@@ -38,6 +38,8 @@ const createdAt = new Date(writing._createdAt).toLocaleString("en-US", {
   hourCycle: "h23",
   timeZoneName: "shortOffset",
 });
+
+export const prerender = false;
 ---
 
 <Layout title={`${writing.title} | astro`} description={writing.title}>
