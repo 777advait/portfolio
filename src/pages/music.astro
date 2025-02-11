@@ -2,12 +2,11 @@
 import Container from "@/components/Container.astro";
 import MusicList from "@/components/music/music-list";
 import Layout from "@/layouts/Layout.astro";
-import { PlayCircle } from "lucide-react";
 import { Image } from "astro:assets";
 import SpotifyNowListening from "@/components/SpotifyNowListening";
 
 const url = Astro.url.origin;
-
+ 
 const res = await fetch(`${url}/api/spotify`);
 const data = await res.json();
 ---
@@ -31,10 +30,10 @@ const data = await res.json();
           <div class="w-[400px] rounded-sm">
             <Image
               src="/assets/theweeknd.png"
-              alt="gallery image"
+              alt="the weeknd"
               width={400}
               height={600}
-              class="rounded-sm mt-4"
+              class="mt-4"
             />
           </div>
         </div>
