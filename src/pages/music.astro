@@ -11,7 +11,10 @@ const res = await fetch(`${url}/api/spotify`);
 const data = await res.json();
 ---
 
-<Layout>
+<Layout
+  title="music | astro"
+  description="showcase of current songs in rotation in my playlists"
+>
   <Container className="lg:max-w-[90%]">
     <div class="space-y-8">
       <div class="space-y-4">

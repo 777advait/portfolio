@@ -39,26 +39,28 @@ const endDate = !affiliation.currentlyWorking
   : "present";
 ---
 
-<Layout>
-  <Container className="lg:max-w-[80%]">
-    <div class="space-y-8">
-      <header class="space-y-4">
-        <h1 class="text-4xl font-pangaia lg:text-6xl">{affiliation.company}</h1>
-        <div class="flex items-center gap-2">
-          <p class="text-muted-foreground font-medium">
-            {affiliation.position}
-          </p>
-          <span>•</span>
-          <p class="text-muted-foreground font-medium">
-            {startDate} - {endDate}
-          </p>
-        </div>
-      </header>
-      <section class="space-y-8">
-        <div class="">
-          <PortableText portableText={affiliation.content} />
-        </div>
-      </section>
-    </div>
-  </Container></Layout
->
+<Layout
+  title={affiliation.company}
+  description={`a micro rant/blog about my time at ${affiliation.company}`}
+/>
+<Container className="lg:max-w-[80%]">
+  <div class="space-y-8">
+    <header class="space-y-4">
+      <h1 class="text-4xl font-pangaia lg:text-6xl">{affiliation.company}</h1>
+      <div class="flex items-center gap-2">
+        <p class="text-muted-foreground font-medium">
+          {affiliation.position}
+        </p>
+        <span>•</span>
+        <p class="text-muted-foreground font-medium">
+          {startDate} - {endDate}
+        </p>
+      </div>
+    </header>
+    <section class="space-y-8">
+      <div class="">
+        <PortableText portableText={affiliation.content} />
+      </div>
+    </section>
+  </div>
+</Container>
