@@ -1,55 +1,34 @@
 ---
-// src/pages/index.astro
 import Container from "@/components/Container.astro";
-import Layout from "../layouts/Layout.astro";
+import Link from "@/components/Link.astro";
+import Layout from "@/layouts/Layout.astro";
 
 export const prerender = false;
 
 const ip = Astro.clientAddress;
-const webhookUrl = import.meta.env.DEV ?
-  import.meta.env.DEV_DISCORD_WEBHOOK_URL :
-  import.meta.env.DISCORD_WEBHOOK_URL
-
-const embed = {
-  title: 'New Visitor Detected',
-  description: `We got a new visitor on the site. Here’s their IP address: **${ip}**`,
-  color: 0xff0000,
-  timestamp: new Date().toISOString(),
-  footer: {
-    text: 'IP Logger',
-  },
-  fields: [
-    {
-      name: 'IP Address',
-      value: ip,
-      inline: true,
-    },
-    {
-      name: 'Timestamp',
-      value: new Date().toLocaleString(),
-      inline: true,
-    },
-  ],
-};
-
-await fetch(webhookUrl, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    embeds: [embed],
-  }),
-})
 ---
 
-<Layout title="onlyfans | astro" description="Subscribe to my onlyfans channel xoxo!">
+<Layout
+  title="onlyfans | astro"
+  description="Subscribe to my onlyfans channel xoxo!"
+>
   <Container>
-    <div class="min-h-[50vh] flex flex-col items-center justify-center text-center">
-      <div class="">
-        <h1 class="md:text-xl lg:text-2xl">Think u smart buddy?</h1>
-        <p class="md:text-xl lg:text-2xl">Got yo IP address</p>
-        <p class="font-semibold md:text-xl lg:text-2xl">{ip}</p>
+    <div
+      class="min-h-[50vh] flex flex-col items-center justify-center text-center"
+    >
+      <div class="space-y-6 md:space-y-4">
+        <div class="space-y-2">
+          <h1 class="text-3xl md:text-4xl font-pangaia">
+            Apparently no onlyfans here
+          </h1>
+          <p class="text-lg font-medium">
+            but i got your ip address nevertheless
+          </p>
+        </div>
+        <p class="font-bold text-lg">{ip}</p>
+        <p class="text-sm">
+          do check out rest of my <Link href="/">portfolio</Link> though!
+        </p>
       </div>
     </div>
   </Container>

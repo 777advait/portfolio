@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import Timer from "./Timer";
-import SpotifyNowListening from "./SpotifyNowListening";
+import { getCalApi } from "@calcom/embed-react";
 
 const links = [
   {
@@ -50,6 +50,17 @@ const socials = [
 
 function SidebarContent() {
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi();
+      cal("ui", {
+        theme: "dark",
+        styles: {
+          branding: { brandColor: "#000000" },
+        },
+      });
+    })();
+  }, []);
   const allLinks = [
     ...links,
     {
@@ -108,6 +119,14 @@ function SidebarContent() {
                 </a>
               </li>
             ))}
+            <li className="hover:translate-x-2 transition-all duration-150 ease-linear">
+              <button
+                data-cal-link="777advait"
+                data-cal-config='{"theme":"dark"}'
+              >
+                chat
+              </button>
+            </li>
           </ul>
         </div>
         <div className="space-y-1.5 px-1.5 ">
