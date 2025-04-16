@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import "dotenv/config";
 
 const SPOTIFY_TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const SPOTIFY_NOW_PLAYING_ENDPOINT =
@@ -7,13 +8,18 @@ const SPOTIFY_TOP_TRACKS_ENDPOINT =
   "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5";
 
 const getAccessToken = async () => {
-  const refresh_token = import.meta.env.SPOTIFY_REFRESH_TOKEN;
+  const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
+  const client_id = process.env.SPOTIFY_CLIENT_ID;
+  const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+
+  if (!refresh_token || !client_id || !client_secret) {
+    throw new Error("Missing Spotify environment variables.");
+  }
+
   const response = await fetch(SPOTIFY_TOKEN_ENDPOINT, {
     method: "POST",
     headers: {
-      Authorization: `Basic ${Buffer.from(
-        `${import.meta.env.SPOTIFY_CLIENT_ID}:${import.meta.env.SPOTIFY_CLIENT_SECRET}`
-      ).toString("base64")}`,
+      Authorization: `Basic ${Buffer.from(`${client_id}:${client_secret}`).toString("base64")}`,
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: new URLSearchParams({
@@ -23,6 +29,8 @@ const getAccessToken = async () => {
   });
 
   if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Spotify Token Error:", errorText);
     throw new Error("Failed to get access token");
   }
 
@@ -37,6 +45,8 @@ const fetchSpotifyData = async (endpoint: string, access_token: string) => {
   });
 
   if (!response.ok) {
+    const errorText = await response.text();
+    console.error(`Error fetching from ${endpoint}:`, errorText);
     throw new Error(`Failed to fetch data from ${endpoint}`);
   }
 
@@ -47,11 +57,12 @@ export const GET: APIRoute = async () => {
   try {
     const { access_token } = await getAccessToken();
 
-    // Fetch Currently Playing Song
+    // Currently Playing
     let currentlyPlaying = await fetchSpotifyData(
       SPOTIFY_NOW_PLAYING_ENDPOINT,
       access_token
     ).catch(() => null);
+
     const isPlaying = currentlyPlaying?.is_playing || false;
     const currentSong = isPlaying
       ? {
@@ -62,7 +73,7 @@ export const GET: APIRoute = async () => {
         }
       : null;
 
-    // Fetch Top 5 Songs This Month (short_term)
+    // Top Tracks
     const topTracksData = await fetchSpotifyData(
       SPOTIFY_TOP_TRACKS_ENDPOINT,
       access_token
@@ -78,17 +89,13 @@ export const GET: APIRoute = async () => {
         currentlyPlaying: currentSong,
         topTracksThisMonth: topTracks,
       }),
-      {
-        status: 200,
-      }
+      { status: 200 }
     );
   } catch (error) {
     console.error("Error fetching Spotify data:", error);
     return new Response(
       JSON.stringify({ error: "Error fetching Spotify data" }),
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 };
