@@ -11,11 +11,7 @@ const links = [
     href: "/affiliation/wne3",
     label: "wne3",
   },
-  {
-    href: "/affiliation/grass-labs",
-    label: "grass labs",
-  },
-  {
+  { 
     href: "/affiliation/dream-skrin",
     label: "dream skrin",
   },
