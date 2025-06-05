@@ -1,7 +1,7 @@
 ---
 import Container from "@/components/Container.astro";
 import "@/styles/global.css";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { Toaster } from "@/components/ui/toaster";
 import Sidebar from "@/components/Sidebar";
 import { Hammer } from "lucide-react";
@@ -44,7 +44,7 @@ const ogImage = new URL("/og-image.png", Astro.url);
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <div class="flex min-h-screen">
