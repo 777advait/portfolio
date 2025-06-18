@@ -166,7 +166,7 @@
 /* Adjust for desktop screens */
 @media (min-width: 1024px) {
   #masonry {
-    max-width: 750px; /* Reduce the overall width to make images smaller */
+    max-width: 90%; /* Reduce the overall width to make images smaller */
   }
 }
 
