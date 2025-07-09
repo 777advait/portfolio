@@ -8,6 +8,10 @@ import { getCalApi } from "@calcom/embed-react";
 
 const links = [
   {
+    href: "/affiliation/celestia-labs",
+    label: "celestia labs",
+  },
+  {
     href: "/affiliation/wne3",
     label: "wne3",
   },
@@ -84,7 +88,7 @@ function SidebarContent() {
           <h1 className="font-pangaia text-6xl ">astro</h1>
         </a>
 
-        <ol className="pl-12 list-decimal font-pangaia font-extralight text-2xl">
+        <ol className="pl-10 list-decimal font-pangaia font-extralight text-2xl">
           {allLinks.map((link, index) => (
             <li
               className={cn("transition-opacity duration-150 ease-linear", {

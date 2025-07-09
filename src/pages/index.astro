@@ -25,7 +25,7 @@ const images = [
 
 <Layout>
   <Container className="lg:max-w-[90%]">
-    <div class="space-y-4 pb-16">
+    <div class="space-y-10 pb-16">
       <div id="masonry">
         {
           images.map(async (image, index) => {
@@ -44,24 +44,33 @@ const images = [
           })
         }
       </div>
-      <h1 class="text-4xl font-pangaia">
-        jack of all trades, master of all too
-      </h1>
-      <div class="space-y-4 text-muted-foreground">
-        <p>
-          heyy!! im advait, a multidisciplinary engineer obsessed with building
-          scalable, high-perf apps with a focus on scalable code and clean
-          design.
-        </p>
-        <p>
-          my fav. tech stack is nextjs, trpc and drizzleorm, also falling in
-          love with rust. im rlly interested in web3, designing and music.
-        </p>
-        <p>
-          outside of tech, i'm all about exploring creative works. back in 2022,
-          i was dropping AMVs on insta and also did some graphic designing
-          (check out <Link href="/archive">archive</Link>).
-        </p>
+      <div class="lg:max-w-[90%] mx-auto space-y-4">
+        <h1 class="text-4xl font-pangaia">
+          jack of all trades, master of all too
+        </h1>
+        <div class="space-y-4 text-muted-foreground">
+          <p>
+            heyy!! im advait, a multidisciplinary engineer obsessed with
+            building scalable, high-perf apps with a focus on clean design. my
+            fav. tech stack is nextjs, hono and drizzleorm, also falling in love
+            with rust. im rlly interested in web3, designing and music.
+          </p>
+          <p>
+            outside of tech, i'm all about exploring creative works. back in
+            2022, i was dropping AMVs on insta and also did some graphic
+            designing (check out <Link href="/archive">archive</Link>).
+          </p>
+          <p>
+            i worked with over 5 startups in the past year (through internships
+            and freelancing, even part-time in some cases), recently quit my
+            role as a tech lead to figure out what i want to do on a longer
+            term. currently im working on side-gigs for other ppl and iterating
+            in stealth over at my <Link
+              href="https://celestialabs.astro-dev.tech"
+              blank={true}>little imaginary lab</Link
+            >
+          </p>
+        </div>
       </div>
     </div>
     <div class="flex justify-center">
