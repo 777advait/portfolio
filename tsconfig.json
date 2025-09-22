@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "baseUrl": ".",
@@ -20,7 +19,3 @@
     "src"
   ]
 }
-=======
-  "extends": "astro/tsconfigs/base"
-}
->>>>>>> 3c4fef19676f465d9e9caae117942315350457ca

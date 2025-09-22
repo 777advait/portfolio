@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-<<<<<<< HEAD
 import tailwindcss from "@tailwindcss/vite"
 import { loadEnv } from "vite"
 
@@ -24,11 +23,3 @@ export default defineConfig({
   integrations: [react()],
   adapter: ASTRO_ADAPTER === "vercel" ? vercel() : node({ mode: "standalone" })
 });
-=======
-import tailwind from '@astrojs/tailwind';
-
-// https://astro.build/config
-export default defineConfig({
-	integrations: [tailwind()],
-});
->>>>>>> 3c4fef19676f465d9e9caae117942315350457ca
