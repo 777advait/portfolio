@@ -1,0 +1,11 @@
+---
+import Clock from "./clock";
+import Spotify from "./spotify";
+---
+
+<footer class="bg-background fixed bottom-0 w-full px-4 py-2">
+  <div class="flex items-center justify-between">
+    <Clock client:only="react" />
+    <div class="w-fit"><Spotify client:only="react" /></div>
+  </div>
+</footer>
