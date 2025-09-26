@@ -1,0 +1,37 @@
+---
+import Container from "~/components/common/container.astro";
+import Link from "~/components/common/link.astro";
+import Layout from "~/layouts/Layout.astro";
+
+export const prerender = false;
+
+const ip = Astro.clientAddress;
+---
+
+<Layout
+  content={{
+    title: "onlyfans | astroxide",
+    description: "subscribe to my onlyfans channel xoxo!",
+  }}
+>
+  <Container>
+    <div
+      class="flex min-h-[90vh] flex-col items-center justify-center text-center"
+    >
+      <div class="space-y-6 md:space-y-4">
+        <div class="space-y-2 md:space-y-4">
+          <h1 class="font-serif text-3xl md:text-6xl">
+            Apparently no onlyfans here
+          </h1>
+          <p class="text-muted-foreground font-medium md:text-xl">
+            but i got your ip address nevertheless
+          </p>
+        </div>
+        <p class="text-xl font-bold">{ip}</p>
+        <p class="mx-auto text-sm leading-[150%] md:w-3/4 md:text-xl">
+          do check out the rest of my <Link href="/">portfolio</Link> though!
+        </p>
+      </div>
+    </div>
+  </Container>
+</Layout>

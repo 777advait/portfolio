@@ -6,6 +6,7 @@ import "@fontsource/instrument-serif/400-italic.css";
 import Footer from "~/components/common/footer.astro";
 import Sidebar from "~/components/common/sidebar.astro";
 import { ClientRouter } from "astro:transitions";
+import Navbar from "~/components/common/navbar.astro";
 
 interface Props {
   content: {
@@ -31,8 +32,8 @@ const {
     <ClientRouter />
   </head>
   <body class="h-screen">
-    <div class="flex h-full">
-      <!-- Sidebar column -->
+    <Navbar client:load />
+    <div class="my-4 flex h-full lg:my-0">
       <div class="flex h-full items-center">
         <Sidebar />
       </div>

@@ -32,7 +32,7 @@ export function MarqueeText(props: { text: string }) {
   );
 }
 
-export default function Spotify() {
+export default function Music() {
   const [spotifyData, setSpotifyData] = useState<SpotifyData | null>(null);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function Spotify() {
     };
 
     fetchSpotifyData();
-    const interval = setInterval(fetchSpotifyData, 30000);
+    const interval = setInterval(fetchSpotifyData, 30_000);
 
     return () => clearInterval(interval);
   }, []);

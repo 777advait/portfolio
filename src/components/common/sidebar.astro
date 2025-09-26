@@ -13,20 +13,21 @@ const links = [
 ];
 ---
 
-<aside class="bg-sidebar ml-2 rounded-md p-2">
-  <nav>
+<aside class="bg-sidebar ml-2 hidden rounded-md p-2 lg:block">
+  <nav class="">
     <ul class="flex flex-col items-center gap-1.5">
       {
         links.map(({ href, icon: Icon, label }) => (
           <li
             class={cn("group text-muted-foreground relative rounded-md p-2", {
-              "bg-muted": pathname.startsWith(href),
+              "bg-muted":
+                href === "/" ? pathname === "/" : pathname.startsWith(href),
             })}
           >
             <a href={href}>
               <Icon className="w-6 h-6" />
             </a>
-            <span class="bg-muted text-muted-foreground absolute top-1/2 left-full ml-4 w-max -translate-y-1/2 rounded-md p-2 text-sm font-medium opacity-0 transition-opacity group-hover:opacity-100">
+            <span class="bg-muted text-muted-foreground absolute top-1/2 left-full ml-4 w-max -translate-y-1/2 rounded-md p-2 text-sm font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               {label}
             </span>
           </li>

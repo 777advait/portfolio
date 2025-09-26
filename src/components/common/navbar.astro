@@ -1,0 +1,85 @@
+---
+import { Home } from "lucide-react";
+import { Lotus, Cog, Y2K } from "./icons";
+import { cn } from "~/lib/utils";
+
+const { pathname } = Astro.url;
+
+const links = [
+  { href: "/", icon: Home, label: "Home" },
+  { href: "/writings", icon: Lotus, label: "Writings" },
+  { href: "/works", icon: Y2K, label: "Works" },
+  { href: "/archive", icon: Cog, label: "Archive" },
+];
+---
+
+<header class="ml-2 inline-block rounded-md lg:hidden">
+  <button
+    id="menu-button"
+    class="bg-sidebar fixed top-4 left-3 z-50 space-y-1 rounded p-2.5"
+  >
+    <div class="bg-foreground h-0.5 w-5"></div>
+    <div class="bg-foreground h-0.5 w-5"></div>
+  </button>
+
+  <nav
+    id="mobile-nav"
+    class="bg-sidebar pointer-events-none absolute top-12 left-2 z-50 w-[45%] -translate-y-2 transform rounded-md opacity-0 shadow-md transition-all duration-300 ease-out"
+  >
+    <ul class="flex flex-col items-start gap-1.5 rounded-md p-2">
+      {
+        links.map(({ href, icon: Icon, label }) => (
+          <li
+            class={cn(
+              "group text-muted-foreground relative w-full rounded-md p-2",
+              {
+                "bg-muted":
+                  href === "/" ? pathname === "/" : pathname.startsWith(href),
+              }
+            )}
+          >
+            <a href={href} class="flex items-center gap-2">
+              <Icon className="h-5 w-5" />
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  function setupMenu() {
+    const btn = document.getElementById("menu-button");
+    const nav = document.getElementById("mobile-nav");
+
+    if (btn && nav && !btn.dataset.bound) {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        nav.classList.toggle("opacity-0");
+        nav.classList.toggle("-translate-y-2");
+        nav.classList.toggle("pointer-events-none");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!(e.target instanceof Node)) return;
+
+        if (!nav.contains(e.target) && !btn.contains(e.target)) {
+          if (!nav.classList.contains("opacity-0")) {
+            nav.classList.add(
+              "opacity-0",
+              "-translate-y-2",
+              "pointer-events-none"
+            );
+          }
+        }
+      });
+
+      btn.dataset.bound = "true";
+    }
+  }
+
+  setupMenu();
+  document.addEventListener("astro:page-load", setupMenu);
+</script>

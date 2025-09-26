@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import tameImpala from "~/assets/tame-impala.png";
 import perspective from "~/assets/perspective.png";
+import Link from "~/components/common/link.astro";
 
 const images = [
   { src: city, alt: "city" },
@@ -22,12 +23,12 @@ const images = [
       "multi-disciplinary engineer obsessed with breakshit scalability and performance",
   }}
 >
-  <main class="my-8 lg:mt-0">
+  <main class="">
     <Container>
       <div
         class="flex flex-col space-y-6 lg:flex-row lg:items-start lg:justify-between lg:space-y-0"
       >
-        <div class="space-y-8 lg:pt-4 lg:pl-4 lg:max-w-[40%]">
+        <div class="space-y-8 lg:max-w-[40%] lg:pt-4 lg:pl-4">
           <div class="space-y-2 font-light">
             <h1 class="font-serif text-4xl italic md:text-6xl">
               advait <span class="text-xl md:text-4xl">(astroxide)</span>
@@ -50,10 +51,8 @@ const images = [
               over the past year i've worked across multiple startups (5+ ig) -
               freelancing, interning, sometimes part-time. currently im working
               on side-gigs for other ppl and iterating in stealth over at my
-              <a
-                href="https://celestialabs.vercel.app"
-                class="bg-muted text-muted-foreground mr-0.5 px-1 font-medium"
-                >little imaginary lab</a
+              <Link target="_blank" href="https://celestialabs.vercel.app"
+                >little imaginary lab</Link
               >.
             </p>
             <p>
@@ -64,16 +63,15 @@ const images = [
             </p>
             <p>
               i don't really measure myself by titles, roles or a fixed timeline
-              bcs of my belief in the principles of <a
+              bcs of my belief in the principles of <Link
                 href="#"
-                class="bg-muted text-muted-foreground mr-0.5 px-1 font-medium"
-                >vairagya</a
+                target="_blank">vairagya</Link
               >
             </p>
           </div>
         </div>
 
-        <div id="masonry" class="mt-3 lg:pt-4 lg:pr-4">
+        <div id="masonry" class="mt-3 mb-12 lg:mb-0 lg:pt-4 lg:pr-4">
           {
             images.map((img) => (
               <Image
@@ -87,7 +85,6 @@ const images = [
         </div>
       </div>
 
-      <!-- modal -->
       <div
         id="previewModal"
         class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80"
@@ -102,7 +99,6 @@ const images = [
     </Container>
   </main>
 
-  <!-- ✅ typesafe script -->
   <script>
     const modal = document.getElementById("previewModal") as HTMLDivElement;
     const previewImg = document.getElementById(
