@@ -57,7 +57,6 @@ export const GET: APIRoute = async () => {
   try {
     const { access_token } = await getAccessToken();
 
-    // Currently Playing
     let currentlyPlaying = await fetchSpotifyData(
       SPOTIFY_NOW_PLAYING_ENDPOINT,
       access_token,
