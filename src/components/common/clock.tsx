@@ -10,7 +10,6 @@ export default function Clock() {
   });
 
   const [time, setTime] = useState(() => {
-    // Initialize with the server-rendered time
     return formatter.format(new Date());
   });
 
