@@ -60,7 +60,7 @@ export const GET: APIRoute = async () => {
     // Currently Playing
     let currentlyPlaying = await fetchSpotifyData(
       SPOTIFY_NOW_PLAYING_ENDPOINT,
-      access_token
+      access_token,
     ).catch(() => null);
 
     const isPlaying = currentlyPlaying?.is_playing || false;
@@ -73,29 +73,17 @@ export const GET: APIRoute = async () => {
         }
       : null;
 
-    // Top Tracks
-    const topTracksData = await fetchSpotifyData(
-      SPOTIFY_TOP_TRACKS_ENDPOINT,
-      access_token
-    );
-    const topTracks = topTracksData.items.map((track: any) => ({
-      title: track.name,
-      artist: track.artists.map((artist: any) => artist.name).join(", "),
-      songUrl: track.external_urls.spotify,
-    }));
-
     return new Response(
       JSON.stringify({
         currentlyPlaying: currentSong,
-        topTracksThisMonth: topTracks,
       }),
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error fetching Spotify data:", error);
     return new Response(
       JSON.stringify({ error: "Error fetching Spotify data" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

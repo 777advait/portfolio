@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function Timer() {
+export default function Clock() {
   const formatter = new Intl.DateTimeFormat("en-US", {
     hour: "2-digit",
     minute: "2-digit",
@@ -24,11 +24,9 @@ export function Timer() {
 
   return (
     <div className="flex items-center gap-2 text-sm">
-      <p className="text-muted-foreground font-medium">{time}</p>
+      <p>india</p>
       <span>•</span>
-      <p>mumbai, india</p>
+      <p className="text-muted-foreground font-medium">{time}</p>
     </div>
   );
 }
-
-export default Timer;

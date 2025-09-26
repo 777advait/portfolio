@@ -8,12 +8,12 @@ interface SpotifyData {
 
 export function MarqueeText(props: { text: string }) {
   const textLength = props.text.length;
-  const animationDuration = `${textLength / 3}s`; // Adjust the divisor for desired speed
+  const animationDuration = `${textLength / 2}s`; // Adjust the divisor for desired speed
 
   return (
-    <div className="text-sm flex items-center text-muted-foreground font-medium overflow-hidden">
+    <div className="text-muted-foreground flex items-center overflow-hidden text-sm font-medium">
       <span>
-        <MusicIcon className="w-3.5 h-3.5 mr-1" />
+        <MusicIcon className="mr-1 h-4 w-4" />
       </span>
       <div className="marquee-container max-w-full overflow-hidden whitespace-nowrap">
         <div
@@ -24,13 +24,15 @@ export function MarqueeText(props: { text: string }) {
           <span>{props.text}</span>
           <span>{props.text}</span>
           <span>{props.text}</span>
+          <span>{props.text}</span>
+          <span>{props.text}</span>
         </div>
       </div>
     </div>
   );
 }
 
-export default function SpotifyNowListening() {
+export default function Spotify() {
   const [spotifyData, setSpotifyData] = useState<SpotifyData | null>(null);
 
   useEffect(() => {

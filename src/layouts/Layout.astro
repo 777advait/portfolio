@@ -1,59 +1,34 @@
 ---
-import Container from "@/components/Container.astro";
-import "@/styles/global.css";
-import { ClientRouter } from "astro:transitions";
-import { Toaster } from "@/components/ui/toaster";
-import Sidebar from "@/components/Sidebar";
-import { Hammer } from "lucide-react";
-import "@fontsource/dm-sans";
+import "~/styles/global.css";
+import "@fontsource-variable/dm-sans";
+import "@fontsource/instrument-serif";
+import "@fontsource/instrument-serif/400-italic.css";
+import Footer from "~/components/common/footer.astro";
+
+interface Props {
+  content: {
+    title: string;
+    description: string;
+  };
+}
 
 const {
-  title = "astro - polymath, explorer.",
-  description = "full-stack engineer interested in building scalable and performant web applications.",
+  content: { description, title },
 } = Astro.props;
-const url = Astro.url;
-const ogImage = new URL("/og-image.png", Astro.url);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={url} />
-    <meta property="og:site_name" content="astro" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1004" />
-    <meta property="og:image:height" content="591" />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta name="twitter:image:type" content="image/png" />
-    <meta name="twitter:image:width" content="1200" />
-    <meta name="twitter:image:height" content="630" />
-    <meta name="twitter:image" content={ogImage} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="sitemap" href="/sitemap-0.xml" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-
-    <ClientRouter />
+    <meta name="description" content={description} />
   </head>
   <body>
-    <div class="flex min-h-screen">
-      <Sidebar client:only="react" />
-      <main class="flex-1 lg:ml-64">
-        <Container>
-          <slot />
-        </Container>
-      </main>
-    </div>
+    <slot />
+    <Footer />
   </body>
 </html>
