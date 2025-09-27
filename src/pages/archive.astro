@@ -4,39 +4,44 @@ import Layout from "~/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { basehub } from "~/lib/basehub";
 import Link from "~/components/common/link.astro";
+import LOVE from "~/assets/LOVE.webp";
+import MILLENIUM from "~/assets/MILLENIUM.webp";
+import TAKEOVER from "~/assets/TAKEOVER.webp";
+import freedom from "~/assets/freedom.webp";
+import illicit from "~/assets/illicit.webp";
+import insanity from "~/assets/insanity.webp";
+import intongues from "~/assets/intongues.webp";
+import kendrick from "~/assets/kendrick.webp";
+import redemption from "~/assets/redemption.webp";
+import wanted from "~/assets/wanted.webp";
+import zillionaire from "~/assets/zillionaire.webp";
 
-const [
-  {
-    archive: {
-      gfx: { items: images },
+const images = [
+  { src: LOVE, alt: "LOVE" },
+  { src: MILLENIUM, alt: "MILLENIUM" },
+  { src: TAKEOVER, alt: "TAKEOVER" },
+  { src: freedom, alt: "freedom" },
+  { src: illicit, alt: "illicit" },
+  { src: insanity, alt: "insanity" },
+  { src: intongues, alt: "intongues" },
+  { src: redemption, alt: "redemption" },
+  { src: kendrick, alt: "kendrick" },
+  { src: wanted, alt: "wanted" },
+  { src: zillionaire, alt: "zillionaire" },
+];
+
+const {
+  archive: {
+    links: { items: links },
+  },
+} = await basehub.query({
+  archive: {
+    links: {
+      __args: { orderBy: "_sys_createdAt__DESC" },
+      items: { _id: true, _title: true, link: true },
     },
   },
-  {
-    archive: {
-      links: { items: links },
-    },
-  },
-] = await Promise.all([
-  basehub.query({
-    archive: {
-      gfx: {
-        items: {
-          _id: true,
-          _title: true,
-          image: { url: true, height: true, width: true },
-        },
-      },
-    },
-  }),
-  basehub.query({
-    archive: {
-      links: {
-        __args: { orderBy: "_sys_lastModifiedAt__DESC" },
-        items: { _id: true, _title: true, link: true },
-      },
-    },
-  }),
-]);
+});
 ---
 
 <Layout
@@ -63,12 +68,10 @@ const [
               {
                 images.map((img) => (
                   <Image
-                    src={img.image!.url}
-                    height={img.image!.height}
-                    width={img.image!.width}
-                    alt={img._title}
+                    src={img.src}
+                    alt={img.alt}
                     class="cursor-zoom-in"
-                    data-full={img.image!.url}
+                    data-full={img.src.src}
                   />
                 ))
               }
