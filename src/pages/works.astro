@@ -2,73 +2,24 @@
 import Container from "~/components/common/container.astro";
 import Layout from "~/layouts/Layout.astro";
 import { format } from "date-fns";
+import { basehub } from "~/lib/basehub";
+import WorksList from "~/components/works/works-list";
 
-const works = [
-  {
-    project: "kimchipremium.io",
-    href: "https://kimchipremium.io",
-    year: new Date().setFullYear(2025, 4),
-    role: "product engineer",
-    description:
-      "solo product engg. built event-driven backends, automations and ETL with LLMs in the loop for a multilingual news aggregator",
+const {
+  works: { items: works },
+} = await basehub.query({
+  works: {
+    __args: { orderBy: "date__DESC" },
+    items: {
+      _title: true,
+      role: true,
+      description: true,
+      date: true,
+      url: true,
+      _id: true,
+    },
   },
-  {
-    project: "wne3",
-    href: "#",
-    year: new Date().setFullYear(2024, 1),
-    role: "lead engineer",
-    description:
-      "in-charge of the development of early prototypes across web and ml for the main platform, working closely with the ceo and advisors",
-  },
-  {
-    project: "dream skrin",
-    href: "https://dreamskrin.com",
-    year: new Date().setFullYear(2024, 2),
-    role: "founding engineer",
-    description:
-      "led the development team and collaborated with non-technical stakeholders to translate requirements into solutions.",
-  },
-  {
-    project: "celestia labs",
-    href: "https://celestialabs.vercel.app",
-    year: new Date().setFullYear(2025, 6),
-    role: "founder",
-    description:
-      "imaginary, virtual lab for experimenting with agentic automations and shit",
-  },
-  {
-    project: "sanity gaming",
-    href: "https://toornify.com",
-    year: new Date().setFullYear(2025, 2),
-    role: "swe intern",
-    description:
-      "contributed during the early stages of toornify.com to ship brackets management and cms setup",
-  },
-  {
-    project: "salad & tartine",
-    href: "#",
-    year: new Date().setFullYear(2023, 9),
-    role: "web dev",
-    description:
-      "built static web pages using html and css for a UAE-based cloud kitchen",
-  },
-  {
-    project: "indielettr",
-    href: "https://indielettr.vercel.app",
-    year: new Date().setFullYear(2024, 5),
-    role: "creator",
-    description:
-      "think mailchimp/beehiiv but 144p, shipped during buildspace n&w s5",
-  },
-  {
-    project: "align network",
-    href: "https://align-waitlist.vercel.app",
-    year: new Date().setFullYear(2025, 0),
-    role: "founder",
-    description:
-      "proof-of-work based matchmaking platform for creatives (dropped)",
-  },
-].sort((a, b) => b.year - a.year);
+});
 ---
 
 <Layout
@@ -81,42 +32,7 @@ const works = [
     <Container>
       <div class="space-y-4 md:space-y-6">
         <h1 class="font-serif text-4xl italic md:text-6xl">works</h1>
-        <div
-          class="flex flex-col space-y-6 lg:flex-row lg:items-start lg:justify-between lg:space-y-0"
-        >
-          <ul class="flex flex-1 flex-col gap-1.5 lg:max-w-[40%]">
-            {
-              works.map((work) => (
-                <li class="group relative flex items-center gap-2">
-                  <a
-                    target="_blank"
-                    href={work.href}
-                    class="group-hover:bg-muted group-hover:text-muted-foreground px-0.5 text-left text-lg"
-                  >
-                    {work.project}
-                  </a>
-
-                  <span class="flex-1 border-t" />
-
-                  <p class="text-muted-foreground text-right text-sm">
-                    {format(work.year, "MM/yyyy")}
-                  </p>
-
-                  <div class="bg-card absolute top-0 left-full ml-8 hidden w-full max-w-xs flex-col space-y-2.5 rounded border p-2 opacity-0 shadow-md transition-opacity duration-300 group-hover:block group-hover:opacity-100">
-                    <div class="flex items-center justify-between text-sm font-medium">
-                      <p class="text-muted-foreground">Role</p>
-                      <p class="">{work.role}</p>
-                    </div>
-                    <p class="text-sm">{work.description}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-          <p class="text-muted-foreground block text-sm italic lg:hidden">
-            *use desktop for a better ux
-          </p>
-        </div>
+        <WorksList works={works as TWork[]} client:load />
       </div>
     </Container>
   </main>

@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "basehub dev & astro dev",
+    "build": "basehub && astro build",
+    "preview": "bashueb && astro preview",
     "astro": "astro"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@types/react-dom": "^19.1.9",
     "add": "^2.0.6",
     "astro": "^5.13.10",
+    "basehub": "^9.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -26,7 +27,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.13"
+    "tailwindcss": "^4.1.13",
+    "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
     "dotenv": "^17.2.2",

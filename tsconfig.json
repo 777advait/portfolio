@@ -17,5 +17,5 @@
   ],
   "include": [
     "src"
-  ]
+  , "basehub-types.d.ts", "basehub.config.ts"]
 }

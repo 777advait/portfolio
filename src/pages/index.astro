@@ -100,28 +100,33 @@ const images = [
   </main>
 
   <script>
-    const modal = document.getElementById("previewModal") as HTMLDivElement;
-    const previewImg = document.getElementById(
-      "previewImg"
-    ) as HTMLImageElement;
+    function setupModal() {
+      const modal = document.getElementById("previewModal") as HTMLDivElement;
+      const previewImg = document.getElementById(
+        "previewImg"
+      ) as HTMLImageElement;
 
-    document
-      .querySelectorAll<HTMLImageElement>("#masonry img")
-      .forEach((img) => {
-        img.addEventListener("click", () => {
-          const fullSrc = img.dataset.full;
-          if (fullSrc) {
-            previewImg.src = fullSrc;
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-          }
+      document
+        .querySelectorAll<HTMLImageElement>("#masonry img")
+        .forEach((img) => {
+          img.addEventListener("click", () => {
+            const fullSrc = img.dataset.full;
+            if (fullSrc) {
+              previewImg.src = fullSrc;
+              modal.classList.remove("hidden");
+              modal.classList.add("flex");
+            }
+          });
         });
-      });
 
-    modal.addEventListener("click", () => {
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-      previewImg.src = "";
-    });
+      modal.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        previewImg.src = "";
+      });
+    }
+
+    setupModal();
+    document.addEventListener("astro:page-load", setupModal);
   </script>
 </Layout>
