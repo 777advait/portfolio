@@ -33,15 +33,9 @@ const {
   </head>
   <body class="h-screen">
     <Navbar />
-    <div class="my-4 flex h-full lg:my-0">
-      <div class="flex h-full items-center">
-        <Sidebar />
-      </div>
-
-      <!-- Main content -->
-      <div class="flex-1">
-        <slot />
-      </div>
+    <Sidebar />
+    <div class="flex-1">
+      <slot />
     </div>
     <Footer />
   </body>

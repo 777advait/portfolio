@@ -4,5 +4,5 @@ type TWork = {
   description: string;
   role: string;
   date: string | null;
-  url: string;
+  url?: string;
 };

@@ -32,17 +32,29 @@ export default function WorksList({ works }: { works: TWork[] }) {
             onMouseLeave={() => !isMobile && setHoveredItem(null)}
             className="group relative flex items-center gap-y-2"
           >
-            <a
-              target="_blank"
-              href={work.url}
-              onClick={(e) => handleClick(e, work)}
-              className={cn("px-1 text-left text-lg", {
-                "bg-muted text-muted-foreground":
-                  (hoveredItem && hoveredItem._id) === work._id,
-              })}
-            >
-              {work._title}
-            </a>
+            {work.url ? (
+              <a
+                target="_blank"
+                href={work.url}
+                onClick={(e) => handleClick(e, work)}
+                className={cn("px-1 text-left text-lg", {
+                  "bg-muted text-muted-foreground":
+                    (hoveredItem && hoveredItem._id) === work._id,
+                })}
+              >
+                {work._title}
+              </a>
+            ) : (
+              <p
+                onClick={(e) => handleClick(e, work)}
+                className={cn("px-1 text-left text-lg", {
+                  "bg-muted text-muted-foreground":
+                    (hoveredItem && hoveredItem._id) === work._id,
+                })}
+              >
+                {work._title}
+              </p>
+            )}
 
             <span className="mx-1.5 flex-1 border-t" />
 
@@ -62,7 +74,7 @@ export default function WorksList({ works }: { works: TWork[] }) {
                 <p>{hoveredItem.role}</p>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <h2 className="text-muted-foreground font-medium">Duration</h2>
+                <h2 className="text-muted-foreground font-medium">Year</h2>
                 <p>
                   {hoveredItem.date
                     ? format(new Date(hoveredItem.date), "MM/yyyy")
