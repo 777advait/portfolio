@@ -79,14 +79,19 @@ const [
             <h2 class="font-serif text-2xl lg:text-4xl">content i like</h2>
             <p class="text-muted-foreground text-lg">
               list of links from the internet that i like/appreciate (yea i
-              copied this from <Link href="https://farza.com">farza</Link>).
-              i'll try to keep this updated
+              copied this from <Link href="https://farza.com/content"
+                >farza</Link
+              >). i'll try to keep this updated
             </p>
             <ul class="list-inside list-decimal space-y-1.5">
               {
                 links.map(({ link, _id, _title }) => (
                   <li class="text-muted-foreground text-lg">
-                    <a class="underline underline-offset-4" href={link}>
+                    <a
+                      target="_blank"
+                      class="underline underline-offset-4"
+                      href={link}
+                    >
                       {_title}
                     </a>
                   </li>
