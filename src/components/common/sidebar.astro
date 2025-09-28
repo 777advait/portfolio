@@ -14,7 +14,7 @@ const links = [
 ---
 
 <aside
-  class="bg-sidebar fixed top-1/2 left-10 hidden -translate-1/2 rounded-md p-2 lg:block"
+  class="bg-sidebar fixed top-1/2 left-10 z-50 hidden -translate-1/2 rounded-md p-2 lg:block"
 >
   <nav class="">
     <ul class="flex flex-col items-center gap-1.5">
@@ -29,7 +29,7 @@ const links = [
             <a href={href}>
               <Icon className="w-6 h-6" />
             </a>
-            <span class="bg-muted text-muted-foreground absolute top-1/2 left-full z-50 ml-4 hidden w-max -translate-y-1/2 rounded-md p-2 text-sm font-medium opacity-0 transition-opacity duration-300 group-hover:block group-hover:opacity-100">
+            <span class="bg-muted text-muted-foreground absolute top-1/2 left-full ml-4 hidden w-max -translate-y-1/2 rounded-md p-2 text-sm font-medium opacity-0 transition-opacity duration-300 group-hover:block group-hover:opacity-100">
               {label}
             </span>
           </li>

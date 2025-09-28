@@ -71,7 +71,6 @@ export interface Archive {
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
-    gfx: Gfx
     links: Links
     __typename: 'Archive'
 }
@@ -113,7 +112,7 @@ export interface BlockColor {
     __typename: 'BlockColor'
 }
 
-export type BlockDocument = (Archive | Gfx | GfxComponent | Links | LinksComponent | Works | WorksComponent | _AgentStart | gfxComponent_AsList | linksComponent_AsList | worksComponent_AsList) & { __isUnion?: true }
+export type BlockDocument = (Archive | Links | LinksComponent | Works | WorksComponent | _AgentStart | linksComponent_AsList | worksComponent_AsList) & { __isUnion?: true }
 
 export interface BlockDocumentSys {
     apiNamePath: Scalars['String']
@@ -172,7 +171,7 @@ export interface BlockImage {
     __typename: 'BlockImage'
 }
 
-export type BlockList = (Gfx | Links | Works | gfxComponent_AsList | linksComponent_AsList | worksComponent_AsList) & { __isUnion?: true }
+export type BlockList = (Links | Works | linksComponent_AsList | worksComponent_AsList) & { __isUnion?: true }
 
 export interface BlockOgImage {
     height: Scalars['Int']
@@ -211,42 +210,6 @@ export interface GetUploadSignedURL {
     uploadURL: Scalars['String']
     __typename: 'GetUploadSignedURL'
 }
-
-export interface Gfx {
-    _analyticsKey: Scalars['String']
-    _dashboardUrl: Scalars['String']
-    _id: Scalars['String']
-    _idPath: Scalars['String']
-    _meta: ListMeta
-    /** The key used to search from the frontend. */
-    _searchKey: Scalars['String']
-    _slug: Scalars['String']
-    _slugPath: Scalars['String']
-    _sys: BlockDocumentSys
-    _title: Scalars['String']
-    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
-    item: (GfxComponent | null)
-    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
-    items: GfxComponent[]
-    __typename: 'Gfx'
-}
-
-export interface GfxComponent {
-    _analyticsKey: Scalars['String']
-    _dashboardUrl: Scalars['String']
-    /** Array of search highlight information with field names and HTML markup */
-    _highlight: (SearchHighlight[] | null)
-    _id: Scalars['String']
-    _idPath: Scalars['String']
-    _slug: Scalars['String']
-    _slugPath: Scalars['String']
-    _sys: BlockDocumentSys
-    _title: Scalars['String']
-    image: (BlockImage | null)
-    __typename: 'GfxComponent'
-}
-
-export type GfxComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'image__ASC' | 'image__DESC'
 
 export interface Links {
     _analyticsKey: Scalars['String']
@@ -527,29 +490,9 @@ export interface _agents {
 }
 
 export interface _components {
-    gfx: gfxComponent_AsList
     links: linksComponent_AsList
     works: worksComponent_AsList
     __typename: '_components'
-}
-
-export interface gfxComponent_AsList {
-    _analyticsKey: Scalars['String']
-    _dashboardUrl: Scalars['String']
-    _id: Scalars['String']
-    _idPath: Scalars['String']
-    _meta: ListMeta
-    /** The key used to search from the frontend. */
-    _searchKey: Scalars['String']
-    _slug: Scalars['String']
-    _slugPath: Scalars['String']
-    _sys: BlockDocumentSys
-    _title: Scalars['String']
-    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
-    item: (GfxComponent | null)
-    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
-    items: GfxComponent[]
-    __typename: 'gfxComponent_AsList'
 }
 
 export interface linksComponent_AsList {
@@ -605,17 +548,6 @@ export interface ArchiveGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
-    gfx?: (GfxGenqlSelection & { __args?: {
-    /** Filter by a field. */
-    filter?: (GfxComponentFilterInput | null), 
-    /** Limit the number of items returned. Defaults to 500. */
-    first?: (Scalars['Int'] | null), 
-    /** Order by a field. */
-    orderBy?: (GfxComponentOrderByEnum | null), 
-    /** Search configuration */
-    search?: (GfxComponentSearchInput | null), 
-    /** Skip the first n items. */
-    skip?: (Scalars['Int'] | null)} })
     links?: (LinksGenqlSelection & { __args?: {
     /** Filter by a field. */
     filter?: (LinksComponentFilterInput | null), 
@@ -690,14 +622,11 @@ export interface BlockDocumentGenqlSelection{
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
     on_Archive?: ArchiveGenqlSelection
-    on_Gfx?: GfxGenqlSelection
-    on_GfxComponent?: GfxComponentGenqlSelection
     on_Links?: LinksGenqlSelection
     on_LinksComponent?: LinksComponentGenqlSelection
     on_Works?: WorksGenqlSelection
     on_WorksComponent?: WorksComponentGenqlSelection
     on__AgentStart?: _AgentStartGenqlSelection
-    on_gfxComponent_AsList?: gfxComponent_AsListGenqlSelection
     on_linksComponent_AsList?: linksComponent_AsListGenqlSelection
     on_worksComponent_AsList?: worksComponent_AsListGenqlSelection
     __typename?: boolean | number
@@ -782,10 +711,8 @@ export interface BlockListGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
-    on_Gfx?: GfxGenqlSelection
     on_Links?: LinksGenqlSelection
     on_Works?: WorksGenqlSelection
-    on_gfxComponent_AsList?: gfxComponent_AsListGenqlSelection
     on_linksComponent_AsList?: linksComponent_AsListGenqlSelection
     on_worksComponent_AsList?: worksComponent_AsListGenqlSelection
     __typename?: boolean | number
@@ -841,62 +768,6 @@ export interface GetUploadSignedURLGenqlSelection{
     __typename?: boolean | number
     __fragmentOn?: "GetUploadSignedURL"
 }
-
-export interface GfxGenqlSelection{
-    _analyticsKey?: { __args: {
-    /**
-     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
-     * 
-     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
-     */
-    scope?: (AnalyticsKeyScope | null)} } | boolean | number
-    _dashboardUrl?: boolean | number
-    _id?: boolean | number
-    _idPath?: boolean | number
-    _meta?: ListMetaGenqlSelection
-    /** The key used to search from the frontend. */
-    _searchKey?: boolean | number
-    _slug?: boolean | number
-    _slugPath?: boolean | number
-    _sys?: BlockDocumentSysGenqlSelection
-    _title?: boolean | number
-    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
-    item?: GfxComponentGenqlSelection
-    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
-    items?: GfxComponentGenqlSelection
-    __typename?: boolean | number
-    __fragmentOn?: "Gfx"
-}
-
-export interface GfxComponentGenqlSelection{
-    _analyticsKey?: { __args: {
-    /**
-     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
-     * 
-     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
-     */
-    scope?: (AnalyticsKeyScope | null)} } | boolean | number
-    _dashboardUrl?: boolean | number
-    /** Array of search highlight information with field names and HTML markup */
-    _highlight?: SearchHighlightGenqlSelection
-    _id?: boolean | number
-    _idPath?: boolean | number
-    _slug?: boolean | number
-    _slugPath?: boolean | number
-    _sys?: BlockDocumentSysGenqlSelection
-    _title?: boolean | number
-    image?: BlockImageGenqlSelection
-    __typename?: boolean | number
-    __fragmentOn?: "GfxComponent"
-}
-
-export interface GfxComponentFilterInput {AND?: (GfxComponentFilterInput | null),OR?: (GfxComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null)}
-
-export interface GfxComponentSearchInput {
-/** Searchable fields for query */
-by?: (Scalars['String'][] | null),
-/** Search query */
-q?: (Scalars['String'] | null)}
 
 export interface LinksGenqlSelection{
     _analyticsKey?: { __args: {
@@ -1319,17 +1190,6 @@ export interface _agentsGenqlSelection{
 }
 
 export interface _componentsGenqlSelection{
-    gfx?: (gfxComponent_AsListGenqlSelection & { __args?: {
-    /** Filter by a field. */
-    filter?: (GfxComponentFilterInput | null), 
-    /** Limit the number of items returned. Defaults to 500. */
-    first?: (Scalars['Int'] | null), 
-    /** Order by a field. */
-    orderBy?: (GfxComponentOrderByEnum | null), 
-    /** Search configuration */
-    search?: (GfxComponentSearchInput | null), 
-    /** Skip the first n items. */
-    skip?: (Scalars['Int'] | null)} })
     links?: (linksComponent_AsListGenqlSelection & { __args?: {
     /** Filter by a field. */
     filter?: (LinksComponentFilterInput | null), 
@@ -1354,32 +1214,6 @@ export interface _componentsGenqlSelection{
     skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __fragmentOn?: "_components"
-}
-
-export interface gfxComponent_AsListGenqlSelection{
-    _analyticsKey?: { __args: {
-    /**
-     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
-     * 
-     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
-     */
-    scope?: (AnalyticsKeyScope | null)} } | boolean | number
-    _dashboardUrl?: boolean | number
-    _id?: boolean | number
-    _idPath?: boolean | number
-    _meta?: ListMetaGenqlSelection
-    /** The key used to search from the frontend. */
-    _searchKey?: boolean | number
-    _slug?: boolean | number
-    _slugPath?: boolean | number
-    _sys?: BlockDocumentSysGenqlSelection
-    _title?: boolean | number
-    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
-    item?: GfxComponentGenqlSelection
-    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
-    items?: GfxComponentGenqlSelection
-    __typename?: boolean | number
-    __fragmentOn?: "gfxComponent_AsList"
 }
 
 export interface linksComponent_AsListGenqlSelection{
@@ -1491,14 +1325,6 @@ export interface FragmentsMap {
     root: GetUploadSignedURL,
     selection: GetUploadSignedURLGenqlSelection,
 }
-  Gfx: {
-    root: Gfx,
-    selection: GfxGenqlSelection,
-}
-  GfxComponent: {
-    root: GfxComponent,
-    selection: GfxComponentGenqlSelection,
-}
   Links: {
     root: Links,
     selection: LinksGenqlSelection,
@@ -1582,10 +1408,6 @@ export interface FragmentsMap {
   _components: {
     root: _components,
     selection: _componentsGenqlSelection,
-}
-  gfxComponent_AsList: {
-    root: gfxComponent_AsList,
-    selection: gfxComponent_AsListGenqlSelection,
 }
   linksComponent_AsList: {
     root: linksComponent_AsList,
