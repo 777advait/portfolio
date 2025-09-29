@@ -1,6 +1,23 @@
 ---
 import Container from "~/components/common/container.astro";
 import Layout from "~/layouts/Layout.astro";
+import Link from "~/components/common/link.astro";
+import { basehub } from "~/lib/basehub";
+import { cn } from "~/lib/utils";
+
+const {
+  writings: { items: writings },
+} = await basehub.query({
+  writings: {
+    __args: { orderBy: "_sys_createdAt__DESC" },
+    items: {
+      _id: true,
+      _slug: true,
+      _title: true,
+      status: true,
+    },
+  },
+});
 ---
 
 <Layout
@@ -11,14 +28,39 @@ import Layout from "~/layouts/Layout.astro";
 >
   <main>
     <Container>
-      <div class="space-y-4 md:space-y-6">
+      <div class="space-y-4 lg:max-w-[40%]">
         <h1 class="font-serif text-4xl italic md:text-6xl">writings</h1>
-        <div class="lg:max-w-[40%]">
-          <p class="text-muted-foreground text-lg">
-            i had a few pieces of writings but i want to start from scratch now
-            (too lazy to migrate them)
-          </p>
-        </div>
+        <p class="text-muted-foreground text-lg">
+          these are raw dumps of my thoughts and theses, you can text me about
+          them or subscribe to my <Link
+            target="_blank"
+            href="https://notesfromvoid.substack.com">substack</Link
+          > to get notified everytime i post something
+        </p>
+        <ol class="list-inside list-decimal space-y-1.5">
+          {
+            writings.map(({ _slug, _title, status }) => (
+              <li
+                class={cn("pl-2 text-lg font-light", {
+                  "text-muted-foreground": status === "draft",
+                })}
+              >
+                {status === "published" ? (
+                  <a
+                    class="underline underline-offset-4"
+                    href={`/writings/${_slug}`}
+                  >
+                    {_title}
+                  </a>
+                ) : (
+                  <p class="inline underline underline-offset-4">
+                    {_title} (coming soon)
+                  </p>
+                )}
+              </li>
+            ))
+          }
+        </ol>
       </div>
     </Container>
   </main>

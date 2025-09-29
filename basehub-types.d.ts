@@ -50,6 +50,7 @@ export interface Scalars {
 }))[],
     BSHBRichTextContentSchema: RichTextNode[],
     BSHBRichTextTOCSchema: RichTextTocNode[],
+    BSHBSelect_1230403640: 'published' | 'draft',
     Boolean: boolean,
     CodeSnippetLanguage: B_Language,
     DateTime: any,
@@ -112,7 +113,7 @@ export interface BlockColor {
     __typename: 'BlockColor'
 }
 
-export type BlockDocument = (Archive | Links | LinksComponent | Works | WorksComponent | _AgentStart | linksComponent_AsList | worksComponent_AsList) & { __isUnion?: true }
+export type BlockDocument = (Archive | Links | LinksComponent | Works | WorksComponent | Writings | WritingsComponent | _AgentStart | linksComponent_AsList | worksComponent_AsList | writingsComponent_AsList) & { __isUnion?: true }
 
 export interface BlockDocumentSys {
     apiNamePath: Scalars['String']
@@ -171,7 +172,7 @@ export interface BlockImage {
     __typename: 'BlockImage'
 }
 
-export type BlockList = (Links | Works | linksComponent_AsList | worksComponent_AsList) & { __isUnion?: true }
+export type BlockList = (Links | Works | Writings | linksComponent_AsList | worksComponent_AsList | writingsComponent_AsList) & { __isUnion?: true }
 
 export interface BlockOgImage {
     height: Scalars['Int']
@@ -182,14 +183,7 @@ export interface BlockOgImage {
 
 
 /** Rich text block */
-export interface BlockRichText {
-    html: Scalars['String']
-    json: RichTextJson
-    markdown: Scalars['String']
-    plainText: Scalars['String']
-    readingTime: Scalars['Int']
-    __typename: string
-}
+export type BlockRichText = (Content) & { __isUnion?: true }
 
 export interface BlockVideo {
     aspectRatio: Scalars['String']
@@ -203,6 +197,21 @@ export interface BlockVideo {
     url: Scalars['String']
     width: Scalars['Int']
     __typename: 'BlockVideo'
+}
+
+export interface Content {
+    html: Scalars['String']
+    json: ContentRichText
+    markdown: Scalars['String']
+    plainText: Scalars['String']
+    readingTime: Scalars['Int']
+    __typename: 'Content'
+}
+
+export interface ContentRichText {
+    content: Scalars['BSHBRichTextContentSchema']
+    toc: Scalars['BSHBRichTextTOCSchema']
+    __typename: 'ContentRichText'
 }
 
 export interface GetUploadSignedURL {
@@ -305,6 +314,7 @@ export interface Query {
     _sys: RepoSys
     archive: Archive
     works: Works
+    writings: Writings
     __typename: 'Query'
 }
 
@@ -318,7 +328,7 @@ export interface RepoSys {
     __typename: 'RepoSys'
 }
 
-export type RichTextJson = (BaseRichTextJson) & { __isUnion?: true }
+export type RichTextJson = (BaseRichTextJson | ContentRichText) & { __isUnion?: true }
 
 export interface SearchHighlight {
     /** The field/path that was matched (e.g., "title", "body.content") */
@@ -389,6 +399,44 @@ export interface WorksComponent {
 }
 
 export type WorksComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'date__ASC' | 'date__DESC' | 'description__ASC' | 'description__DESC' | 'role__ASC' | 'role__DESC' | 'url__ASC' | 'url__DESC'
+
+export interface Writings {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (WritingsComponent | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: WritingsComponent[]
+    __typename: 'Writings'
+}
+
+export interface WritingsComponent {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight[] | null)
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    content: Content
+    status: Scalars['BSHBSelect_1230403640']
+    thumbnail: BlockImage
+    __typename: 'WritingsComponent'
+}
+
+export type WritingsComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'content__ASC' | 'content__DESC' | 'status__ASC' | 'status__DESC' | 'thumbnail__ASC' | 'thumbnail__DESC' | 'untitled__ASC' | 'untitled__DESC'
 
 export interface _AgentStart {
     _agentKey: Scalars['String']
@@ -492,6 +540,7 @@ export interface _agents {
 export interface _components {
     links: linksComponent_AsList
     works: worksComponent_AsList
+    writings: writingsComponent_AsList
     __typename: '_components'
 }
 
@@ -531,6 +580,25 @@ export interface worksComponent_AsList {
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items: WorksComponent[]
     __typename: 'worksComponent_AsList'
+}
+
+export interface writingsComponent_AsList {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (WritingsComponent | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: WritingsComponent[]
+    __typename: 'writingsComponent_AsList'
 }
 
 export interface ArchiveGenqlSelection{
@@ -626,9 +694,12 @@ export interface BlockDocumentGenqlSelection{
     on_LinksComponent?: LinksComponentGenqlSelection
     on_Works?: WorksGenqlSelection
     on_WorksComponent?: WorksComponentGenqlSelection
+    on_Writings?: WritingsGenqlSelection
+    on_WritingsComponent?: WritingsComponentGenqlSelection
     on__AgentStart?: _AgentStartGenqlSelection
     on_linksComponent_AsList?: linksComponent_AsListGenqlSelection
     on_worksComponent_AsList?: worksComponent_AsListGenqlSelection
+    on_writingsComponent_AsList?: writingsComponent_AsListGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockDocument"
 }
@@ -713,8 +784,10 @@ export interface BlockListGenqlSelection{
     _title?: boolean | number
     on_Links?: LinksGenqlSelection
     on_Works?: WorksGenqlSelection
+    on_Writings?: WritingsGenqlSelection
     on_linksComponent_AsList?: linksComponent_AsListGenqlSelection
     on_worksComponent_AsList?: worksComponent_AsListGenqlSelection
+    on_writingsComponent_AsList?: writingsComponent_AsListGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockList"
 }
@@ -741,6 +814,7 @@ export interface BlockRichTextGenqlSelection{
     readingTime?: { __args: {
     /** Words per minute, defaults to average 183wpm */
     wpm?: (Scalars['Int'] | null)} } | boolean | number
+    on_Content?: ContentGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockRichText"
 }
@@ -758,6 +832,29 @@ export interface BlockVideoGenqlSelection{
     width?: boolean | number
     __typename?: boolean | number
     __fragmentOn?: "BlockVideo"
+}
+
+export interface ContentGenqlSelection{
+    html?: { __args: {
+    /** It automatically generates a unique id for each heading present in the HTML. Enabled by default. */
+    slugs?: (Scalars['Boolean'] | null), 
+    /** Inserts a table of contents at the beginning of the HTML. */
+    toc?: (Scalars['Boolean'] | null)} } | boolean | number
+    json?: ContentRichTextGenqlSelection
+    markdown?: boolean | number
+    plainText?: boolean | number
+    readingTime?: { __args: {
+    /** Words per minute, defaults to average 183wpm */
+    wpm?: (Scalars['Int'] | null)} } | boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "Content"
+}
+
+export interface ContentRichTextGenqlSelection{
+    content?: boolean | number
+    toc?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "ContentRichText"
 }
 
 export interface DateFilter {eq?: (Scalars['DateTime'] | null),isAfter?: (Scalars['DateTime'] | null),isBefore?: (Scalars['DateTime'] | null),isNull?: (Scalars['Boolean'] | null),neq?: (Scalars['DateTime'] | null),onOrAfter?: (Scalars['DateTime'] | null),onOrBefore?: (Scalars['DateTime'] | null)}
@@ -959,6 +1056,17 @@ export interface QueryGenqlSelection{
     search?: (WorksComponentSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
+    writings?: (WritingsGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (WritingsComponentFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (WritingsComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (WritingsComponentSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __fragmentOn?: "Query"
 }
@@ -978,6 +1086,7 @@ export interface RichTextJsonGenqlSelection{
     content?: boolean | number
     toc?: boolean | number
     on_BaseRichTextJson?: BaseRichTextJsonGenqlSelection
+    on_ContentRichText?: ContentRichTextGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "RichTextJson"
 }
@@ -1076,6 +1185,64 @@ export interface WorksComponentGenqlSelection{
 export interface WorksComponentFilterInput {AND?: (WorksComponentFilterInput | null),OR?: (WorksComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),date?: (DateFilter | null),description?: (StringFilter | null),role?: (StringFilter | null),url?: (StringFilter | null)}
 
 export interface WorksComponentSearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
+
+export interface WritingsGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: WritingsComponentGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: WritingsComponentGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "Writings"
+}
+
+export interface WritingsComponentGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlightGenqlSelection
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    content?: ContentGenqlSelection
+    status?: boolean | number
+    thumbnail?: BlockImageGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "WritingsComponent"
+}
+
+export interface WritingsComponentFilterInput {AND?: (WritingsComponentFilterInput | null),OR?: (WritingsComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),status?: (SelectFilter | null)}
+
+export interface WritingsComponentSearchInput {
 /** Searchable fields for query */
 by?: (Scalars['String'][] | null),
 /** Search query */
@@ -1212,6 +1379,17 @@ export interface _componentsGenqlSelection{
     search?: (WorksComponentSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
+    writings?: (writingsComponent_AsListGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (WritingsComponentFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (WritingsComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (WritingsComponentSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __fragmentOn?: "_components"
 }
@@ -1268,6 +1446,32 @@ export interface worksComponent_AsListGenqlSelection{
     __fragmentOn?: "worksComponent_AsList"
 }
 
+export interface writingsComponent_AsListGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: WritingsComponentGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: WritingsComponentGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "writingsComponent_AsList"
+}
+
 export interface FragmentsMap {
   Archive: {
     root: Archive,
@@ -1320,6 +1524,14 @@ export interface FragmentsMap {
   BlockVideo: {
     root: BlockVideo,
     selection: BlockVideoGenqlSelection,
+}
+  Content: {
+    root: Content,
+    selection: ContentGenqlSelection,
+}
+  ContentRichText: {
+    root: ContentRichText,
+    selection: ContentRichTextGenqlSelection,
 }
   GetUploadSignedURL: {
     root: GetUploadSignedURL,
@@ -1377,6 +1589,14 @@ export interface FragmentsMap {
     root: WorksComponent,
     selection: WorksComponentGenqlSelection,
 }
+  Writings: {
+    root: Writings,
+    selection: WritingsGenqlSelection,
+}
+  WritingsComponent: {
+    root: WritingsComponent,
+    selection: WritingsComponentGenqlSelection,
+}
   _AgentStart: {
     root: _AgentStart,
     selection: _AgentStartGenqlSelection,
@@ -1416,5 +1636,9 @@ export interface FragmentsMap {
   worksComponent_AsList: {
     root: worksComponent_AsList,
     selection: worksComponent_AsListGenqlSelection,
+}
+  writingsComponent_AsList: {
+    root: writingsComponent_AsList,
+    selection: writingsComponent_AsListGenqlSelection,
 }
 }
