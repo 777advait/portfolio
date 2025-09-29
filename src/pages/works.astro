@@ -30,8 +30,14 @@ const {
 >
   <main>
     <Container>
-      <div class="space-y-4 md:space-y-6">
-        <h1 class="font-serif text-4xl italic md:text-6xl">works</h1>
+      <div class="space-y-4">
+        <div class="lg:max-w-[40%] space-y-4">
+          <h1 class="font-serif text-4xl italic md:text-6xl">works</h1>
+          <p class="text-muted-foreground text-lg">
+            the list includes all the startups, products and experiments i
+            am/was affiliated with so far
+          </p>
+        </div>
         <WorksList works={works as TWork[]} client:load />
       </div>
     </Container>

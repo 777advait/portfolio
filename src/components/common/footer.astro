@@ -1,11 +1,12 @@
 ---
-import Clock from "./clock";
 import Music from "./music";
 ---
 
 <footer class="bg-background fixed bottom-0 w-full px-4 py-2">
   <div class="flex items-center justify-between">
-    <Clock client:only="react" />
+    <a href="/socials" class="text-muted-foreground text-sm font-medium"
+      >socials</a
+    >
     <div class="w-fit"><Music client:only="react" /></div>
   </div>
 </footer>

@@ -1,0 +1,41 @@
+---
+import Clock from "~/components/common/clock";
+import Container from "~/components/common/container.astro";
+import Layout from "~/layouts/Layout.astro";
+---
+
+<Layout
+  content={{
+    title: "contact | astroxide",
+    description: "feel free to reach out to me via my socials",
+  }}
+>
+  <main>
+    <Container>
+      <div class="space-y-4 lg:max-w-[40%]">
+        <h1 class="font-serif text-4xl italic md:text-6xl">socials</h1>
+        <p class="text-muted-foreground text-lg">
+          i love connecting with people and bouncing off ideas. feel free to
+          reach out to me through any of my socials
+        </p>
+        <ul class="flex flex-wrap gap-x-6 text-lg">
+          <li class="underline underline-offset-4">
+            <a target="_blank" href="https://x.com/777advait">twitter</a>
+          </li>
+          <li class="underline underline-offset-4">
+            <a target="_blank" href="https://github.com/777advait">github</a>
+          </li>
+          <li class="underline underline-offset-4">
+            <a target="_blank" href="mailto:advait.nsj@proton.me">mail</a>
+          </li>
+          <li class="underline underline-offset-4">
+            <a target="_blank" href="https://cal.com/777advait">cal</a>
+          </li>
+        </ul>
+        <div class="pt-6">
+          <Clock client:only="react" />
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>
