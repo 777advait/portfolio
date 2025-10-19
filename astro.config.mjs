@@ -5,6 +5,7 @@ import { loadEnv } from "vite"
 
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel";
+import node from "@astrojs/node";
 
 
 // https://astro.build/config

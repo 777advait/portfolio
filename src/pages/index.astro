@@ -1,18 +1,19 @@
 ---
 import Container from "~/components/common/container.astro";
-import andrew from "~/assets/andrew.png";
 import city from "~/assets/city.png";
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import tameImpala from "~/assets/tame-impala.png";
 import perspective from "~/assets/perspective.png";
+import back2back from "~/assets/back2back.png";
 import Link from "~/components/common/link.astro";
+import { getImage } from "astro:assets";
 
 const images = [
-  { src: city, alt: "city" },
+  { src: back2back, alt: "back2back" },
   { src: perspective, alt: "perspective" },
   { src: tameImpala, alt: "tame-impala" },
-  { src: andrew, alt: "andrew" },
+  { src: city, alt: "city" },
 ];
 ---
 
@@ -57,9 +58,9 @@ const images = [
             </p>
             <p>
               outside tech, i've always had an itch for creative stuff - music,
-              design, random side projects. i've dropped AMVs, played around
-              with graphics, and i'll probably keep hopping between mediums as
-              long as it scratches that urge to make.
+              design etc. i used to post AMVs, played around with graphics, and
+              i'll probably keep hopping between mediums as long as it scratches
+              that urge to make.
             </p>
             <p>
               i don't really measure myself by titles, roles or a fixed timeline
@@ -73,14 +74,20 @@ const images = [
 
         <div id="masonry" class="mt-3 lg:mt-0 lg:pt-4 lg:pr-4">
           {
-            images.map((img) => (
-              <Image
-                src={img.src}
-                alt={img.alt}
-                class="cursor-zoom-in grayscale"
-                data-full={img.src.src}
-              />
-            ))
+            images.map(async ({ src, alt }, idx) => {
+              const webpImage = await getImage({ src, format: "webp" });
+
+              return (
+                <Image
+                  src={webpImage.src}
+                  alt={alt}
+                  width="800"
+                  height="600"
+                  class="cursor-zoom-in grayscale"
+                  data-full={webpImage.src}
+                />
+              );
+            })
           }
         </div>
       </div>
