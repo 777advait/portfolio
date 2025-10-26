@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import React from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "~/lib/utils";
 
 export default function WorksList({ works }: { works: TWork[] }) {
@@ -37,12 +38,16 @@ export default function WorksList({ works }: { works: TWork[] }) {
                 target="_blank"
                 href={work.url}
                 onClick={(e) => handleClick(e, work)}
-                className={cn("px-1 text-left text-lg", {
-                  "bg-muted text-muted-foreground":
-                    (hoveredItem && hoveredItem._id) === work._id,
-                })}
+                className={cn(
+                  "inline-flex items-center gap-x-1 px-1 text-left text-lg",
+                  {
+                    "bg-muted text-muted-foreground":
+                      (hoveredItem && hoveredItem._id) === work._id,
+                  },
+                )}
               >
                 {work._title}
+                <ArrowUpRight className="size-4" />
               </a>
             ) : (
               <p
