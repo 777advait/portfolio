@@ -88,6 +88,11 @@ export default function WorksList({ works }: { works: TWork[] }) {
               </div>
             </div>
             <p>{hoveredItem.description}</p>
+            {isMobile && hoveredItem.url && (
+              <p className="text-muted-foreground text-sm italic">
+                Tap again to open link
+              </p>
+            )}
           </div>
         </div>
       )}
