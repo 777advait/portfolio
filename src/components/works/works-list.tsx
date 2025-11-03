@@ -25,7 +25,7 @@ export default function WorksList({ works }: { works: TWork[] }) {
 
   return (
     <div className="flex flex-col space-y-8 lg:flex-row lg:items-start lg:justify-between lg:space-y-0">
-      <ul className="flex flex-1 flex-col gap-y-1.5 lg:max-w-[40%]">
+      <ul className="flex flex-1 flex-col gap-y-1.5 lg:max-w-[45%]">
         {works.map((work) => (
           <li
             key={work._id}
@@ -71,7 +71,7 @@ export default function WorksList({ works }: { works: TWork[] }) {
       </ul>
 
       {hoveredItem && (
-        <div className="flex-1 lg:max-w-[40%]">
+        <div className="flex-1 lg:max-w-[45%]">
           <div className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">

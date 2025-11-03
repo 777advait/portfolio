@@ -26,9 +26,38 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- metadata -->
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="777advait, advait, advait jadhav, advtxide, astroxide, advaitxide, advtx1de, multi-disciplinary, engineer, creative, ai, portfolio"
+    />
+    <meta name="author" content="astroxide" />
+
+    <!-- title -->
+    <title>{title}</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- open graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${Astro.site}/og-image.png`} />
+    <meta property="og:url" content={Astro.site} />
+    <meta property="og:site_name" content="astroxide" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${Astro.site}/og-image.png`} />
+    <meta name="twitter:creator" content="@advtxide" />
+
+    <link rel="canonical" href={Astro.site} />
     <ClientRouter />
   </head>
   <body class="h-screen">

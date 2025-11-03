@@ -1,20 +1,20 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from "@tailwindcss/vite"
-import { loadEnv } from "vite"
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import { loadEnv } from "vite";
 
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel";
 import node from "@astrojs/node";
 
-
 // https://astro.build/config
 export default defineConfig({
+  site: "https://astroxide.vercel.app",
   output: "server",
   prefetch: { prefetchAll: true },
   vite: {
     plugins: [tailwindcss()],
   },
   integrations: [react()],
-  adapter: vercel()
+  adapter: vercel(),
 });

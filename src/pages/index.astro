@@ -8,6 +8,7 @@ import perspective from "~/assets/perspective.png";
 import back2back from "~/assets/back2back.png";
 import Link from "~/components/common/link.astro";
 import { getImage } from "astro:assets";
+import Tooltip from "~/components/common/tooltip.astro";
 
 const images = [
   { src: back2back, alt: "back2back" },
@@ -29,7 +30,7 @@ const images = [
       <div
         class="flex flex-col space-y-6 lg:flex-row lg:items-start lg:justify-between lg:space-y-0"
       >
-        <div class="space-y-8 lg:max-w-[40%] lg:pl-4">
+        <div class="space-y-8 lg:max-w-[45%] lg:pl-4">
           <div class="space-y-2 font-light">
             <h1 class="font-serif text-4xl italic md:text-6xl">
               advait <span class="text-xl md:text-4xl">(astroxide)</span>
@@ -37,9 +38,7 @@ const images = [
             <p
               class="font-serif text-2xl leading-[120%] [word-spacing:0.15rem] md:text-4xl"
             >
-              multi-disciplinary engineer, obsessed with
-              <span class="italic line-through">breakshit</span> scalability and
-              performance
+              multi-disciplinary engineer, obsessed with scale, speed and art
             </p>
           </div>
           <div class="text-muted-foreground space-y-4 text-lg">
@@ -49,25 +48,24 @@ const images = [
               everything around me)
             </p>
             <p>
-              over the past year i've worked across multiple startups (5+ ig) -
-              freelancing, interning, sometimes part-time. currently im working
-              on side-gigs for other ppl and iterating in stealth over at my
-              <Link target="_blank" href="https://celestialabs.vercel.app"
+              shipped across 5+ startups &mdash; freelance, intern, part-time.
+              currently im working on side-gigs and iterating in stealth over at
+              my <Link target="_blank" href="https://celestialabs.vercel.app"
                 >little imaginary lab</Link
               >.
             </p>
             <p>
-              outside tech, i've always had an itch for creative stuff - music,
-              design etc. i used to post AMVs, played around with graphics, and
-              i'll probably keep hopping between mediums as long as it scratches
-              that urge to make.
+              outside tech, i've always had an itch for creative stuff &mdash;
+              music, design, visuals etc. i used to post anime video edits,
+              tried my luck at graphics and music production too.
             </p>
             <p>
               i don't really measure myself by titles, roles or a fixed timeline
-              bcs of my belief in the principles of <Link
-                href="https://en.wikipedia.org/wiki/Vairagya"
-                target="_blank">vairagya</Link
+              bcs of my belief in the principles of <Tooltip
+                content="owning my choices so fully that I can walk away from them freely."
               >
+                <Link href="/vairagya">vairagya</Link>
+              </Tooltip>
             </p>
           </div>
         </div>
