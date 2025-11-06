@@ -4,17 +4,18 @@ import Layout from "~/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { basehub } from "~/lib/basehub";
 import Link from "~/components/common/link.astro";
-import LOVE from "~/assets/LOVE.webp";
-import MILLENIUM from "~/assets/MILLENIUM.webp";
-import TAKEOVER from "~/assets/TAKEOVER.webp";
-import freedom from "~/assets/freedom.webp";
-import illicit from "~/assets/illicit.webp";
-import insanity from "~/assets/insanity.webp";
-import intongues from "~/assets/intongues.webp";
-import kendrick from "~/assets/kendrick.webp";
-import redemption from "~/assets/redemption.webp";
-import wanted from "~/assets/wanted.webp";
-import zillionaire from "~/assets/zillionaire.webp";
+import LOVE from "~/assets/gfx/LOVE.webp";
+import MILLENIUM from "~/assets/gfx/MILLENIUM.webp";
+import TAKEOVER from "~/assets/gfx/TAKEOVER.webp";
+import freedom from "~/assets/gfx/freedom.webp";
+import illicit from "~/assets/gfx/illicit.webp";
+import insanity from "~/assets/gfx/insanity.webp";
+import intongues from "~/assets/gfx/intongues.webp";
+import kendrick from "~/assets/gfx/kendrick.webp";
+import redemption from "~/assets/gfx/redemption.webp";
+import wanted from "~/assets/gfx/wanted.webp";
+import zillionaire from "~/assets/gfx/zillionaire.webp";
+import { cn } from "~/lib/utils";
 
 const images = [
   { src: LOVE, alt: "LOVE" },
@@ -64,21 +65,38 @@ const {
               the artworks below are some of my creations from back in the day
               when i gave graphic designing a shot
             </p>
-            <div id="archive-masonry">
+            <div
+              id="masonry"
+              class={cn(
+                "gap-x-2 leading-0 ",
+                "[-moz-column-count:3] [-moz-column-gap:8px] [-webkit-column-count:3] [-webkit-column-gap:8px] [column-count:3]"
+              )}
+            >
               {
                 images.map((img) => (
                   <Image
                     src={img.src}
                     alt={img.alt}
-                    class="cursor-zoom-in"
+                    class="mb-2 h-auto w-3xs cursor-zoom-in rounded"
                     data-full={img.src.src}
                   />
                 ))
               }
             </div>
+            <div
+              id="previewModal"
+              class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80"
+            >
+              <img
+                id="previewImg"
+                src=""
+                alt="full preview"
+                class="max-h-[90%] max-w-[90%] rounded-lg shadow-lg"
+              />
+            </div>
           </div>
 
-          <div class="space-y-4 lg:max-w-[45%]">
+          <div class="space-y-12 lg:max-w-[45%]">
             <h2 class="font-serif text-2xl lg:text-4xl">content i like</h2>
             <p class="text-muted-foreground text-lg">
               list of links from the internet that i like/appreciate (yea i
@@ -89,7 +107,7 @@ const {
             <ol class="list-inside list-decimal space-y-1.5">
               {
                 links.map(({ link, _id, _title }) => (
-                  <li class="font-light text-lg">
+                  <li class="text-lg font-light">
                     <a
                       target="_blank"
                       class="underline underline-offset-4"
@@ -104,48 +122,6 @@ const {
           </div>
         </div>
       </div>
-      <div
-        id="previewModal"
-        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80"
-      >
-        <img
-          id="previewImg"
-          src=""
-          alt="full preview"
-          class="max-h-[90%] max-w-[90%] rounded-lg shadow-lg"
-        />
-      </div>
     </Container>
   </main>
-
-  <script>
-    function setupModal() {
-      const modal = document.getElementById("previewModal") as HTMLDivElement;
-      const previewImg = document.getElementById(
-        "previewImg"
-      ) as HTMLImageElement;
-
-      document
-        .querySelectorAll<HTMLImageElement>("#archive-masonry img")
-        .forEach((img) => {
-          img.addEventListener("click", () => {
-            const fullSrc = img.dataset.full;
-            if (fullSrc) {
-              previewImg.src = fullSrc;
-              modal.classList.remove("hidden");
-              modal.classList.add("flex");
-            }
-          });
-        });
-
-      modal.addEventListener("click", () => {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-        previewImg.src = "";
-      });
-    }
-
-    setupModal();
-    document.addEventListener("astro:page-load", setupModal);
-  </script>
 </Layout>

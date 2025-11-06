@@ -1,6 +1,19 @@
 ---
 import Container from "~/components/common/container.astro";
 import Layout from "~/layouts/Layout.astro";
+import { getImage, Image } from "astro:assets";
+import takht from "~/assets/vairagya/takht.jpeg";
+import andrew from "~/assets/vairagya/andrew.png";
+import drake from "~/assets/vairagya/drake.png";
+import psychedelic from "~/assets/vairagya/psychedelic.png";
+import { cn } from "~/lib/utils";
+
+const images = [
+  { src: takht, alt: "blinded by takht" },
+  { src: andrew, alt: "andrew" },
+  { src: drake, alt: "drake on 8am in charlotte" },
+  { src: psychedelic, alt: "psychedelic" },
+];
 ---
 
 <Layout
@@ -12,23 +25,84 @@ import Layout from "~/layouts/Layout.astro";
 >
   <main>
     <Container>
-      <div class="space-y-4 lg:max-w-[45%] lg:pl-4">
-        <h1 class="font-serif text-5xl italic md:text-6xl">Vairagya</h1>
-        <p class="text-muted-foreground text-lg">
-          <p>/vaɪˈrɑːɡjə/</p>
-        </p>
-        <p class="text-lg md:text-xl">
-          n. Sanskrit. The practice of detachment; liberation from worldly
-          attachments through dispassion and renunciation.
-        </p>
-        <p class="">my interpretation</p>
-        <blockquote class="text-muted-foreground border-l-2 pl-2 font-medium">
-          I don&apos;t see vairāgya as withdrawal. I see it as movement &mdash;
-          from one form of creation to another. I pour myself into things fully,
-          then leave without guilt when they&apos;ve served their purpose. I
-          rebuild what breaks, I unlearn what&apos;s stale, and I keep searching
-          for the calm between chaos and clarity.
-        </blockquote>
+      <div
+        class="flex flex-col space-y-6 lg:flex-row lg:items-start lg:justify-between lg:space-y-0"
+      >
+        <div class="space-y-4 lg:max-w-[45%] lg:pl-4">
+          <h1 class="font-serif text-5xl italic md:text-6xl">
+            Vairagya <span class="font-sans text-lg not-italic md:text-xl"
+              >(kinda reimagined)</span
+            >
+          </h1>
+          <p class="text-muted-foreground text-lg">
+            <p>/vaɪˈrɑːɡjə/</p>
+          </p>
+          <p class="text-lg md:text-xl">
+            n. Sanskrit. of attachment to material possessions, emotions, and
+            worldly desires to achieve inner peace and freedom.
+          </p>
+          <p class="">my interpretation</p>
+          <blockquote class="text-muted-foreground space-y-3 border-l-2 pl-3">
+            <p>
+              unlike the literal meaning of vairagya, i view it as a movement or
+              change quintessential to move into the next arc of life.
+            </p>
+            <p>
+              whenever im faced with tough decisions or moments of transitions,
+              trusting my instinct - believing that my thoughts are the best
+              thing that can happen to me - was enough to guide me forward.
+            </p>
+            <p>
+              that didn&apos;t require me giving up on material desires. it
+              meant recognizing that the ceiling for this next arc might be
+              higher.
+            </p>
+            <p>
+              that mindset helped me when i left my role as lead engineer to
+              start a new project and months later getting dropped due to
+              commitment issues and even when i moved cities.
+            </p>
+          </blockquote>
+        </div>
+        <div class="lg:pl-4">
+          <div
+            id="masonry"
+            class={cn(
+              "gap-x-2 leading-0 ",
+              "[-moz-column-count:2] [-moz-column-gap:8px] [-webkit-column-count:2] [-webkit-column-gap:8px] [column-count:2]",
+              "md:[-moz-column-count:3]  md:[-webkit-column-count:3] md:[column-count:3]",
+              "lg:[-moz-column-count:2]  lg:[-webkit-column-count:2] lg:[column-count:2]"
+            )}
+          >
+            {
+              images.map(async ({ src, alt }) => {
+                const webpImage = await getImage({ src, format: "webp" });
+
+                return (
+                  <Image
+                    src={webpImage.src}
+                    alt={alt}
+                    width="800"
+                    height="600"
+                    class="mb-2 h-auto w-3xs cursor-zoom-in rounded grayscale"
+                    data-full={webpImage.src}
+                  />
+                );
+              })
+            }
+          </div>
+          <div
+            id="previewModal"
+            class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80"
+          >
+            <img
+              id="previewImg"
+              src=""
+              alt="full preview"
+              class="max-h-[90%] max-w-[90%] rounded-lg shadow-lg"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </main>
