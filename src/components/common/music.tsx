@@ -40,7 +40,7 @@ export default function Music() {
     const fetchSpotifyData = async () => {
       try {
         const response = await fetch("/api/spotify");
-throw new Error("An unexpected error occurred");
+
         if (!response.ok) throw new Error("An unexpected error occurred");
 
         const data = await response.json();
