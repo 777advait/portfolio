@@ -34,14 +34,19 @@ export function MarqueeText(props: { text: string }) {
 
 export default function Music() {
   const [spotifyData, setSpotifyData] = useState<SpotifyData | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchSpotifyData = async () => {
       try {
         const response = await fetch("/api/spotify");
+throw new Error("An unexpected error occurred");
+        if (!response.ok) throw new Error("An unexpected error occurred");
+
         const data = await response.json();
         setSpotifyData(data.currentlyPlaying);
       } catch (error) {
+        setError(true);
         console.error("Error fetching data:", error);
       }
     };
@@ -51,6 +56,8 @@ export default function Music() {
 
     return () => clearInterval(interval);
   }, []);
+
+  if (error) return <MarqueeText text="Failed to fetch music stats..." />;
 
   if (!spotifyData) {
     return <MarqueeText text="Not listening to music rn..." />;
