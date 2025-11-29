@@ -66,6 +66,29 @@ export default function WorksList({ works }: { works: TWork[] }) {
 
   const displayedItem = lockedItem || hoveredItem;
 
+  // Change cursor to X when locked and mouse is outside
+  React.useEffect(() => {
+    if (!lockedItem) return;
+
+    const handleMouseMove = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        document.body.style.cursor =
+          "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>\") 12 12, pointer";
+      } else {
+        document.body.style.cursor = "";
+      }
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      document.body.style.cursor = "";
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [lockedItem]);
+
   return (
     <div
       ref={containerRef}
