@@ -183,7 +183,7 @@ export interface BlockOgImage {
 
 
 /** Rich text block */
-export type BlockRichText = (Content) & { __isUnion?: true }
+export type BlockRichText = (Content | Description) & { __isUnion?: true }
 
 export interface BlockVideo {
     aspectRatio: Scalars['String']
@@ -212,6 +212,21 @@ export interface ContentRichText {
     content: Scalars['BSHBRichTextContentSchema']
     toc: Scalars['BSHBRichTextTOCSchema']
     __typename: 'ContentRichText'
+}
+
+export interface Description {
+    html: Scalars['String']
+    json: DescriptionRichText
+    markdown: Scalars['String']
+    plainText: Scalars['String']
+    readingTime: Scalars['Int']
+    __typename: 'Description'
+}
+
+export interface DescriptionRichText {
+    content: Scalars['BSHBRichTextContentSchema']
+    toc: Scalars['BSHBRichTextTOCSchema']
+    __typename: 'DescriptionRichText'
 }
 
 export interface GetUploadSignedURL {
@@ -330,7 +345,7 @@ export interface RepoSys {
     __typename: 'RepoSys'
 }
 
-export type RichTextJson = (BaseRichTextJson | ContentRichText) & { __isUnion?: true }
+export type RichTextJson = (BaseRichTextJson | ContentRichText | DescriptionRichText) & { __isUnion?: true }
 
 export interface SearchHighlight {
     /** The field/path that was matched (e.g., "title", "body.content") */
@@ -394,7 +409,7 @@ export interface WorksComponent {
     _title: Scalars['String']
     /** ISO 8601 date string. */
     date: Scalars['String']
-    description: Scalars['String']
+    description: Description
     role: Scalars['String']
     url: (Scalars['String'] | null)
     __typename: 'WorksComponent'
@@ -817,6 +832,7 @@ export interface BlockRichTextGenqlSelection{
     /** Words per minute, defaults to average 183wpm */
     wpm?: (Scalars['Int'] | null)} } | boolean | number
     on_Content?: ContentGenqlSelection
+    on_Description?: DescriptionGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockRichText"
 }
@@ -860,6 +876,29 @@ export interface ContentRichTextGenqlSelection{
 }
 
 export interface DateFilter {eq?: (Scalars['DateTime'] | null),isAfter?: (Scalars['DateTime'] | null),isBefore?: (Scalars['DateTime'] | null),isNull?: (Scalars['Boolean'] | null),neq?: (Scalars['DateTime'] | null),onOrAfter?: (Scalars['DateTime'] | null),onOrBefore?: (Scalars['DateTime'] | null)}
+
+export interface DescriptionGenqlSelection{
+    html?: { __args: {
+    /** It automatically generates a unique id for each heading present in the HTML. Enabled by default. */
+    slugs?: (Scalars['Boolean'] | null), 
+    /** Inserts a table of contents at the beginning of the HTML. */
+    toc?: (Scalars['Boolean'] | null)} } | boolean | number
+    json?: DescriptionRichTextGenqlSelection
+    markdown?: boolean | number
+    plainText?: boolean | number
+    readingTime?: { __args: {
+    /** Words per minute, defaults to average 183wpm */
+    wpm?: (Scalars['Int'] | null)} } | boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "Description"
+}
+
+export interface DescriptionRichTextGenqlSelection{
+    content?: boolean | number
+    toc?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "DescriptionRichText"
+}
 
 export interface GetUploadSignedURLGenqlSelection{
     signedURL?: boolean | number
@@ -1091,6 +1130,7 @@ export interface RichTextJsonGenqlSelection{
     toc?: boolean | number
     on_BaseRichTextJson?: BaseRichTextJsonGenqlSelection
     on_ContentRichText?: ContentRichTextGenqlSelection
+    on_DescriptionRichText?: DescriptionRichTextGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "RichTextJson"
 }
@@ -1179,14 +1219,14 @@ export interface WorksComponentGenqlSelection{
     _title?: boolean | number
     /** ISO 8601 date string. */
     date?: boolean | number
-    description?: boolean | number
+    description?: DescriptionGenqlSelection
     role?: boolean | number
     url?: boolean | number
     __typename?: boolean | number
     __fragmentOn?: "WorksComponent"
 }
 
-export interface WorksComponentFilterInput {AND?: (WorksComponentFilterInput | null),OR?: (WorksComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),date?: (DateFilter | null),description?: (StringFilter | null),role?: (StringFilter | null),url?: (StringFilter | null)}
+export interface WorksComponentFilterInput {AND?: (WorksComponentFilterInput | null),OR?: (WorksComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),date?: (DateFilter | null),role?: (StringFilter | null),url?: (StringFilter | null)}
 
 export interface WorksComponentSearchInput {
 /** Searchable fields for query */
@@ -1536,6 +1576,14 @@ export interface FragmentsMap {
   ContentRichText: {
     root: ContentRichText,
     selection: ContentRichTextGenqlSelection,
+}
+  Description: {
+    root: Description,
+    selection: DescriptionGenqlSelection,
+}
+  DescriptionRichText: {
+    root: DescriptionRichText,
+    selection: DescriptionRichTextGenqlSelection,
 }
   GetUploadSignedURL: {
     root: GetUploadSignedURL,

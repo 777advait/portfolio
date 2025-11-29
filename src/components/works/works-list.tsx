@@ -1,36 +1,82 @@
-import { format } from "date-fns";
 import React from "react";
-import { useMediaQuery } from "usehooks-ts";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "~/lib/utils";
+import type { TWork } from "~/types/works.types";
+import { RichText } from "basehub/react-rich-text";
+
+// Helper function to format date as MM/yyyy
+const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${month}/${year}`;
+};
 
 export default function WorksList({ works }: { works: TWork[] }) {
   const [hoveredItem, setHoveredItem] = React.useState<TWork | null>(null);
-  const [tappedItem, setTappedItem] = React.useState<TWork | null>(null);
+  const [lockedItem, setLockedItem] = React.useState<TWork | null>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const isMobile = useMediaQuery("(max-width: 1023px)");
+  // Handle click outside to release lock
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setLockedItem(null);
+        setHoveredItem(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleClick = (e: React.MouseEvent, work: TWork) => {
-    if (isMobile) {
-      if (tappedItem?._id !== work._id) {
-        e.preventDefault(); // stop navigation on first tap
-        setTappedItem(work);
-        setHoveredItem(work);
-      } else {
-        // second tap → allow navigation
-        setTappedItem(null);
+    if (lockedItem?._id === work._id) {
+      // Second click - allow navigation if URL exists
+      if (work.url) {
+        // Let the default anchor behavior happen
+        setLockedItem(null);
       }
+    } else {
+      // First click - lock the item
+      e.preventDefault();
+      setLockedItem(work);
+      setHoveredItem(work);
     }
   };
 
+  const handleMouseEnter = (work: TWork) => {
+    // Only show on hover if nothing is locked
+    if (!lockedItem) {
+      setHoveredItem(work);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    // Only clear hover if nothing is locked
+    if (!lockedItem) {
+      setHoveredItem(null);
+    }
+  };
+
+  const displayedItem = lockedItem || hoveredItem;
+
   return (
-    <div className="flex flex-col space-y-8 lg:flex-row lg:items-start lg:justify-between lg:space-y-0">
+    <div
+      ref={containerRef}
+      className="flex flex-col space-y-8 lg:flex-row lg:items-start lg:justify-between lg:space-y-0"
+    >
       <ul className="flex flex-1 flex-col gap-y-1.5 lg:max-w-[45%]">
         {works.map((work) => (
           <li
             key={work._id}
-            onMouseEnter={() => !isMobile && setHoveredItem(work)}
-            onMouseLeave={() => !isMobile && setHoveredItem(null)}
+            onMouseEnter={() => handleMouseEnter(work)}
+            onMouseLeave={handleMouseLeave}
             className="group relative flex items-center gap-y-2"
           >
             {work.url ? (
@@ -39,10 +85,10 @@ export default function WorksList({ works }: { works: TWork[] }) {
                 href={work.url}
                 onClick={(e) => handleClick(e, work)}
                 className={cn(
-                  "inline-flex items-center gap-x-1 px-1 text-left text-lg",
+                  "inline-flex cursor-pointer items-center gap-x-1 px-1 text-left text-lg",
                   {
                     "bg-muted text-muted-foreground":
-                      (hoveredItem && hoveredItem._id) === work._id,
+                      displayedItem?._id === work._id,
                   },
                 )}
               >
@@ -52,9 +98,9 @@ export default function WorksList({ works }: { works: TWork[] }) {
             ) : (
               <p
                 onClick={(e) => handleClick(e, work)}
-                className={cn("px-1 text-left text-lg", {
+                className={cn("cursor-pointer px-1 text-left text-lg", {
                   "bg-muted text-muted-foreground":
-                    (hoveredItem && hoveredItem._id) === work._id,
+                    displayedItem?._id === work._id,
                 })}
               >
                 {work._title}
@@ -64,33 +110,38 @@ export default function WorksList({ works }: { works: TWork[] }) {
             <span className="mx-1.5 flex-1 border-t" />
 
             <p className="text-muted-foreground text-right text-sm">
-              {work.date ? format(new Date(work.date), "MM/yyyy") : "N/A"}
+              {work.date ? formatDate(work.date) : "N/A"}
             </p>
           </li>
         ))}
       </ul>
 
-      {hoveredItem && (
+      {displayedItem && (
         <div className="flex-1 lg:max-w-[45%]">
           <div className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <h2 className="text-muted-foreground font-medium">Role</h2>
-                <p>{hoveredItem.role}</p>
+                <p>{displayedItem.role}</p>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <h2 className="text-muted-foreground font-medium">Year</h2>
                 <p>
-                  {hoveredItem.date
-                    ? format(new Date(hoveredItem.date), "MM/yyyy")
-                    : "N/A"}
+                  {displayedItem.date ? formatDate(displayedItem.date) : "N/A"}
                 </p>
               </div>
             </div>
-            <p>{hoveredItem.description}</p>
-            {isMobile && hoveredItem.url && (
-              <p className="text-muted-foreground text-sm italic">
-                Tap again to open link
+            <div
+              className={cn(
+                "[&_a]:bg-muted [&_a]:text-muted-foreground [&_a]:px-1 [&_a]:font-medium",
+              )}
+            >
+              <RichText content={displayedItem.description.json.content} />
+            </div>
+            {lockedItem && displayedItem.url && (
+              <p className="text-muted-foreground flex items-center text-sm font-medium">
+                Click again to open link{" "}
+                <ArrowUpRight className="ml-1 size-4 font-medium" />
               </p>
             )}
           </div>

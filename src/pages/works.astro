@@ -4,6 +4,7 @@ import Layout from "~/layouts/Layout.astro";
 import { format } from "date-fns";
 import { basehub } from "~/lib/basehub";
 import WorksList from "~/components/works/works-list";
+import type { TWork } from "~/types/works.types";
 
 const {
   works: { items: works },
@@ -13,7 +14,7 @@ const {
     items: {
       _title: true,
       role: true,
-      description: true,
+      description: { json: { content: true } },
       date: true,
       url: true,
       _id: true,
