@@ -19,10 +19,6 @@ export default function WorksList({ works }: { works: TWork[] }) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery("(max-width: 1023px)");
 
-  React.useEffect(() => {
-    console.log(isMobile);
-  }, [isMobile]);
-
   // Handle click outside to release lock
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -168,7 +164,6 @@ export default function WorksList({ works }: { works: TWork[] }) {
               <RichText content={displayedItem.description.json.content} />
             </div>
             <p className="text-muted-foreground text-sm">
-
               {isMobile
                 ? lockedItem &&
                   displayedItem.url &&

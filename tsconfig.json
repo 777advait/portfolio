@@ -1,7 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "~/*": [
         "./src/*"
@@ -16,6 +15,8 @@
     "dist"
   ],
   "include": [
-    "src"
-  , "basehub-types.d.ts", "basehub.config.ts"]
+    "src",
+    "basehub-types.d.ts",
+    "basehub.config.ts"
+  ]
 }

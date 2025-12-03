@@ -9,7 +9,7 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://advtxide.vercel.app",
+  site: "https://advtszn.xyz",
   output: "server",
   prefetch: { prefetchAll: true },
   vite: {
