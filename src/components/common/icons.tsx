@@ -1,3 +1,4 @@
+import type { LucideIcon, LucideProps } from "lucide-react";
 import React from "react";
 
 export const TripleSeven: LucideIcon = React.forwardRef<

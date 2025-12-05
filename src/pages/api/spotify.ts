@@ -4,8 +4,6 @@ import "dotenv/config";
 const SPOTIFY_TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const SPOTIFY_NOW_PLAYING_ENDPOINT =
   "https://api.spotify.com/v1/me/player/currently-playing";
-const SPOTIFY_TOP_TRACKS_ENDPOINT =
-  "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5";
 
 const getAccessToken = async () => {
   const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
