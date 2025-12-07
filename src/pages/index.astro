@@ -17,13 +17,22 @@ const images = [
   { src: ramen, alt: "ramen" },
   { src: city, alt: "city" },
 ];
+
+const birthDate = new Date("2007-08-28");
+const today = new Date();
+
+const age =
+  today.getMonth() > birthDate.getMonth() ||
+  (today.getMonth() === birthDate.getMonth() &&
+    today.getDate() >= birthDate.getDate())
+    ? today.getFullYear() - birthDate.getFullYear()
+    : today.getFullYear() - birthDate.getFullYear() - 1;
 ---
 
 <Layout
   content={{
     title: "home | advtszn",
-    description:
-      "multi-disciplinary engineer, obsessed with scale, speed and aesthetics",
+    description: `${age} year old multi-disciplinary engineer, obsessed with scale, speed and aesthetics`,
   }}
 >
   <main class="">
@@ -39,7 +48,7 @@ const images = [
             <p
               class="font-serif text-2xl leading-[120%] [word-spacing:0.15rem] md:text-4xl"
             >
-              multi-disciplinary engineer, obsessed with scale, speed and
+              {age} y/o multi-disciplinary engineer, obsessed with scale, speed and
               aesthetics
             </p>
           </div>
@@ -63,8 +72,8 @@ const images = [
               around with graphics, even tried music production for a bit.
             </p>
             <p>
-              i think starting my career early (at around 16 y/o) taught me to
-              not measure myself against roles, titles or fixed timelines.
+              currently im leaning into the mix of tech and creativity without
+              really measuring myself against titles or any fixed timelines.
             </p>
           </div>
         </div>
