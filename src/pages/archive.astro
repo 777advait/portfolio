@@ -10,12 +10,18 @@ import path from "path";
 import LOVE from "~/assets/gfx/LOVE.webp";
 import MILLENIUM from "~/assets/gfx/MILLENIUM.webp";
 import TAKEOVER from "~/assets/gfx/TAKEOVER.webp";
+import bitsm from "~/assets/gfx/bitsm.webp";
+import chaarDiwaari from "~/assets/gfx/chaar-diwaari.webp";
+import elDiablo from "~/assets/gfx/el-diablo.webp";
 import freedom from "~/assets/gfx/freedom.webp";
+import grow from "~/assets/gfx/grow.webp";
 import illicit from "~/assets/gfx/illicit.webp";
 import insanity from "~/assets/gfx/insanity.webp";
 import intongues from "~/assets/gfx/intongues.webp";
+import karma from "~/assets/gfx/karma.webp";
 import kendrick from "~/assets/gfx/kendrick.webp";
 import redemption from "~/assets/gfx/redemption.webp";
+import speed from "~/assets/gfx/speed.webp";
 import wanted from "~/assets/gfx/wanted.webp";
 import zillionaire from "~/assets/gfx/zillionaire.webp";
 import ericreprid from "~/assets/gfx/ericreprid.webp";
@@ -53,11 +59,7 @@ const images = await Promise.all([
     alt: "red-on-grey poster repeating INSANITY over a halftone still of a man holding a revolver to his head",
     lqip: await generateLQIPFromPath(path.join(assetsDir, "insanity.webp")),
   },
-  {
-    src: intongues,
-    alt: "reimagined cover for joji's 'in tongues' EP — smoky figure on burnt orange with a serif tracklist",
-    lqip: await generateLQIPFromPath(path.join(assetsDir, "intongues.webp")),
-  },
+
   {
     src: ericreprid,
     alt: "cover art for eric reprid's '3ternity' — blurred portrait under dripping chrome metal type",
@@ -82,6 +84,43 @@ const images = await Promise.all([
     src: zillionaire,
     alt: "pink monochrome poster 'zillionaire — we create culture', a woman covering her face with ringed, long-nailed fingers",
     lqip: await generateLQIPFromPath(path.join(assetsDir, "zillionaire.webp")),
+  },
+  {
+    src: intongues,
+    alt: "reimagined cover for joji's 'in tongues' EP — smoky figure on burnt orange with a serif tracklist",
+    lqip: await generateLQIPFromPath(path.join(assetsDir, "intongues.webp")),
+  },
+  {
+    src: bitsm,
+    alt: "back cover for travis scott's 'birds in the trap sing mcknight' — a winged stone angel in fog under yellow italic type with the tracklist",
+    lqip: await generateLQIPFromPath(path.join(assetsDir, "bitsm.webp")),
+  },
+  {
+    src: chaarDiwaari,
+    alt: "cover for chaar diwaari's 'tere maiyat ke gaane' EP — a thermal-toned portrait in orange and blue under flame-lit type",
+    lqip: await generateLQIPFromPath(
+      path.join(assetsDir, "chaar-diwaari.webp"),
+    ),
+  },
+  {
+    src: elDiablo,
+    alt: "acid-green poster titled EL DIABLO on black grain — a cross-marked balaclava beside a robed figure and a dictionary blurb on the devil",
+    lqip: await generateLQIPFromPath(path.join(assetsDir, "el-diablo.webp")),
+  },
+  {
+    src: grow,
+    alt: "orange-on-charcoal riso-style poster reading 'allow yourself to grow' — a child silhouetted among bare trees",
+    lqip: await generateLQIPFromPath(path.join(assetsDir, "grow.webp")),
+  },
+  {
+    src: karma,
+    alt: "washed bone-white poster titled KARMA — a winged angel statue shouldering a cross, ringed by small black sun glyphs",
+    lqip: await generateLQIPFromPath(path.join(assetsDir, "karma.webp")),
+  },
+  {
+    src: speed,
+    alt: "crimson-tinted SPEED poster — a widebody sports car mid-drift under lightning, captioned 'speed = distance / time'",
+    lqip: await generateLQIPFromPath(path.join(assetsDir, "speed.webp")),
   },
 ]);
 ---
@@ -109,7 +148,7 @@ const images = await Promise.all([
             "gap-x-2 leading-0",
             "[-moz-column-count:2] [-moz-column-gap:8px] [-webkit-column-count:2] [-webkit-column-gap:8px] [column-count:2]",
             "md:[-moz-column-count:3] md:[-webkit-column-count:3] md:[column-count:3]",
-            "lg:[-moz-column-count:4] lg:[-webkit-column-count:4] lg:[column-count:4]",
+            // "lg:[-moz-column-count:4] lg:[-webkit-column-count:4] lg:[column-count:4]",
           )}
         >
           {
