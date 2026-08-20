@@ -30,11 +30,6 @@ const assetsDir = path.join(process.cwd(), "src/assets/gfx");
 
 const images = await Promise.all([
   {
-    src: LOVE,
-    alt: "halftone orange-on-black poster titled LOVE — a couple about to kiss beside pressed carnations, captioned 'i just enjoy you <3'",
-    lqip: await generateLQIPFromPath(path.join(assetsDir, "LOVE.webp")),
-  },
-  {
     src: MILLENIUM,
     alt: "y2k poster titled MILLENIUM — man in chrome sunglasses and a cross chain under acid-yellow graffiti type",
     lqip: await generateLQIPFromPath(path.join(assetsDir, "MILLENIUM.webp")),
@@ -91,6 +86,11 @@ const images = await Promise.all([
     lqip: await generateLQIPFromPath(path.join(assetsDir, "intongues.webp")),
   },
   {
+    src: LOVE,
+    alt: "halftone orange-on-black poster titled LOVE — a couple about to kiss beside pressed carnations, captioned 'i just enjoy you <3'",
+    lqip: await generateLQIPFromPath(path.join(assetsDir, "LOVE.webp")),
+  },
+  {
     src: bitsm,
     alt: "back cover for travis scott's 'birds in the trap sing mcknight' — a winged stone angel in fog under yellow italic type with the tracklist",
     lqip: await generateLQIPFromPath(path.join(assetsDir, "bitsm.webp")),
@@ -137,7 +137,7 @@ const images = await Promise.all([
       <div class="">
         <div class="mb-8 space-y-2">
           <h1 class="font-heading text-3xl font-medium md:text-5xl">archive</h1>
-          <p class="text-muted-foreground text-lg font-medium text-justify">
+          <p class="text-muted-foreground text-lg text-justify">
             cover arts and posters from when i used to do graphic designing
           </p>
         </div>

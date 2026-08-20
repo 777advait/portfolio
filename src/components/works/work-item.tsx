@@ -33,7 +33,7 @@ export function WorkItem({
     <li
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      className="group relative flex items-center gap-y-2"
+      className="group relative flex items-center gap-y-2 font-medium"
     >
       {url ? (
         <a
