@@ -14,7 +14,11 @@
 \usepackage{fancyhdr}
 \usepackage{tabularx}
 \usepackage{titlesec}
-\usepackage{hyperref}
+\usepackage[normalem]{ulem}
+
+% Fixed-depth underline: \underline sits below the box, so links with
+% descenders (y, g, /) got a lower rule than ones without (Portfolio).
+\renewcommand{\ULdepth}{2.5pt}
 
 % Adjust margins
 \usepackage[left=0.5in,top=0.5in,right=0.5in,bottom=0.5in]{geometry}
@@ -68,9 +72,9 @@
 % Heading
 \begin{center}
     \textbf{\Huge \scshape Advait Jadhav} \\
-    \small  \href{https://advtszn.xyz}{\underline{Portfolio}} $|$ \href{mailto:hey@advtszn.xyz}{\underline{hey@advtszn.xyz}} $|$
-    \href{https://linkedin.com/in/advtszn}{\underline{linkedin.com/in/advtszn}} $|$
-    \href{https://github.com/advtszn}{\underline{github.com/advtszn}}
+    \small \href{https://advtszn.xyz}{\uline{Portfolio}} $|$ \href{mailto:hey@advtszn.xyz}{\uline{hey@advtszn.xyz}} $|$
+    \href{https://linkedin.com/in/advtszn}{\uline{linkedin.com/in/advtszn}} $|$
+    \href{https://github.com/advtszn}{\uline{github.com/advtszn}}
 \end{center}
 
 % Career Objective
